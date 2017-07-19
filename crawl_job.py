@@ -100,10 +100,13 @@ class CrawlJob(object):
 
 import MySQLdb
 from MySQLdb.cursors import DictCursor
+import sys
 
 if __name__ == "__main__":
+
+    sys.getdefaultencoding()
     connection = MySQLdb.connect(host='localhost', port=3306, user='root', passwd='root',
-                                 cursorclass=DictCursor, charset='utf8')
+                                 cursorclass=DictCursor, use_unicode=0, charset='utf8')
     job = CrawlJob().load(1, 2, connection)
 
     print job.fields

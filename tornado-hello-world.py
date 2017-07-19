@@ -27,7 +27,7 @@ class SpiderConfigRequestHandler(tornado.web.RequestHandler):
 
         job = CrawlJob().load(int(self.get_argument('user_id')), int(self.get_argument('job_id')), conn)
 
-        # data = {'key' : u'数据项目'}
+        print job.fields
 
         json_data = json.dumps(job.fields, indent=4)
         self.write(json_data)
