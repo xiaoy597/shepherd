@@ -6,8 +6,6 @@ import json
 import logging
 import logging.config
 import subprocess
-import tornado.ioloop
-import tornado.web
 import MySQLdb
 from MySQLdb.cursors import DictCursor
 
@@ -15,19 +13,27 @@ from StringIO import StringIO
 import pycurl
 from urllib import urlencode
 
+from datetime import datetime
+from datetime import timedelta
+
+import tornado.web
+from tornado.ioloop import IOLoop
+
+from apscheduler.schedulers.tornado import TornadoScheduler
+from threading import Lock
+
 from crawl_job import CrawlJob
 
 
 class SpiderConfigRequestHandler(tornado.web.RequestHandler):
-
     def __init__(self, *args, **kwargs):
         super(SpiderConfigRequestHandler, self).__init__(*args, **kwargs)
 
         self.logger = logging.getLogger(self.__class__.__name__)
         self.logger.info("Instance created.")
+        self.shepherd = shepherd
 
     def post(self, *args, **kwargs):
-
         user_id = self.get_argument('user_id')
         job_id = self.get_argument('job_id')
 
@@ -47,27 +53,17 @@ class SpiderConfigRequestHandler(tornado.web.RequestHandler):
 
         conn.close()
 
-class UpdateStatusRequestHandler(tornado.web.RequestHandler):
 
+class UpdateStatusRequestHandler(tornado.web.RequestHandler):
     def __init__(self, *args, **kwargs):
         super(UpdateStatusRequestHandler, self).__init__(*args, **kwargs)
 
         self.logger = logging.getLogger(self.__class__.__name__)
         self.logger.info("Instance created.")
 
-        self.conn = MySQLdb.connect(host=os.getenv('SHEPHERD_DB_HOST'), port=3306,
-                                    user=os.getenv('SHEPHERD_DB_USER'),
-                                    passwd=os.getenv('SHEPHERD_DB_PASS'),
-                                    cursorclass=DictCursor, charset='utf8')
-        self.conn.autocommit(True)
-
-    def get(self):
-        data = {'key': u'数据项目'}
-        json_data = json.dumps(data)
-        self.write(json_data)
+        self.shepherd = shepherd
 
     def post(self, *args, **kwargs):
-
         stats_info = {
             'user_id': self.get_argument('user_id'),
             'job_id': self.get_argument('job_id'),
@@ -83,40 +79,51 @@ class UpdateStatusRequestHandler(tornado.web.RequestHandler):
         self.save_stats_info(stats_info)
 
     def save_stats_info(self, stats_info):
-        sql = '''insert into {db}.{table_name} (
-                      user_id, job_id, start_time, run_status, download_page_num,
-                      pending_page_num, error_page_num)
-                  values (%s, %s, %s, %s, %s, %s, %s)
-                  on duplicate key update
-                    run_status = %s,
-                    download_page_num = %s,
-                    pending_page_num = %s,
-                    error_page_num = %s
-                  '''.format(db=os.getenv('SHEPHERD_DB_NAME'), table_name='crawl_status')
+        conn = None
+        try:
+            conn = MySQLdb.connect(host=os.getenv('SHEPHERD_DB_HOST'), port=3306,
+                                   user=os.getenv('SHEPHERD_DB_USER'),
+                                   passwd=os.getenv('SHEPHERD_DB_PASS'),
+                                   cursorclass=DictCursor, charset='utf8')
+            conn.autocommit(True)
 
-        cursor = self.conn.cursor()
+            sql = '''insert into {db}.{table_name} (
+                          user_id, job_id, start_time, run_status, download_page_num,
+                          pending_page_num, error_page_num)
+                      values (%s, %s, %s, %s, %s, %s, %s)
+                      on duplicate key update
+                        run_status = %s,
+                        download_page_num = %s,
+                        pending_page_num = %s,
+                        error_page_num = %s
+                      '''.format(db=os.getenv('SHEPHERD_DB_NAME'), table_name='crawl_status')
 
-        sql_param = (
-            stats_info['user_id'],
-            stats_info['job_id'],
-            stats_info['start_time'],
-            stats_info['run_status'],
-            stats_info['download_num'],
-            stats_info['pending_num'],
-            stats_info['error_num'],
-            stats_info['run_status'],
-            stats_info['download_num'],
-            stats_info['pending_num'],
-            stats_info['error_num'],
-        )
+            cursor = conn.cursor()
 
-        cursor.execute(sql, sql_param)
+            sql_param = (
+                stats_info['user_id'],
+                stats_info['job_id'],
+                stats_info['start_time'],
+                stats_info['run_status'],
+                stats_info['download_num'],
+                stats_info['pending_num'],
+                stats_info['error_num'],
+                stats_info['run_status'],
+                stats_info['download_num'],
+                stats_info['pending_num'],
+                stats_info['error_num'],
+            )
 
-        cursor.close()
+            cursor.execute(sql, sql_param)
+
+            cursor.close()
+        except Exception:
+            self.logger.exception("Failed to save stats info.")
+        finally:
+            conn.close()
 
 
 class JobControlRequestHandler(tornado.web.RequestHandler):
-
     def __init__(self, *args, **kwargs):
 
         super(JobControlRequestHandler, self).__init__(*args, **kwargs)
@@ -129,11 +136,52 @@ class JobControlRequestHandler(tornado.web.RequestHandler):
             'schedule': self.schedule_job
         }
 
+        self.shepherd = shepherd
+
+    def post(self, *args, **kwargs):
+
+        self.commands[self.get_argument('command')]()
+
+    def schedule_job(self):
+        pass
+
+    def stop_job(self):
+        user_id = self.get_argument('user_id')
+        job_id = self.get_argument('job_id')
+
+        try:
+            self.shepherd.job_controller.stop_job(user_id, job_id)
+        except Exception as e:
+            self.logger.exception("Error:")
+            self.write(e.message if len(e.message) > 0 else 'Exception')
+        else:
+            self.write("SUCCEED")
+
+    def start_job(self):
+        user_id = self.get_argument('user_id')
+        job_id = self.get_argument('job_id')
+
+        try:
+            self.shepherd.job_controller.start_job(user_id, job_id)
+        except Exception as e:
+            self.logger.exception("Error:")
+            self.write(e.message if len(e.message) > 0 else 'Exception')
+        else:
+            self.write("SUCCEED")
+
+
+class JobController(object):
+    def __init__(self):
+        super(JobController, self).__init__()
+        self.logger = logging.getLogger(self.__class__.__name__)
+
         self.conn = MySQLdb.connect(host=os.getenv('SHEPHERD_DB_HOST'), port=3306,
                                     user=os.getenv('SHEPHERD_DB_USER'),
                                     passwd=os.getenv('SHEPHERD_DB_PASS'),
                                     cursorclass=DictCursor, charset='utf8')
         self.conn.autocommit(True)
+
+        self.lock = Lock()
 
     def call_scrapyd(self, host_ip, api, post_data=None, get_param=None):
 
@@ -261,75 +309,181 @@ class JobControlRequestHandler(tornado.web.RequestHandler):
 
         f.close()
 
-    def post(self, *args, **kwargs):
+    def start_job(self, user_id, job_id):
 
-        self.commands[self.get_argument('command')]()
+        with self.lock:
+            working_dir = os.getcwd()
 
-    def schedule_job(self):
-        pass
+            try:
+                self.logger.info("Refreshing job for user %s and job %s.", user_id, job_id)
+                job_path, job_name, host_ip = self.job_create(user_id, job_id)
 
-    def stop_job(self):
-        user_id = self.get_argument('user_id')
-        job_id = self.get_argument('job_id')
+                self.job_redploy(job_path, job_name, host_ip)
 
-        working_dir = os.getcwd()
+                self.logger.info("Execute job %s on host %s immediately.", job_name, host_ip)
+                results = self.call_scrapyd(host_ip, 'schedule.json',
+                                            post_data={'project': job_name, 'spider': 'spider2'})
+                if results['status'] != 'ok':
+                    raise Exception('Failed to execute job %s on host %s', job_name, host_ip)
 
-        job_ids = []
+            except Exception:
+                raise
+            finally:
+                os.chdir(working_dir)
 
-        try:
-            self.logger.info("Checking job status for user %s and job %s.", user_id, job_id)
-            host_info = self.get_host_info(user_id, job_id)
-            job_name = 'job_%s_%s' % (user_id, job_id)
-            results = self.call_scrapyd(host_info['host_ip'], 'listjobs.json', get_param={'project': job_name})
-            for job in results['running'] + results['pending']:
-                job_ids.append(job['id'])
+    def stop_job(self, user_id, job_id):
 
-            self.logger.info("The jobs to be terminated are %s", job_ids)
-            for job_id in job_ids:
-                self.call_scrapyd(host_info['host_ip'], 'cancel.json', post_data={'project': job_name, 'job': job_id})
+        with self.lock:
+            working_dir = os.getcwd()
+            job_ids = []
 
-        except Exception as e:
-            self.logger.exception("Error:")
-            self.write(e.message if len(e.message) > 0 else 'Exception')
-        else:
-            self.write("SUCCEED")
-        finally:
-            os.chdir(working_dir)
+            try:
+                self.logger.info("Checking job status for user %s and job %s.", user_id, job_id)
+                host_info = self.get_host_info(user_id, job_id)
+                job_name = 'job_%s_%s' % (user_id, job_id)
+                results = self.call_scrapyd(host_info['host_ip'], 'listjobs.json', get_param={'project': job_name})
+                for job in results['running'] + results['pending']:
+                    job_ids.append(job['id'])
 
-    def start_job(self):
-        user_id = self.get_argument('user_id')
-        job_id = self.get_argument('job_id')
+                self.logger.info("The jobs to be terminated are %s", job_ids)
+                for job_id in job_ids:
+                    self.call_scrapyd(host_info['host_ip'], 'cancel.json',
+                                      post_data={'project': job_name, 'job': job_id})
 
-        working_dir = os.getcwd()
+            except Exception:
+                raise
+            finally:
+                os.chdir(working_dir)
 
-        try:
-            self.logger.info("Refreshing job for user %s and job %s.", user_id, job_id)
-            job_path, job_name, host_ip = self.job_create(user_id, job_id)
+    def schedule_job(self, trigger, trigger_args):
+        with self.lock:
+            pass
 
-            self.job_redploy(job_path, job_name, host_ip)
 
-            self.logger.info("Execute job %s on host %s immediately.", job_name, host_ip)
-            results = self.call_scrapyd(host_ip, 'schedule.json', post_data={'project': job_name, 'spider': 'spider2'})
-            if results['status'] != 'ok':
-                raise Exception('Failed to execute job %s on host %s', job_name, host_ip)
+class Shepherd(object):
+    def __init__(self):
+        super(Shepherd, self).__init__()
+        self.logger = logging.getLogger(self.__class__.__name__)
+        self.scheduler = TornadoScheduler()
 
-        except Exception as e:
-            self.logger.exception("Error:")
-            self.write(e.message if len(e.message) > 0 else 'Exception')
-        else:
-            self.write("SUCCEED")
-        finally:
-            os.chdir(working_dir)
+        self.application = tornado.web.Application([
+            (r"/spider-config", SpiderConfigRequestHandler),
+            (r"/update-status", UpdateStatusRequestHandler),
+            (r"/job-control", JobControlRequestHandler),
+        ])
+
+        self.conn = MySQLdb.connect(host=os.getenv('SHEPHERD_DB_HOST'), port=3306,
+                                    user=os.getenv('SHEPHERD_DB_USER'),
+                                    passwd=os.getenv('SHEPHERD_DB_PASS'),
+                                    cursorclass=DictCursor, charset='utf8')
+        self.conn.autocommit(True)
+
+        self.job_controller = JobController()
+
+        self.job_schedules = {}
+
+    def run(self):
+
+        self.load_jobs()
+
+        self.logger.debug(self.job_schedules)
+
+        self.scheduler.start()
+
+        self.scheduler.add_job(self.schedule_jobs, 'date', run_date=datetime.now() + timedelta(seconds=5))
+
+        self.application.listen(8888)
+
+        IOLoop.instance().start()
+
+    def load_jobs(self):
+        cursor = self.conn.cursor()
+
+        sql = 'select j.user_id, j.job_id, j.job_schedule_id, s.job_schedule_type \
+                  from {db}.crawl_job j, {db}.job_schedule s \
+                  where j.job_schedule_id = s.job_schedule_id \
+                  and j.is_valid = 1'.format(db=os.getenv('SHEPHERD_DB_NAME'))
+
+        cursor.execute(sql)
+
+        for row in cursor.fetchall():
+            self.job_schedules[(row['user_id'], row['job_id'])] = {
+                'job_schedule_id': row['job_schedule_id'], 'job_schedule_type': row['job_schedule_type']
+            }
+
+        cursor.close()
+
+        sql = 'select * from {db}.job_schedule_param where job_schedule_id = %s'.format(
+            db=os.getenv('SHEPHERD_DB_NAME'))
+
+        for job in self.job_schedules.keys():
+            cursor = self.conn.cursor()
+            cursor.execute(sql, (self.job_schedules[job]['job_schedule_id']))
+            for row in cursor.fetchall():
+                self.job_schedules[job][row['param_name']] = row['param_value']
+            cursor.close()
+
+    def schedule_jobs(self):
+        def schedule_by_datetime(job):
+            if 'time' not in self.job_schedules[job] or self.job_schedules[job]['time'] == '':
+                self.logger.debug('Starting job_%d_%d immediately.', job[0], job[1])
+                self.job_controller.start_job(job[0], job[1])
+            else:
+                self.logger.debug("Job_%d_%d will be started at %s.",
+                                  job[0], job[1], self.job_schedules[job]['time'])
+                self.scheduler.add_job(self.job_controller.start_job,
+                                       'date', run_date=self.job_schedules[job]['time'],
+                                       args=[job[0], job[1]])
+
+        def schedule_by_interval(job):
+            self.logger.debug("Job_%d_%d will be scheduled at interval:", job[0], job[1])
+            scheduler_args = {}
+            for param in self.job_schedules[job].keys():
+                if param != 'job_schedule_id' and param != 'job_schedule_type':
+                    self.logger.debug('%s=%s', param, self.job_schedules[job][param])
+                    if param != 'start_date' and param != 'end_date':
+                        scheduler_args[param] = int(self.job_schedules[job][param])
+                    else:
+                        scheduler_args[param] = self.job_schedules[job][param]
+            self.scheduler.add_job(self.job_controller.start_job, 'interval', args=[job[0], job[1]], **scheduler_args)
+
+        def schedule_by_cron(job):
+            pass
+
+        schedulers = {
+            0: schedule_by_datetime,
+            1: schedule_by_interval,
+            2: schedule_by_cron
+        }
+
+        for job in self.job_schedules.keys():
+            schedulers[self.job_schedules[job]['job_schedule_type']](job)
+
+
+class JobScheduler(object):
+    def __init__(self):
+        super(JobScheduler, self).__init__()
+
+
+class MyJob(object):
+    def __init__(self, scheduler):
+        super(MyJob, self).__init__()
+        self.scheduler = scheduler
+        self.count = 0
+
+    def run_job(self):
+        print('\nTick! The time is %s' % datetime.now())
+        self.count += 1
+        # if self.count == 5:
+        #     self.scheduler.add_job(self.run_another_job, trigger='interval', seconds=2, kwargs={'arg1': '12234'})
+
+    def run_another_job(self, arg1):
+        print ('\nAnother Tick with arg1=%s ! The time is %s' % (arg1, datetime.now()))
+
 
 if __name__ == "__main__":
     logging.config.fileConfig(os.environ['SPIDER_LOGGING_CONF'], disable_existing_loggers=False)
 
-    application = tornado.web.Application([
-        (r"/spider-config", SpiderConfigRequestHandler),
-        (r"/update-status", UpdateStatusRequestHandler),
-        (r"/job-control", JobControlRequestHandler),
-    ])
+    shepherd = Shepherd()
 
-    application.listen(8888)
-
-    tornado.ioloop.IOLoop.instance().start()
+    shepherd.run()
