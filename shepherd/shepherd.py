@@ -152,7 +152,7 @@ class JobControlRequestHandler(tornado.web.RequestHandler):
             self.logger.exception("Error:")
             self.write(e.message if len(e.message) > 0 else 'Exception')
         else:
-            self.write("SUCCEED")
+            self.write("DONE")
 
     def stop_job(self):
         user_id = int(self.get_argument('user_id'))
@@ -164,7 +164,7 @@ class JobControlRequestHandler(tornado.web.RequestHandler):
             self.logger.exception("Error:")
             self.write(e.message if len(e.message) > 0 else 'Exception')
         else:
-            self.write("SUCCEED")
+            self.write("DONE")
 
     def start_job(self):
         user_id = int(self.get_argument('user_id'))
@@ -176,7 +176,7 @@ class JobControlRequestHandler(tornado.web.RequestHandler):
             self.logger.exception("Error:")
             self.write(e.message if len(e.message) > 0 else 'Exception')
         else:
-            self.write("SUCCEED")
+            self.write("DONE")
 
 
 class JobController(object):
@@ -533,7 +533,7 @@ class Shepherd(object):
 
 
 if __name__ == "__main__":
-    logging.config.fileConfig(os.environ['SPIDER_LOGGING_CONF'], disable_existing_loggers=False)
+    logging.config.fileConfig(os.environ['SHEPHERD_LOGGING_CONF'], disable_existing_loggers=False)
 
     shepherd = Shepherd()
 
