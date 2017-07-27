@@ -434,7 +434,7 @@ class Shepherd(object):
 
         for job in self.job_schedules.keys():
             cursor = self.conn.cursor()
-            cursor.execute(sql, (self.job_schedules[job]['job_info']['job_schedule_id']))
+            cursor.execute(sql, (self.job_schedules[job]['job_info']['job_schedule_id'],))
             for row in cursor.fetchall():
                 self.job_schedules[job]['schedule_param'][row['param_name']] = row['param_value']
             cursor.close()
@@ -459,7 +459,7 @@ class Shepherd(object):
             sql = 'select * from {db}.job_schedule_param where job_schedule_id = %s'.format(
                 db=os.getenv('SHEPHERD_DB_NAME'))
             cursor = self.conn.cursor()
-            cursor.execute(sql, (new_job['job_schedule_id']))
+            cursor.execute(sql, (new_job['job_schedule_id'],))
             for row in cursor.fetchall():
                 schedule_param[row['param_name']] = row['param_value']
             cursor.close()

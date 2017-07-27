@@ -67,7 +67,7 @@ class Spider2(scrapy.Spider):
 
         print "Current Directory is " + os.getcwd()
 
-        if os.getenv('SPIDER_AGENT_WORK_DIR') is not None:
+        if os.getenv('SPIDER_AGENT_HOME') is not None:
             logging.getLogger('selenium').setLevel(logging.INFO)
             logging.getLogger('scrapy').setLevel(logging.DEBUG)
         else:

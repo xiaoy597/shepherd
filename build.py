@@ -7,6 +7,9 @@ import zipfile
 
 
 def build_pack(pack_name, file_list):
+
+    print 'Building pack %s ...' % pack_name
+
     build_name = '_'.join([pack_name, version])
     release_path = os.path.join('dist', build_name)
     if os.path.exists(release_path):
@@ -15,7 +18,9 @@ def build_pack(pack_name, file_list):
     os.mkdir(release_path)
 
     for src, dst in file_list:
-        if os.path.isdir(src):
+        if src == '':
+            os.mkdir(os.path.join(release_path, dst))
+        elif os.path.isdir(src):
             shutil.copytree(src, os.path.join(release_path, dst))
         else:
             shutil.copy(src, os.path.join(release_path, dst))
@@ -28,9 +33,14 @@ def build_pack(pack_name, file_list):
         for filename in filenames:
             print 'Adding %s/%s to archive ...' % (dirpath, filename)
             zipf.write(os.path.join(dirpath, filename))
+        for dirname in dirnames:
+            print 'Adding %s/%s to archive ...' % (dirpath, dirname)
+            zipf.write(os.path.join(dirpath, dirname))
 
     zipf.close()
     shutil.rmtree(build_name)
+
+    print 'Done.\n'
 
     os.chdir(curr_path)
 
@@ -38,10 +48,15 @@ def build_pack(pack_name, file_list):
 pack_def = {
     'shepherd': [
         ('clematis', 'clematis'),
-        ('shepherd', 'shepherd')
+        ('shepherd', 'shepherd'),
+        ('tool', 'bin'),
     ],
     'spider-agent': [
-        ('spider-agent.py', 'spider-agent.py')
+        ('spider-agent.py', 'spider-agent.py'),
+        ('clematis/clematis/logging.conf', 'logging.conf'),
+        ('scrapyd.conf.default', 'scrapyd.conf.default'),
+        ('tool', 'bin'),
+        ('', 'scrapyd')
     ]
 }
 

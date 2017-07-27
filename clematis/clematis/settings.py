@@ -97,8 +97,8 @@ ITEM_PIPELINES = {
 # HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 LOG_ENABLED = False
-# IMAGES_STORE = r'/root/images'
-IMAGES_STORE = r'c:\tmp\images'
+IMAGES_STORE = r'/tmp/images'
+# IMAGES_STORE = r'c:\tmp\images'
 
 USER_ID = 1
 JOB_ID = 2
