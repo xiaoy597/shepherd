@@ -6,12 +6,13 @@ import subprocess
 import psutil
 import threading
 import time
+import signal
 
 
 def run_scrapyd():
-    logger.debug("Starting scrapyd in %s", scrapyd_work_dir)
+    logger.info("Starting scrapyd in %s", scrapyd_work_dir)
     p = subprocess.Popen(args=['scrapyd'], cwd=scrapyd_work_dir)
-    p.wait()
+    sub_process_list.append(p)
 
 
 def clear_orphan_process():
@@ -34,7 +35,29 @@ def clear_orphan_process():
 
         time.sleep(10)
 
+
+def run_xvfb():
+    if len(filter(lambda p: p.name().lower() == 'xvfb', psutil.process_iter())) > 0:
+        logger.info("Xvfb is running.")
+        return
+
+    logger.info('Starting Xvfb ...')
+    p = subprocess.Popen(args=['Xvfb', ':1', '-screen', '0', '1024x768x24', '-nolisten', 'tcp'])
+    sub_process_list.append(p)
+
+
+def signal_handler(signum, frame):
+    global should_exit
+    logger.info('Terminating spider-agent by signal %d ...', signum)
+    for p in sub_process_list:
+        p.terminate()
+    should_exit = True
+
+
 if __name__ == '__main__':
+    sub_process_list = []
+    should_exit = False
+
     scrapyd_work_dir = os.getenv('SPIDER_AGENT_WORK_DIR')
 
     os.chdir(scrapyd_work_dir)
@@ -42,14 +65,16 @@ if __name__ == '__main__':
     logging.config.fileConfig(os.environ['SPIDER_LOGGING_CONF'], disable_existing_loggers=False)
     logger = logging.getLogger('spider-agent')
 
-    t1 = threading.Thread(target=run_scrapyd)
+    run_xvfb()
+
+    run_scrapyd()
+
+    signal.signal(signal.SIGTERM, signal_handler)
+    signal.signal(signal.SIGINT, signal_handler)
+
+    t1 = threading.Thread(target=clear_orphan_process)
+    t1.daemon = True
     t1.start()
 
-    t2 = threading.Thread(target=clear_orphan_process)
-    t2.daemon = True
-    t2.start()
-
-    t1.join()
-
-
-
+    while not should_exit:
+        time.sleep(1)

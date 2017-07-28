@@ -20,6 +20,7 @@ import tornado.web
 from tornado.ioloop import IOLoop
 
 from apscheduler.schedulers.tornado import TornadoScheduler
+from apscheduler.jobstores.base import JobLookupError
 from threading import RLock
 
 from crawl_job import CrawlJob
@@ -312,15 +313,32 @@ class JobController(object):
             host_ip = shepherd.job_schedules[(user_id, job_id)]['job_info']['host_ip']
 
             try:
+                self.logger.info("Checking job status for user %s and job %s.", user_id, job_id)
+                job_name = 'job_%s_%s' % (user_id, job_id)
+
+                result = self.call_scrapyd(host_ip, 'listprojects.json')
+                self.logger.debug("Current deployed projects are: %s", result['projects'])
+
+                if job_name in result['projects']:
+                    job_ids = []
+                    result = self.call_scrapyd(host_ip, 'listjobs.json', get_param={'project': job_name})
+                    for job in result['running'] + result['pending']:
+                        job_ids.append(job['id'])
+
+                    if len(job_ids) > 0:
+                        self.logger.info('Starting job %s on %s is abandoned ' +
+                                         'for previously scheduled job is not finished.', job_name, host_ip)
+                        return
+
                 self.logger.info("Refreshing job for user %s and job %s.", user_id, job_id)
-                job_path, job_name= self.job_create(user_id, job_id, host_ip)
+                job_path, job_name = self.job_create(user_id, job_id, host_ip)
 
                 self.job_redploy(job_path, job_name, host_ip)
 
                 self.logger.info("Start job %s on host %s ...", job_name, host_ip)
-                results = self.call_scrapyd(host_ip, 'schedule.json',
+                result = self.call_scrapyd(host_ip, 'schedule.json',
                                             post_data={'project': job_name, 'spider': 'spider2'})
-                if results['status'] != 'ok':
+                if result['status'] != 'ok':
                     raise Exception('Failed to start job %s on host %s', job_name, host_ip)
 
             except Exception:
@@ -471,7 +489,12 @@ class Shepherd(object):
                     self.schedule_jobs(user_id, job_id)
             else:
                 old_job = self.job_schedules.pop((user_id, job_id))
-                self.scheduler.remove_job('job_%d_%d' % (user_id, job_id))
+
+                try:
+                    self.scheduler.remove_job('job_%d_%d' % (user_id, job_id))
+                except JobLookupError:
+                    self.logger.debug('Job %s is not found.', 'job_%d_%d' % (user_id, job_id))
+
                 if new_job['is_valid'] == 1:
                     if new_job['host_ip'] == old_job['job_info']['host_ip']:
                         self.job_controller.stop_job(user_id, job_id)
@@ -499,24 +522,19 @@ class Shepherd(object):
             scheduler_args = {}
             for param in self.job_schedules[job]['schedule_param'].keys():
                 self.logger.debug('%s=%s', param, self.job_schedules[job]['schedule_param'][param])
-                if param != 'start_date' and param != 'end_date':
-                    scheduler_args[param] = int(self.job_schedules[job]['schedule_param'][param])
-                else:
+                if param == 'start_date' or param == 'end_date':
                     scheduler_args[param] = self.job_schedules[job]['schedule_param'][param]
+                else:
+                    scheduler_args[param] = int(self.job_schedules[job]['schedule_param'][param])
             self.scheduler.add_job(self.job_controller.start_job, 'interval', args=[job[0], job[1]],
                                    id='job_%d_%d' % (job[0], job[1]), **scheduler_args)
 
         def schedule_by_cron(job):
             self.logger.debug("Job_%d_%d will be scheduled at times when:", job[0], job[1])
-            scheduler_args = {}
             for param in self.job_schedules[job]['schedule_param'].keys():
                 self.logger.debug('%s=%s', param, self.job_schedules[job]['schedule_param'][param])
-                if param != 'start_date' and param != 'end_date':
-                    scheduler_args[param] = int(self.job_schedules[job]['schedule_param'][param])
-                else:
-                    scheduler_args[param] = self.job_schedules[job]['schedule_param'][param]
             self.scheduler.add_job(self.job_controller.start_job, 'cron', args=[job[0], job[1]],
-                                   id='job_%d_%d' % (job[0], job[1]), **scheduler_args)
+                                   id='job_%d_%d' % (job[0], job[1]), **self.job_schedules[job]['schedule_param'])
 
         schedulers = {
             0: schedule_by_datetime,
