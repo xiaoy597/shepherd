@@ -134,7 +134,8 @@ class JobControlRequestHandler(tornado.web.RequestHandler):
         self.commands = {
             'start': self.start_job,
             'stop': self.stop_job,
-            'update': self.update_job
+            'update': self.update_job,
+            'create': self.create_job,
         }
 
         self.shepherd = shepherd
@@ -178,6 +179,10 @@ class JobControlRequestHandler(tornado.web.RequestHandler):
             self.write(e.message if len(e.message) > 0 else 'Exception')
         else:
             self.write("DONE")
+
+    def create_job(self):
+        user_id = int(self.get_argument('user_id'))
+        job_id = int(self.get_argument('job_id'))
 
 
 class JobController(object):
@@ -307,6 +312,7 @@ class JobController(object):
 
         with self.lock:
             if (user_id, job_id) not in shepherd.job_schedules:
+                self.logger.warning("Specified user %s and job %s is not found.", user_id, job_id)
                 return
 
             working_dir = os.getcwd()

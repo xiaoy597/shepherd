@@ -1,33 +1,30 @@
 # -*- coding: utf-8 -*-
-import time
+import json
 import logging
 import logging.config
+import os
+import pycurl
+import time
+from StringIO import StringIO
+from urllib import urlencode
 
 import scrapy
+from hbase import Hbase
+from hbase.ttypes import Mutation
 from scrapy import signals
 from scrapy.exceptions import DontCloseSpider
-
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import StaleElementReferenceException
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
-
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from thrift.protocol import TBinaryProtocol
 from thrift.transport import TSocket
 from thrift.transport import TTransport
-from thrift.protocol import TBinaryProtocol
-
-from hbase import Hbase
-from hbase.ttypes import ColumnDescriptor, Mutation
-import os
-
-from StringIO import StringIO
-import pycurl
-import json
-from urllib import urlencode
 
 from clematis.const import *
+from clematis.solr_wrapper import SolrWrapper
 
 
 class Spider2(scrapy.Spider):
@@ -45,6 +42,9 @@ class Spider2(scrapy.Spider):
         urls = self.params['start_urls'].split(',')
 
         self.logger.debug(urls)
+
+        if not SolrWrapper.create_core(self.params['user_id'], self.params['job_id']):
+            raise Exception("Failed to create solr index for job_%s_%s", self.params['user_id'], self.params['job_id'])
 
         for url in urls:
             if filter(lambda page: page['page_id'] == self.params['entry_page_id'],

@@ -65,7 +65,8 @@ if __name__ == '__main__':
     logging.config.fileConfig(os.environ['SPIDER_LOGGING_CONF'], disable_existing_loggers=False)
     logger = logging.getLogger('spider-agent')
 
-    run_xvfb()
+    if os.name != 'nt':
+        run_xvfb()
 
     run_scrapyd()
 
