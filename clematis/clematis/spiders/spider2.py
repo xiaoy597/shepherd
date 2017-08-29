@@ -166,7 +166,18 @@ class Spider2(scrapy.Spider):
 
         content = self.get_field_list(response, page_def)
 
-        # self.logger.debug("Page content: %s", str(content))
+        self.logger.debug("Page content: %s", str(content))
+
+        if len(content) > 0:
+            index_doc = {
+                'id': response.request.url + ',' + crawl_time,
+                'page_id': page_def['page_id'],
+                'page_content': json.dumps(content, ensure_ascii=False),
+                'page_source': response.text,
+                'crawl_time': crawl_time
+            }
+            if not SolrWrapper.add_document(self.params['user_id'], self.params['job_id'], index_doc):
+                self.logger.error('Failed to add document to Solr.')
 
         new_requests = self.get_page_link(response, page_def)
 
@@ -242,7 +253,18 @@ class Spider2(scrapy.Spider):
 
             content = self.get_field_list(response, page_def)
 
-            # self.logger.debug("Page content is: %s", content)
+            self.logger.debug("Page content is: %s", content)
+
+            if len(content) > 0:
+                index_doc = {
+                    'id': response.request.url + ',' + crawl_time,
+                    'page_id': page_def['page_id'],
+                    'page_content': json.dumps(content, ensure_ascii=False),
+                    'page_source': self.browser.page_source,
+                    'crawl_time': crawl_time
+                }
+                if not SolrWrapper.add_document(self.params['user_id'], self.params['job_id'], index_doc):
+                    self.logger.error('Failed to add document to Solr.')
 
             if page_def['save_page_source']:
                 self.dump_page_source(page_def['page_id'], crawl_time, response.request.url, self.browser.page_source)
