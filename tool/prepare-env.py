@@ -12,7 +12,8 @@ envs = {
         'SPIDER_LOGGING_CONF',
         'SPIDER_PAGE_DUMP',
         'SHEPHERD_HOST',
-        'SHEPHERD_PORT'
+        'SHEPHERD_PORT',
+        'SOLR_SERVER'
     ],
     'shepherd': [
         'SPIDER_PACKAGE',

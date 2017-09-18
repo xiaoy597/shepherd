@@ -38,6 +38,8 @@ In a fast, simple, yet extensible way.
 
 ## 抓取功能
 
+爬虫系统需要抓取的网页既包括静态网页，也包括需要经过JavaScript脚本渲染的动态网页。对于静态网页，Scrapy框架自带的默认Downloader就可以完成页面的抓取，对于动态网页，本系统利用Headless浏览器实现对JavaScript渲染后页面的抓取。
+
 ## 页面在线解析
 
 ## 解析结果保存

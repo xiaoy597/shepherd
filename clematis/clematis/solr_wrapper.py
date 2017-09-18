@@ -20,8 +20,8 @@ class SolrWrapper(object):
         core_name = 'job_%s_%s' % (user_id, job_id)
         curl = pycurl.Curl()
 
-        url = 'http://127.0.0.1:8983/solr/admin/cores?action=CREATE' + \
-                '&name={core_name}&configSet=crawler_configs&wt=json'.format(core_name=core_name)
+        url = 'http://{solr_server}/solr/admin/cores?action=CREATE&name={core_name}&configSet=crawler_configs&wt=json'.format(
+                    solr_server=os.getenv('SOLR_SERVER'), core_name=core_name)
 
         curl.setopt(curl.URL, url)
 
@@ -55,7 +55,8 @@ class SolrWrapper(object):
         buf = StringIO()
         curl = pycurl.Curl()
 
-        url = 'http://127.0.0.1:8983/solr/{core_name}/update?wt=json'.format(core_name=core_name)
+        url = 'http://{solr_server}/solr/{core_name}/update?wt=json'.format(
+            solr_server=os.getenv('SOLR_SERVER'), core_name=core_name)
 
         curl.setopt(pycurl.URL, url)
 
@@ -93,7 +94,8 @@ class SolrWrapper(object):
         buf = StringIO()
         curl = pycurl.Curl()
 
-        url = 'http://127.0.0.1:8983/solr/{core_name}/schema?wt=json'.format(core_name=core_name)
+        url = 'http://{solr_server}/solr/{core_name}/schema?wt=json'.format(
+            solr_server=os.getenv('SOLR_SERVER'), core_name=core_name)
 
         curl.setopt(pycurl.URL, url)
 
