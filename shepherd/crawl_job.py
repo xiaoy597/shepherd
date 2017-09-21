@@ -42,6 +42,14 @@ class CrawlJob(object):
         for row in cursor.fetchall():
             self.fields['data_store'][str(row['param_name'])] = row['param_value']
 
+        sql = "select param_name, param_value from spiderdb.crawl_config where user_id = %s and job_id = %s"
+        cursor.execute(sql, (user_id, job_id))
+        configs = {}
+        for row in cursor.fetchall():
+            configs[row['param_name']] = row['param_value']
+
+        self.fields['configs'] = configs
+
         cursor.close()
 
         return self

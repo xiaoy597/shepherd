@@ -3,8 +3,10 @@ import json
 import logging
 import logging.config
 import os
+import re
 import pycurl
 import time
+import datetime
 from StringIO import StringIO
 from urllib import urlencode
 
@@ -39,22 +41,92 @@ class Spider2(scrapy.Spider):
 
         self.stats_exporter.update_stats(0)
 
-        urls = self.params['start_urls'].split(',')
+        if self.params['start_urls'] is not None:
+            urls = self.params['start_urls'].split(',')
+        else:
+            urls = []
+
+        if len(urls) == 0:
+            urls = self.generate_urls()
 
         self.logger.debug(urls)
 
         if not SolrWrapper.create_core(self.params['user_id'], self.params['job_id']):
             raise Exception("Failed to create solr index for job_%s_%s", self.params['user_id'], self.params['job_id'])
 
+        page_type = filter(lambda p: p['page_id'] == self.params['entry_page_id'],
+                           [page for page in self.params['pages']])[0]['page_type']
         for url in urls:
-            if filter(lambda page: page['page_id'] == self.params['entry_page_id'],
-                      [page for page in self.params['pages']])[0]['page_type'] == SPIDER_STATIC_PAGE:
+            if page_type == SPIDER_STATIC_PAGE:
                 yield scrapy.Request(url=url, callback=self.parse_static_page,
                                      meta={'my_page_id': self.params['entry_page_id']})
-            else:
+            elif page_type == SPIDER_DYNAMIC_PAGE:
                 yield scrapy.Request(url=url, callback=self.parse_dynamic_page,
                                      meta={"my_page_type": "dynamic", 'my_page_id': self.params['entry_page_id']},
                                      dont_filter=True)
+            else:
+                # Support JSON Page.
+                self.logger.debug("Retriving url: %s", url)
+
+    def generate_urls(self):
+        urls = []
+
+        url_pattern = self.params['configs']['start_url_pattern']
+
+        params = re.findall(r'\${[\w]+}', url_pattern)
+
+        self.logger.debug('In url pattern: %s', url_pattern)
+        self.logger.debug('Find params: %s', params)
+
+        param_value_list = {}
+        for param in params:
+            param_value = self.params['configs'][param[2:-1]]
+            if param_value is not None:
+                m = re.match(r'range\([^)]+\)', param_value)
+                if m is not None:
+                    limits = (m.group()[6:-1]).split(',')
+                    if len(limits) != 2:
+                        self.logger.error("Illegal range definition %s:%s", param, param_value)
+                        return urls
+                    param_value_list[param] = self.generate_value_list(limits)
+                else:
+                    param_value_list[param] = [param_value]
+            else:
+                self.logger.error("Param %s is not defined.", param)
+                return urls
+
+        urls = self.replace_params(url_pattern, param_value_list)
+        return urls
+
+    def replace_params(self, url_pattern, param_value_list):
+        (param, value_list) = param_value_list.popitem()
+        if len(param_value_list) > 0:
+            urls2 = []
+            urls = self.replace_params(url_pattern, param_value_list)
+            for url in urls:
+                urls2 = urls2 + [url.replace(param, value) for value in value_list]
+            return urls2
+        else:
+            return [url_pattern.replace(param, value) for value in value_list]
+
+    def generate_value_list(self, limits):
+        value_list = []
+
+        if re.match('^\d{4}-\d{2}-\d{2}$', limits[0].strip()) is not None:
+            # Date type
+            start_date = datetime.datetime.strptime(limits[0].strip(), '%Y-%m-%d')
+            end_date = datetime.datetime.strptime(limits[1].strip(), '%Y-%m-%d')
+            delta = datetime.timedelta(days=1)
+
+            while start_date <= end_date:
+                if start_date.weekday() < 5:
+                    value_list.append(start_date.strftime('%Y-%m-%d'))
+                start_date = start_date + delta
+        else:
+            # Only support value range for date type.
+            pass
+
+        return value_list
 
     @classmethod
     def from_crawler(cls, crawler, *args, **kwargs):
