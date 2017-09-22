@@ -4,6 +4,7 @@
 #
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
+import re
 import MySQLdb
 import logging
 from clematis.const import SPIDER_FIELD_TYPE_STRING
@@ -37,7 +38,10 @@ class ExporterPipeline(object):
         if field['field_datatype'] == SPIDER_FIELD_TYPE_STRING:
             return item[field['field_name']].encode('utf8')
         else:
-            return item[field['field_name']]
+            if re.match('-?\d+(\.\d+)*', item[field['field_name']].strip()):
+                return item[field['field_name']].strip()
+            else:
+                return '0'
 
     def process_item(self, item, spider):
 

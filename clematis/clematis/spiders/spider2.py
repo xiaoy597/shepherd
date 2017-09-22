@@ -47,7 +47,7 @@ class Spider2(scrapy.Spider):
             urls = []
 
         if len(urls) == 0:
-            urls = self.generate_urls()
+            urls = self.generate_value_list(self.params['configs']['start_url_pattern'])
 
         self.logger.debug(urls)
 
@@ -56,17 +56,118 @@ class Spider2(scrapy.Spider):
 
         page_type = filter(lambda p: p['page_id'] == self.params['entry_page_id'],
                            [page for page in self.params['pages']])[0]['page_type']
+
+        request_headers = self.crawler.settings.getdict('DEFAULT_REQUEST_HEADERS')
+        for param in self.params['configs']:
+            if param.startswith('http_header'):
+                index = self.params['configs'][param].find(':')
+                header_name = self.params['configs'][param][0:index].strip()
+                header_value = self.params['configs'][param][index + 1:].strip()
+                request_headers[header_name] = header_value
+
+        self.logger.debug("Request headers: %s", request_headers)
+
         for url in urls:
-            if page_type == SPIDER_STATIC_PAGE:
-                yield scrapy.Request(url=url, callback=self.parse_static_page,
-                                     meta={'my_page_id': self.params['entry_page_id']})
-            elif page_type == SPIDER_DYNAMIC_PAGE:
-                yield scrapy.Request(url=url, callback=self.parse_dynamic_page,
-                                     meta={"my_page_type": "dynamic", 'my_page_id': self.params['entry_page_id']},
-                                     dont_filter=True)
+            if self.params['configs']['request_type'] == 'get':
+                if page_type == SPIDER_STATIC_PAGE:
+                    yield scrapy.Request(url=url, callback=self.parse_static_page,
+                                         meta={'my_page_id': self.params['entry_page_id']},
+                                         headers=request_headers)
+                elif page_type == SPIDER_DYNAMIC_PAGE:
+                    yield scrapy.Request(url=url, callback=self.parse_dynamic_page,
+                                         meta={"my_page_type": "dynamic",
+                                               'my_page_id': self.params['entry_page_id']},
+                                         dont_filter=True,
+                                         headers=request_headers)
+                else:
+                    yield scrapy.Request(url=url, callback=self.parse_json_page,
+                                         meta={'my_page_id': self.params['entry_page_id']},
+                                         headers=request_headers)
             else:
-                # Support JSON Page.
-                self.logger.debug("Retriving url: %s", url)
+                # TODO: prepare form fields ...
+                form_fields = {}
+                for param in self.params['configs']:
+                    if param.startswith('form_field'):
+                        index = self.params['configs'][param].find('=')
+                        field_name = self.params['configs'][param][0:index].strip()
+                        field_value = self.params['configs'][param][index+1:].strip()
+                        form_fields[field_name] = field_value
+
+                self.logger.debug("Form fields: %s", form_fields)
+
+                form_set = self.generate_form_value_set(form_fields)
+
+                self.logger.debug("Form set: %s", form_set)
+
+                if page_type == SPIDER_STATIC_PAGE:
+                    yield scrapy.FormRequest(url=url, callback=self.parse_static_page,
+                                             meta={'my_page_id': self.params['entry_page_id']},
+                                             headers=request_headers, formdata=form_fields)
+                elif page_type == SPIDER_DYNAMIC_PAGE:
+                    yield scrapy.FormRequest(url=url, callback=self.parse_dynamic_page,
+                                             meta={"my_page_type": "dynamic",
+                                                   'my_page_id': self.params['entry_page_id']},
+                                             dont_filter=True,
+                                             headers=request_headers, formdata=form_fields)
+                else:
+                    yield scrapy.FormRequest(url=url, callback=self.parse_json_page,
+                                             meta={'my_page_id': self.params['entry_page_id']},
+                                             headers=request_headers, formdata=form_fields)
+
+    def generate_form_value_set(self, form_fields):
+        form_field_value_list = {}
+        for field_name in form_fields.keys():
+            form_field_value_list[field_name] = self.generate_value_list(form_fields[field_name])
+
+        form_value_set = []
+        for field_name in form_fields.keys():
+            value_list = []
+            for v in form_field_value_list[field_name]:
+                value_list.append({field_name: v})
+            form_value_set = self.list_dict_join(form_value_set, value_list)
+
+        return form_value_set
+
+    def list_dict_join(self, list1, list2):
+        result = []
+        for d1 in list1:
+            for d2 in list2:
+                d = d1.copy()
+                d.update(d2)
+                result.append(d)
+
+        if len(result) == 0:
+            result = list2
+
+        return result
+
+    def generate_value_list(self, value_pattern):
+        value_list = []
+
+        params = re.findall(r'\${[\w]+}', value_pattern)
+        if len(params) == 0:
+            value_list = [value_pattern]
+            return value_list
+
+        param_value_list = {}
+        for param in params:
+            param_value = self.params['configs'][param[2:-1]]
+            if param_value is not None:
+                m = re.match(r'range\([^)]+\)', param_value)
+                if m is not None:
+                    limits = (m.group()[6:-1]).split(',')
+                    if len(limits) != 2:
+                        self.logger.error("Illegal range definition %s:%s", param, param_value)
+                        return value_list
+                    param_value_list[param] = self.generate_range_value_list(limits)
+                else:
+                    param_value_list[param] = [param_value]
+            else:
+                self.logger.error("Param %s is not defined.", param)
+                return value_list
+
+        value_list = self.replace_params(value_pattern, param_value_list)
+        return value_list
 
     def generate_urls(self):
         urls = []
@@ -88,7 +189,7 @@ class Spider2(scrapy.Spider):
                     if len(limits) != 2:
                         self.logger.error("Illegal range definition %s:%s", param, param_value)
                         return urls
-                    param_value_list[param] = self.generate_value_list(limits)
+                    param_value_list[param] = self.generate_range_value_list(limits)
                 else:
                     param_value_list[param] = [param_value]
             else:
@@ -98,18 +199,18 @@ class Spider2(scrapy.Spider):
         urls = self.replace_params(url_pattern, param_value_list)
         return urls
 
-    def replace_params(self, url_pattern, param_value_list):
+    def replace_params(self, value_pattern, param_value_list):
         (param, value_list) = param_value_list.popitem()
         if len(param_value_list) > 0:
-            urls2 = []
-            urls = self.replace_params(url_pattern, param_value_list)
-            for url in urls:
-                urls2 = urls2 + [url.replace(param, value) for value in value_list]
-            return urls2
+            values_more = []
+            values = self.replace_params(value_pattern, param_value_list)
+            for v in values:
+                values_more = values_more + [v.replace(param, value) for value in value_list]
+            return values_more
         else:
-            return [url_pattern.replace(param, value) for value in value_list]
+            return [value_pattern.replace(param, value) for value in value_list]
 
-    def generate_value_list(self, limits):
+    def generate_range_value_list(self, limits):
         value_list = []
 
         if re.match('^\d{4}-\d{2}-\d{2}$', limits[0].strip()) is not None:
@@ -123,7 +224,7 @@ class Spider2(scrapy.Spider):
                     value_list.append(start_date.strftime('%Y-%m-%d'))
                 start_date = start_date + delta
         else:
-            # Only support value range for date type.
+            self.logger.warning("Only support value range for date type.")
             pass
 
         return value_list
@@ -224,6 +325,59 @@ class Spider2(scrapy.Spider):
 
         return json.loads(json_data)
 
+    def parse_json_page(self, response):
+        crawl_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+
+        meta = response.request.meta
+        if meta is None or 'my_page_id' not in meta:
+            raise Exception('Meta is missing for request ' + response.request.url)
+
+        page_def = filter(lambda x: x['page_id'] == meta['my_page_id'], self.params['pages'])[0]
+
+        self.logger.debug("Parsing page %s from URL %s", page_def['page_name'], response.request.url)
+
+        self.logger.debug("Response is :[%s]", response.text)
+
+        m = re.match(self.params['configs']['json_extract_pattern'], response.text)
+        if m is None:
+            self.logger.error("No JSON data is extracted using pattern [%s]",
+                              self.params['configs']['json_extract_pattern'])
+            return
+
+        json_str = m.group(int(self.params['configs']['json_extract_group']))
+        self.logger.debug("Extracted JSON data is %s", json_str)
+
+        json_data = json.loads(json_str)
+
+        content = self.get_field_list(json_data, page_def)
+
+        self.logger.debug("Page content: %s", str(content))
+
+        if len(content) > 0:
+            index_doc = {
+                'id': response.request.url + ',' + crawl_time,
+                'page_id': page_def['page_id'],
+                'page_content': json.dumps(content, ensure_ascii=False),
+                'page_source': response.text,
+                'crawl_time': crawl_time
+            }
+            if not SolrWrapper.add_document(self.params['user_id'], self.params['job_id'], index_doc):
+                self.logger.error('Failed to add document to Solr.')
+
+        if page_def['save_page_source']:
+            self.dump_page_source(page_def['page_id'], crawl_time, response.request.url, response.text)
+
+        if page_def['data_format'] == SPIDER_DATA_FORMAT_TABLE:
+            rows = self.content_to_rows(content)
+
+            self.logger.debug("Page content as rows: %s", str(rows))
+
+            for row in rows:
+                row['_collect_time'] = crawl_time
+                row['_page_id'] = page_def['page_id']
+                self.logger.debug("Sending row: %s", str(row))
+                yield row
+
     def parse_static_page(self, response):
 
         crawl_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
@@ -235,6 +389,8 @@ class Spider2(scrapy.Spider):
         page_def = filter(lambda x: x['page_id'] == meta['my_page_id'], self.params['pages'])[0]
 
         self.logger.debug("Parsing page %s from URL %s", page_def['page_name'], response.request.url)
+
+        self.logger.debug("Response text is : %s", response.text)
 
         content = self.get_field_list(response, page_def)
 
@@ -515,29 +671,33 @@ class Spider2(scrapy.Spider):
                 if xpath == field_path['field_locate_pattern']:
                     var_defined_in_xpath = False
 
-                if page_def['page_type'] == SPIDER_STATIC_PAGE:
-                    field_value_elements = response.xpath(xpath)
-                    self.logger.debug("%s evaluated to %s", xpath, str(field_value_elements.extract()))
+                if page_def['page_type'] == SPIDER_JSON_PAGE:
+                    expr = 'response' + xpath
+                    temp_field_value_list.append(eval(expr))
                 else:
-                    field_value_elements = self.browser.find_elements_by_xpath(xpath)
-                    self.logger.debug("%s evaluated to %s", xpath, str(field_value_elements))
+                    if page_def['page_type'] == SPIDER_STATIC_PAGE:
+                        field_value_elements = response.xpath(xpath)
+                        self.logger.debug("%s evaluated to %s", xpath, str(field_value_elements.extract()))
+                    elif page_def['page_type'] == SPIDER_DYNAMIC_PAGE:
+                        field_value_elements = self.browser.find_elements_by_xpath(xpath)
+                        self.logger.debug("%s evaluated to %s", xpath, str(field_value_elements))
 
-                if field_value_elements is not None and len(field_value_elements) > 0:
-                    if field['combine_field_value']:
+                    if field_value_elements is not None and len(field_value_elements) > 0:
+                        if field['combine_field_value']:
 
-                        field_value = reduce(lambda x, y: x + ' ' + y,
-                                             [self.get_element_content(page_def['page_type'], elem,
-                                                                       field_path['field_ext_pattern'])
-                                              for elem in field_value_elements]).replace('\n', '').strip()
-
-                        temp_field_value_list.append(field_value)
-                    else:
-                        for field_value_element in field_value_elements:
-                            field_value = self.get_element_content(
-                                page_def['page_type'], field_value_element,
-                                field_path['field_ext_pattern']).replace('\n', '').strip()
+                            field_value = reduce(lambda x, y: x + ' ' + y,
+                                                 [self.get_element_content(page_def['page_type'], elem,
+                                                                           field_path['field_ext_pattern'])
+                                                  for elem in field_value_elements]).replace('\n', '').strip()
 
                             temp_field_value_list.append(field_value)
+                        else:
+                            for field_value_element in field_value_elements:
+                                field_value = self.get_element_content(
+                                    page_def['page_type'], field_value_element,
+                                    field_path['field_ext_pattern']).replace('\n', '').strip()
+
+                                temp_field_value_list.append(field_value)
 
             if len(temp_field_value_list) == 0:
                 break
