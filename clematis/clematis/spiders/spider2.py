@@ -363,8 +363,8 @@ class Spider2(scrapy.Spider):
 
         if len(content) > 0:
             index_doc = {
-                'id': response.request.url + ',' + crawl_time + ',' +
-                      meta['my_form_data'] if meta['my_form_data'] is not None else '',
+                'id': response.request.url + ',' + crawl_time +
+                      (',' + meta['my_form_data'] if 'my_form_data' in meta else ''),
                 'page_id': page_def['page_id'],
                 'page_content': json.dumps(content, ensure_ascii=False),
                 'page_source': response.text,
@@ -407,8 +407,8 @@ class Spider2(scrapy.Spider):
 
         if len(content) > 0:
             index_doc = {
-                'id': response.request.url + ',' + crawl_time + ',' +
-                      meta['my_form_data'] if meta['my_form_data'] is not None else '',
+                'id': response.request.url + ',' + crawl_time +
+                      (',' + meta['my_form_data'] if 'my_form_data' in meta else ''),
                 'page_id': page_def['page_id'],
                 'page_content': json.dumps(content, ensure_ascii=False),
                 'page_source': response.text,
@@ -495,8 +495,8 @@ class Spider2(scrapy.Spider):
 
             if len(content) > 0:
                 index_doc = {
-                    'id': response.request.url + ',' + crawl_time + ',' +
-                          meta['my_form_data'] if meta['my_form_data'] is not None else '',
+                    'id': response.request.url + ',' + crawl_time +
+                          (',' + meta['my_form_data'] if 'my_form_data' in meta else ''),
                     'page_id': page_def['page_id'],
                     'page_content': json.dumps(content, ensure_ascii=False),
                     'page_source': self.browser.page_source,
