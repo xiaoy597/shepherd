@@ -84,35 +84,43 @@ class Spider2(scrapy.Spider):
                                          meta={'my_page_id': self.params['entry_page_id']},
                                          headers=request_headers)
             else:
-                # TODO: prepare form fields ...
                 form_fields = {}
                 for param in self.params['configs']:
                     if param.startswith('form_field'):
                         index = self.params['configs'][param].find('=')
                         field_name = self.params['configs'][param][0:index].strip()
-                        field_value = self.params['configs'][param][index+1:].strip()
+                        field_value = self.params['configs'][param][index + 1:].strip()
                         form_fields[field_name] = field_value
 
                 self.logger.debug("Form fields: %s", form_fields)
 
-                form_set = self.generate_form_value_set(form_fields)
+                form_sets = self.generate_form_value_set(form_fields)
 
-                self.logger.debug("Form set: %s", form_set)
+                self.logger.debug("Form set: %s", form_sets)
 
-                if page_type == SPIDER_STATIC_PAGE:
-                    yield scrapy.FormRequest(url=url, callback=self.parse_static_page,
-                                             meta={'my_page_id': self.params['entry_page_id']},
-                                             headers=request_headers, formdata=form_fields)
-                elif page_type == SPIDER_DYNAMIC_PAGE:
-                    yield scrapy.FormRequest(url=url, callback=self.parse_dynamic_page,
-                                             meta={"my_page_type": "dynamic",
-                                                   'my_page_id': self.params['entry_page_id']},
-                                             dont_filter=True,
-                                             headers=request_headers, formdata=form_fields)
-                else:
-                    yield scrapy.FormRequest(url=url, callback=self.parse_json_page,
-                                             meta={'my_page_id': self.params['entry_page_id']},
-                                             headers=request_headers, formdata=form_fields)
+                for form_set in form_sets:
+                    if page_type == SPIDER_STATIC_PAGE:
+                        yield scrapy.FormRequest(url=url, callback=self.parse_static_page,
+                                                 meta={'my_page_id': self.params['entry_page_id'],
+                                                       'my_form_data': str(form_set),
+                                                       # If we want to come along with a proxy ...
+                                                       # 'proxy': 'http://127.0.0.1:8888',
+                                                       },
+                                                 headers=request_headers, formdata=form_set)
+                    elif page_type == SPIDER_DYNAMIC_PAGE:
+                        yield scrapy.FormRequest(url=url, callback=self.parse_dynamic_page,
+                                                 meta={"my_page_type": "dynamic",
+                                                       'my_page_id': self.params['entry_page_id'],
+                                                       'my_form_data': str(form_set),
+                                                       },
+                                                 dont_filter=True,
+                                                 headers=request_headers, formdata=form_set)
+                    else:
+                        yield scrapy.FormRequest(url=url, callback=self.parse_json_page,
+                                                 meta={'my_page_id': self.params['entry_page_id'],
+                                                       'my_form_data': str(form_set),
+                                                       },
+                                                 headers=request_headers, formdata=form_set)
 
     def generate_form_value_set(self, form_fields):
         form_field_value_list = {}
@@ -355,7 +363,8 @@ class Spider2(scrapy.Spider):
 
         if len(content) > 0:
             index_doc = {
-                'id': response.request.url + ',' + crawl_time,
+                'id': response.request.url + ',' + crawl_time + ',' +
+                      meta['my_form_data'] if meta['my_form_data'] is not None else '',
                 'page_id': page_def['page_id'],
                 'page_content': json.dumps(content, ensure_ascii=False),
                 'page_source': response.text,
@@ -398,7 +407,8 @@ class Spider2(scrapy.Spider):
 
         if len(content) > 0:
             index_doc = {
-                'id': response.request.url + ',' + crawl_time,
+                'id': response.request.url + ',' + crawl_time + ',' +
+                      meta['my_form_data'] if meta['my_form_data'] is not None else '',
                 'page_id': page_def['page_id'],
                 'page_content': json.dumps(content, ensure_ascii=False),
                 'page_source': response.text,
@@ -485,7 +495,8 @@ class Spider2(scrapy.Spider):
 
             if len(content) > 0:
                 index_doc = {
-                    'id': response.request.url + ',' + crawl_time,
+                    'id': response.request.url + ',' + crawl_time + ',' +
+                          meta['my_form_data'] if meta['my_form_data'] is not None else '',
                     'page_id': page_def['page_id'],
                     'page_content': json.dumps(content, ensure_ascii=False),
                     'page_source': self.browser.page_source,

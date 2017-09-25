@@ -55,7 +55,7 @@ class SolrWrapper(object):
         buf = StringIO()
         curl = pycurl.Curl()
 
-        url = 'http://{solr_server}/solr/{core_name}/update?wt=json'.format(
+        url = 'http://{solr_server}/solr/{core_name}/update?commit=true&wt=json'.format(
             solr_server=os.getenv('SOLR_SERVER'), core_name=core_name)
 
         curl.setopt(pycurl.URL, url)

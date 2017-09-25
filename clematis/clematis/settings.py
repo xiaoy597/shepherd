@@ -39,13 +39,20 @@ CONCURRENT_REQUESTS = 12
 # TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
+# DEFAULT_REQUEST_HEADERS = {
+#     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+#     'Accept-Encoding': 'gzip, deflate, sdch',
+#     'Accept-Language': 'zh-CN,zh;q=0.8,en;q=0.6',
+#     'Cache-Control': 'max-age=0',
+#     'Connection': 'keep-alive',
+#     'Upgrade-Insecure-Requests': '1',
+# }
+
 DEFAULT_REQUEST_HEADERS = {
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-    'Accept-Encoding': 'gzip, deflate, sdch',
-    'Accept-Language': 'zh-CN,zh;q=0.8,en;q=0.6',
-    'Cache-Control': 'max-age=0',
+    'Accept': '*/*',
+    'Accept-Language': 'zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3',
     'Connection': 'keep-alive',
-    'Upgrade-Insecure-Requests': '1',
+    'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
 }
 
 # Enable or disable spider middlewares

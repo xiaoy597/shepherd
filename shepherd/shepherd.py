@@ -433,7 +433,7 @@ class Shepherd(object):
 
         self.scheduler.add_job(self.schedule_jobs, 'date', run_date=datetime.now() + timedelta(seconds=5))
 
-        self.application.listen(8888)
+        self.application.listen(os.getenv('SHEPHERD_PORT'))
 
         IOLoop.instance().start()
 
