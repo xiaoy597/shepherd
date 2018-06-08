@@ -7,11 +7,16 @@
 import re
 import MySQLdb
 import logging
+
+import os
+import shutil
+
 from clematis.const import SPIDER_FIELD_TYPE_STRING
+from kafka import KafkaProducer
 
 
 class ExporterPipeline(object):
-    data_store_type = ['mysql', 'hbase']
+    data_store_type = ['mysql', 'hbase', 'kafka']
 
     @classmethod
     def from_crawler(cls, crawler):
@@ -32,6 +37,7 @@ class ExporterPipeline(object):
         self.exporters = {
             'mysql': {'exporter': self.export_to_mysql, 'vars': {}},
             'hbase': {'exporter': self.export_to_hbase, 'vars': {}},
+            'kafka': {'exporter': self.export_to_kafka, 'vars': {}},
         }
 
     def get_field_value(self, item, field):
@@ -91,9 +97,25 @@ class ExporterPipeline(object):
     def export_to_hbase(self, item, spider):
         return item
 
+    def export_to_kafka(self, item, spider):
+        self.logger.debug("Exporting data to kafka:")
 
-import os
-import shutil
+        for k, v in dict(item).iteritems():
+            self.logger.debug("%s: %s", k, v)
+
+        exporter_vars = self.exporters['kafka']['vars']
+        exporter_params = spider.params['data_store']
+
+        if 'producer' not in exporter_vars:
+            exporter_vars['producer'] = KafkaProducer(bootstrap_servers=exporter_params['bootstrap_servers'])
+
+        page_def = filter(lambda x: x['page_id'] == item['_page_id'], spider.params['pages'])[0]
+        message = {'collect_time': item['_collect_time'].encode('utf8')}
+        for field in page_def['fields']:
+            message[field['field_name'].encode('utf8')] = self.get_field_value(item, field)
+
+        self.logger.debug("Kafka message: %s" % message)
+        exporter_vars['producer'].send(exporter_params['topic'], str(message))
 
 
 class ImagePreProcessPipeline(object):

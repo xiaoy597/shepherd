@@ -537,7 +537,7 @@ class Spider2(scrapy.Spider):
                 self.browser.close()
                 return
             else:
-                if page_def['paginate_element'] != '':
+                if page_def['paginate_element'] != '' and page_def['paginate_element'] is not None:
                     try:
                         time.sleep(max(page_def['page_interval'] - 2, 0))
                         next_page = self.browser.find_element_by_xpath(page_def['paginate_element'])
