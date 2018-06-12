@@ -508,10 +508,22 @@ class Spider2(scrapy.Spider):
             if page_def['save_page_source']:
                 self.dump_page_source(page_def['page_id'], crawl_time, response.request.url, self.browser.page_source)
         except StaleElementReferenceException:
-            self.logger.debug("Page %s is updated during parsing, try it again ...")
-            yield scrapy.Request(url=response.request.url, callback=self.parse_dynamic_page,
-                                 meta={"my_page_type": "dynamic", 'my_page_id': meta['my_page_id']},
-                                 dont_filter=True)
+            self.logger.debug("Page %s is updated during parsing, try it again ..." % response.request.url)
+            time.sleep(1)
+            if (page_def['is_multi_page'] and
+                    (page_def['paginate_element'] == '' or page_def['paginate_element'] is None)):
+                yield scrapy.Request(self.browser.current_url,
+                                     callback=self.parse_dynamic_page,
+                                     dont_filter=True,
+                                     meta={"my_page_type": "update",
+                                           "my_window": self.browser.current_window_handle,
+                                           "my_page_id": page_def['page_id']
+                                           }
+                                     )
+            else:
+                yield scrapy.Request(url=response.request.url, callback=self.parse_dynamic_page,
+                                     meta={"my_page_type": "dynamic", 'my_page_id': meta['my_page_id']},
+                                     dont_filter=True)
             return
 
         if page_def['data_format'] == SPIDER_DATA_FORMAT_TABLE:
