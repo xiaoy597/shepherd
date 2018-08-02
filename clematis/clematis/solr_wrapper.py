@@ -48,7 +48,7 @@ class SolrWrapper(object):
         post_data = {'add': {'commitWithin': 5000, 'doc': doc_dict}}
         post_data_str = json.dumps(post_data)
 
-        SolrWrapper.logger.debug(post_data_str)
+        # SolrWrapper.logger.debug(post_data_str)
 
         core_name = 'job_%s_%s' % (user_id, job_id)
 

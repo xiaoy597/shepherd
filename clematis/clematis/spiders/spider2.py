@@ -28,6 +28,7 @@ from thrift.transport import TTransport
 from clematis.const import *
 from clematis.solr_wrapper import SolrWrapper
 
+from clematis.spiders.helper.spider_helper import spiderHelpers
 
 class Spider2(scrapy.Spider):
     name = 'spider2'
@@ -293,7 +294,9 @@ class Spider2(scrapy.Spider):
         self.stats_exporter.update_stats(1)
 
         if len(self.request_queue) > 0:
-            count = 4 - len(self.browser.window_handles)
+            count = 10
+            if self.browser is not None:
+                count = 4 - len(self.browser.window_handles)
             while count > 0 and len(self.request_queue) > 0:
                 req = self.request_queue.pop(0)
                 self.logger.debug("Dequeuing %s", req.url)
@@ -329,6 +332,9 @@ class Spider2(scrapy.Spider):
         curl.perform()
 
         json_data = buf.getvalue()
+
+        curl.close()
+
         self.logger.debug("Job Configuration:\n" + json_data)
 
         return json.loads(json_data)
@@ -359,7 +365,7 @@ class Spider2(scrapy.Spider):
 
         content = self.get_field_list(json_data, page_def)
 
-        self.logger.debug("Page content: %s", str(content))
+        # self.logger.debug("Page content: %s", str(content))
 
         if len(content) > 0:
             index_doc = {
@@ -379,12 +385,12 @@ class Spider2(scrapy.Spider):
         if page_def['data_format'] == SPIDER_DATA_FORMAT_TABLE:
             rows = self.content_to_rows(content)
 
-            self.logger.debug("Page content as rows: %s", str(rows))
+            # self.logger.debug("Page content as rows: %s", str(rows))
 
             for row in rows:
                 row['_collect_time'] = crawl_time
                 row['_page_id'] = page_def['page_id']
-                self.logger.debug("Sending row: %s", str(row))
+                # self.logger.debug("Sending row: %s", str(row))
                 yield row
 
     def parse_static_page(self, response):
@@ -399,11 +405,15 @@ class Spider2(scrapy.Spider):
 
         self.logger.debug("Parsing page %s from URL %s", page_def['page_name'], response.request.url)
 
-        self.logger.debug("Response text is : %s", response.text)
+        # self.logger.debug("Response text is : %s", response.text)
 
         content = self.get_field_list(response, page_def)
+        for k in content.keys():
+            if len(content[k]) == 0:
+                self.logger.error("Content is missing : %s", str(content))
+                raise Exception("Didn't find content from response of " + response.request.url)
 
-        self.logger.debug("Page content: %s", str(content))
+        # self.logger.debug("Page content: %s", str(content))
 
         if len(content) > 0:
             index_doc = {
@@ -430,7 +440,7 @@ class Spider2(scrapy.Spider):
             for row in rows:
                 row['_collect_time'] = crawl_time
                 row['_page_id'] = page_def['page_id']
-                self.logger.debug("Sending row: %s", str(row))
+                # self.logger.debug("Sending row: %s", str(row))
                 yield row
 
         for req in new_requests:
@@ -491,7 +501,7 @@ class Spider2(scrapy.Spider):
 
             content = self.get_field_list(response, page_def)
 
-            self.logger.debug("Page content is: %s", content)
+            # self.logger.debug("Page content is: %s", content)
 
             if len(content) > 0:
                 index_doc = {
@@ -534,7 +544,7 @@ class Spider2(scrapy.Spider):
             for row in rows:
                 row['_collect_time'] = crawl_time
                 row['_page_id'] = page_def['page_id']
-                self.logger.debug("Sending row: %s", str(row))
+                # self.logger.debug("Sending row: %s", str(row))
                 yield row
 
         for req in new_requests:
@@ -611,6 +621,15 @@ class Spider2(scrapy.Spider):
                 except (NoSuchElementException, StaleElementReferenceException) as e:
                     self.logger.exception('No element is found from path %s', link['link_locate_pattern'])
 
+        helper = self.get_helper(response.request.url)
+        if helper is not None:
+            urls = helper.get_page_links(response.text)
+            for url in urls:
+                links_for_url = [(url, link['next_page_id'])
+                         for link in page_def['links']
+                         if re.match(link['link_ext_pattern'], url)]
+                links.extend(links_for_url)
+
         if page_type == SPIDER_STATIC_PAGE:
             count = 32
         else:
@@ -633,6 +652,12 @@ class Spider2(scrapy.Spider):
             count -= 1
 
         return request_list
+
+    def get_helper(self, request_url):
+        for p in spiderHelpers.keys():
+            if p == request_url or re.match(p, request_url):
+                return spiderHelpers[p]
+        return None
 
     def get_field_list(self, response, page_def, current_field_list=None, xpath_var_dict={}, level=1):
 
@@ -700,10 +725,10 @@ class Spider2(scrapy.Spider):
                 else:
                     if page_def['page_type'] == SPIDER_STATIC_PAGE:
                         field_value_elements = response.xpath(xpath)
-                        self.logger.debug("%s evaluated to %s", xpath, str(field_value_elements.extract()))
+                        # self.logger.debug("%s evaluated to %s", xpath, str(field_value_elements.extract()))
                     elif page_def['page_type'] == SPIDER_DYNAMIC_PAGE:
                         field_value_elements = self.browser.find_elements_by_xpath(xpath)
-                        self.logger.debug("%s evaluated to %s", xpath, str(field_value_elements))
+                        # self.logger.debug("%s evaluated to %s", xpath, str(field_value_elements))
 
                     if field_value_elements is not None and len(field_value_elements) > 0:
                         if field['combine_field_value']:
@@ -843,3 +868,6 @@ class StatsExporter(object):
         my_curl.perform()
 
         self.logger.debug('Response for update stats is %d' % my_curl.getinfo(my_curl.RESPONSE_CODE))
+
+        my_curl.close()
+
