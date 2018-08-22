@@ -27,6 +27,9 @@ from crawl_job import CrawlJob
 
 
 class SpiderConfigRequestHandler(tornado.web.RequestHandler):
+    def data_received(self, chunk):
+        pass
+
     def __init__(self, *args, **kwargs):
         super(SpiderConfigRequestHandler, self).__init__(*args, **kwargs)
 
@@ -56,6 +59,9 @@ class SpiderConfigRequestHandler(tornado.web.RequestHandler):
 
 
 class UpdateStatusRequestHandler(tornado.web.RequestHandler):
+    def data_received(self, chunk):
+        pass
+
     def __init__(self, *args, **kwargs):
         super(UpdateStatusRequestHandler, self).__init__(*args, **kwargs)
 
@@ -125,6 +131,9 @@ class UpdateStatusRequestHandler(tornado.web.RequestHandler):
 
 
 class JobControlRequestHandler(tornado.web.RequestHandler):
+    def data_received(self, chunk):
+        pass
+
     def __init__(self, *args, **kwargs):
 
         super(JobControlRequestHandler, self).__init__(*args, **kwargs)
@@ -215,10 +224,10 @@ class JobController(object):
                 url = url + sep + param + '=' + get_param[param]
                 sep = '&'
 
-        curl.setopt(curl.URL, url)
-        curl.setopt(curl.WRITEDATA, buf)
+        curl.setopt(pycurl.URL, url)
+        curl.setopt(pycurl.WRITEDATA, buf)
         if post_data is not None and len(post_data) > 0:
-            curl.setopt(curl.POSTFIELDS, fields)
+            curl.setopt(pycurl.POSTFIELDS, fields)
 
         curl.perform()
 
@@ -343,7 +352,7 @@ class JobController(object):
 
                 self.logger.info("Start job %s on host %s ...", job_name, host_ip)
                 result = self.call_scrapyd(host_ip, 'schedule.json',
-                                            post_data={'project': job_name, 'spider': 'spider2'})
+                                           post_data={'project': job_name, 'spider': 'spider2'})
                 if result['status'] != 'ok':
                     raise Exception('Failed to start job %s on host %s', job_name, host_ip)
 
