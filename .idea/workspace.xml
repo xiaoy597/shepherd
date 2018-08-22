@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="538ac6b6-8645-4af2-8e8d-9eae4efbed24" name="Default" comment="The first draft of using helper class to implement very special data/link extraction logic.">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shepherd/shepherd.py" beforeDir="false" afterPath="$PROJECT_DIR$/shepherd/shepherd.py" afterDir="false" />
-    </list>
+    <list default="true" id="538ac6b6-8645-4af2-8e8d-9eae4efbed24" name="Default" comment="The first draft of using helper class to implement very special data/link extraction logic." />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,14 +39,14 @@
     <session id="-1132576406">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="11" />
+          <entry key="project.closed" value="12" />
           <entry key="project.open.time.11" value="2" />
-          <entry key="project.open.time.12" value="2" />
+          <entry key="project.open.time.12" value="3" />
           <entry key="project.open.time.13" value="4" />
           <entry key="project.open.time.14" value="2" />
           <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.17" value="1" />
-          <entry key="project.opened" value="12" />
+          <entry key="project.opened" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -91,7 +87,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/clematis/clematis/spiders/spider2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="14365">
+            <state relative-caret-position="14178">
               <caret line="863" column="102" selection-start-line="863" selection-start-column="102" selection-end-line="863" selection-end-column="102" />
               <folding>
                 <element signature="e#24#35#0" expanded="true" />
@@ -105,8 +101,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/shepherd/shepherd.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7019">
-              <caret line="134" column="8" selection-start-line="134" selection-start-column="8" selection-end-line="134" selection-end-column="12" />
+            <state relative-caret-position="323">
+              <caret line="254" column="40" lean-forward="true" selection-start-line="254" selection-start-column="40" selection-end-line="254" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -114,7 +110,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-908472801/pycurl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
+            <state relative-caret-position="15691">
               <caret line="923" column="9" selection-start-line="923" selection-end-line="923" selection-end-column="9" />
             </state>
           </provider>
@@ -810,7 +806,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2685325" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27231467" />
       <window_info id="Favorites" order="1" side_tool="true" />
       <window_info id="Structure" order="2" weight="0.17397882" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -1280,6 +1276,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/afdcbca3-1578-4704-9bc1-28c7b022e63c/console.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clematis/clematis/spiders/spider2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14178">
+          <caret line="863" column="102" selection-start-line="863" selection-start-column="102" selection-end-line="863" selection-end-column="102" />
+          <folding>
+            <element signature="e#24#35#0" expanded="true" />
+            <marker date="1533209407395" expanded="true" signature="28525:28691" ph="..." />
+            <marker date="1533209407395" expanded="true" signature="28789:28799" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-908472801/pycurl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15691">
+          <caret line="923" column="9" selection-start-line="923" selection-end-line="923" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/clematis/clematis/logging.conf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -1329,32 +1347,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clematis/clematis/spiders/spider2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14365">
-          <caret line="863" column="102" selection-start-line="863" selection-start-column="102" selection-end-line="863" selection-end-column="102" />
-          <folding>
-            <element signature="e#24#35#0" expanded="true" />
-            <marker date="1533209407395" expanded="true" signature="28525:28691" ph="..." />
-            <marker date="1533209407395" expanded="true" signature="28789:28799" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-908472801/pycurl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="923" column="9" selection-start-line="923" selection-end-line="923" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/afdcbca3-1578-4704-9bc1-28c7b022e63c/console.sql">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/shepherd/shepherd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7019">
-          <caret line="134" column="8" selection-start-line="134" selection-start-column="8" selection-end-line="134" selection-end-column="12" />
+        <state relative-caret-position="323">
+          <caret line="254" column="40" lean-forward="true" selection-start-line="254" selection-start-column="40" selection-end-line="254" selection-end-column="40" />
         </state>
       </provider>
     </entry>
