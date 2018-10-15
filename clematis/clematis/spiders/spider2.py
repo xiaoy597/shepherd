@@ -7,12 +7,14 @@ import re
 import pycurl
 import time
 import datetime
-from StringIO import StringIO
-from urllib import urlencode
+import io
+import urllib.request
+import urllib.parse
+from functools import reduce
 
 import scrapy
-from hbase import Hbase
-from hbase.ttypes import Mutation
+# from hbase import Hbase
+# from hbase.ttypes import Mutation
 from scrapy import signals
 from scrapy.exceptions import DontCloseSpider
 from selenium.common.exceptions import NoSuchElementException
@@ -21,9 +23,9 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from thrift.protocol import TBinaryProtocol
-from thrift.transport import TSocket
-from thrift.transport import TTransport
+# from thrift.protocol import TBinaryProtocol
+# from thrift.transport import TSocket
+# from thrift.transport import TTransport
 
 from clematis.const import *
 from clematis.solr_wrapper import SolrWrapper
@@ -247,13 +249,11 @@ class Spider2(scrapy.Spider):
         spider.crawler.signals.connect(spider.spider_close, signal=signals.spider_closed)
         spider.crawler.signals.connect(spider.engine_stop, signal=signals.engine_stopped)
 
-        print "Current Directory is " + os.getcwd()
+        print("Current Directory is " + os.getcwd())
 
         if os.getenv('SPIDER_AGENT_HOME') is not None:
             logging.getLogger('selenium').setLevel(logging.INFO)
             logging.getLogger('scrapy').setLevel(logging.DEBUG)
-        else:
-            logging.config.fileConfig(os.environ['SPIDER_LOGGING_CONF'], disable_existing_loggers=False)
 
         spider.params = spider.get_job_param(crawler.settings.get('USER_ID'), crawler.settings.get('JOB_ID'))
 
@@ -322,16 +322,16 @@ class Spider2(scrapy.Spider):
 
     def get_job_param(self, user_id, job_id):
 
-        buf = StringIO()
-        fields = urlencode({'user_id': user_id, 'job_id': job_id})
+        buf = io.BytesIO()
+        fields = urllib.parse.urlencode({'user_id': user_id, 'job_id': job_id})
 
         curl = pycurl.Curl()
         curl.setopt(curl.URL, 'http://%s:%s/spider-config' % (os.getenv('SHEPHERD_HOST'), os.getenv('SHEPHERD_PORT')))
-        curl.setopt(curl.WRITEDATA, buf)
+        curl.setopt(curl.WRITEFUNCTION, buf.write)
         curl.setopt(curl.POSTFIELDS, fields)
         curl.perform()
 
-        json_data = buf.getvalue()
+        json_data = buf.getvalue().decode('utf-8')
 
         curl.close()
 
@@ -802,35 +802,35 @@ class Spider2(scrapy.Spider):
         if os.getenv('SPIDER_PAGE_DUMP').upper() == 'FALSE':
             return
 
-        if self.hbase_client is None:
-            transport = TTransport.TBufferedTransport(
-                TSocket.TSocket(os.getenv('SPIDER_PAGE_DUMP_HOST'), os.getenv('SPIDER_PAGE_DUMP_PORT')))
-            protocol = TBinaryProtocol.TBinaryProtocol(transport)
-            self.hbase_client = Hbase.Client(protocol)
-            transport.open()
-
-        if page_id not in self.page_serials:
-            self.page_serials[page_id] = 0
-        else:
-            self.page_serials[page_id] += 1
-
-        row = "%d_%d_%d_%d_%d" % \
-              (self.params['user_id'], self.params['job_id'], int(self.start_time), page_id, self.page_serials[page_id])
-
-        columns = {
-            'f1:url': url,
-            'f1:crawl_time': crawl_time,
-            'f2:page': page.encode('utf8'),
-        }
-
-        # self.logger.debug("row: %s", row)
-        # self.logger.debug("columns: %s", str(columns))
-
-        self.hbase_client.mutateRow(
-            os.getenv('SPIDER_PAGE_DUMP_TABLE'), row,
-            map(lambda (k, v): Mutation(column=k, value=v), columns.items()), None)
-
-        self.logger.debug("Row %s dumped to spider_page, url=%s", row, url)
+        # if self.hbase_client is None:
+        #     transport = TTransport.TBufferedTransport(
+        #         TSocket.TSocket(os.getenv('SPIDER_PAGE_DUMP_HOST'), os.getenv('SPIDER_PAGE_DUMP_PORT')))
+        #     protocol = TBinaryProtocol.TBinaryProtocol(transport)
+        #     self.hbase_client = Hbase.Client(protocol)
+        #     transport.open()
+        # 
+        # if page_id not in self.page_serials:
+        #     self.page_serials[page_id] = 0
+        # else:
+        #     self.page_serials[page_id] += 1
+        # 
+        # row = "%d_%d_%d_%d_%d" % \
+        #       (self.params['user_id'], self.params['job_id'], int(self.start_time), page_id, self.page_serials[page_id])
+        # 
+        # columns = {
+        #     'f1:url': url,
+        #     'f1:crawl_time': crawl_time,
+        #     'f2:page': page.encode('utf8'),
+        # }
+        # 
+        # # self.logger.debug("row: %s", row)
+        # # self.logger.debug("columns: %s", str(columns))
+        # 
+        # self.hbase_client.mutateRow(
+        #     os.getenv('SPIDER_PAGE_DUMP_TABLE'), row,
+        #     map(lambda (k, v): Mutation(column=k, value=v), columns.items()), None)
+        # 
+        # self.logger.debug("Row %s dumped to spider_page, url=%s", row, url)
 
 
 from io import BytesIO
@@ -863,7 +863,7 @@ class StatsExporter(object):
         my_curl.setopt(my_curl.URL,
                        'http://%s:%s/update-status' % (os.getenv('SHEPHERD_HOST'), os.getenv('SHEPHERD_PORT')))
         my_curl.setopt(my_curl.WRITEDATA, buffer1)
-        my_curl.setopt(my_curl.POSTFIELDS, urlencode(fields))
+        my_curl.setopt(my_curl.POSTFIELDS, urllib.parse.urlencode(fields))
 
         my_curl.perform()
 

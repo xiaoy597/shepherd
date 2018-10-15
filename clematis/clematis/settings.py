@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import logging
+
 # Scrapy settings for test1 project
 #
 # For simplicity, this file contains only settings considered important or
@@ -103,12 +105,14 @@ ITEM_PIPELINES = {
 # HTTPCACHE_IGNORE_HTTP_CODES = []
 # HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-LOG_ENABLED = False
+LOG_ENABLED = True
+LOG_LEVEL = logging.DEBUG
+
 IMAGES_STORE = r'/tmp/images'
 # IMAGES_STORE = r'c:\tmp\images'
 
 USER_ID = 1
-JOB_ID = 8
+JOB_ID = 1
 
 # PAGE_DUMP_PARAMS = {
 #     'host': '10.1.3.70',

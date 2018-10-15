@@ -21,7 +21,7 @@ class Spider1Spider(scrapy.Spider):
                  'Chrome/58.0.3029.110 Safari/537.36'
 
     def start_requests(self):
-        print "Start request in thread %s" % current_thread().name
+        print("Start request in thread %s" % current_thread().name)
         urls = [
             'http://roll.news.sina.com.cn/s/channel.php#col=97&spec=&type=&ch=&k=&offset_page=0&offset_num=0&num=60&asc=&page=1'
         ]
@@ -94,7 +94,7 @@ class Spider1Spider(scrapy.Spider):
                     links.append(link.get_attribute("href"))
 
             except (NoSuchElementException, StaleElementReferenceException) as e:
-                print e
+                print(e)
                 time.sleep(1)
             else:
                 break

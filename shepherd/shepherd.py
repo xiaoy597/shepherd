@@ -6,8 +6,8 @@ import json
 import logging
 import logging.config
 import subprocess
-import MySQLdb
-from MySQLdb.cursors import DictCursor
+
+import mysql.connector
 
 from StringIO import StringIO
 import pycurl
@@ -24,6 +24,8 @@ from apscheduler.jobstores.base import JobLookupError
 from threading import RLock
 
 from crawl_job import CrawlJob
+from clematis.clematis.mysql_utils import MySQLUtils
+
 
 
 class SpiderConfigRequestHandler(tornado.web.RequestHandler):
@@ -43,10 +45,10 @@ class SpiderConfigRequestHandler(tornado.web.RequestHandler):
 
         self.logger.debug("Getting job configuration for user %s and job %s", user_id, job_id)
 
-        conn = MySQLdb.connect(host=os.getenv('SHEPHERD_DB_HOST'), port=3306,
-                               user=os.getenv('SHEPHERD_DB_USER'),
-                               passwd=os.getenv('SHEPHERD_DB_PASS'),
-                               cursorclass=DictCursor, charset='utf8')
+        conn = mysql.connector.connect(host=os.getenv('SHEPHERD_DB_HOST'), port=3306,
+                                       user=os.getenv('SHEPHERD_DB_USER'),
+                                       passwd=os.getenv('SHEPHERD_DB_PASS'),
+                                       charset='utf8')
 
         job = CrawlJob().load(int(user_id), int(job_id), conn)
 
@@ -88,10 +90,10 @@ class UpdateStatusRequestHandler(tornado.web.RequestHandler):
     def save_stats_info(self, stats_info):
         conn = None
         try:
-            conn = MySQLdb.connect(host=os.getenv('SHEPHERD_DB_HOST'), port=3306,
+            conn = mysql.connector.connect(host=os.getenv('SHEPHERD_DB_HOST'), port=3306,
                                    user=os.getenv('SHEPHERD_DB_USER'),
                                    passwd=os.getenv('SHEPHERD_DB_PASS'),
-                                   cursorclass=DictCursor, charset='utf8')
+                                   charset='utf8')
             conn.autocommit(True)
 
             sql = '''insert into {db}.{table_name} (
@@ -199,11 +201,11 @@ class JobController(object):
         super(JobController, self).__init__()
         self.logger = logging.getLogger(self.__class__.__name__)
 
-        self.conn = MySQLdb.connect(host=os.getenv('SHEPHERD_DB_HOST'), port=3306,
+        self.conn = mysql.connector.connect(host=os.getenv('SHEPHERD_DB_HOST'), port=3306,
                                     user=os.getenv('SHEPHERD_DB_USER'),
                                     passwd=os.getenv('SHEPHERD_DB_PASS'),
-                                    cursorclass=DictCursor, charset='utf8')
-        self.conn.autocommit(True)
+                                    charset='utf8')
+        self.conn.autocommit = True
 
         self.lock = RLock()
 
@@ -252,7 +254,16 @@ class JobController(object):
 
         os.chdir(job_path)
         self.logger.debug("Deploying project %s to %s", job_name, host_ip)
-        ret = subprocess.call(['scrapyd-deploy', '-p', job_name])
+        scrapyd_deploy_exec_path = os.getenv('SHEPHERD_SCRAPYD_DEPLOY_PATH')
+
+        self.logger.debug("Current searching path: %s", os.getenv('PATH'))
+
+        # Must use the same python env in which scrapyd-deploy is installed to run scrapyd-deploy.
+        ret = subprocess.call([
+            scrapyd_deploy_exec_path + os.path.sep + 'python',
+            scrapyd_deploy_exec_path + os.path.sep + 'scrapyd-deploy',
+            '-p',
+            job_name])
         if ret != 0:
             raise Exception("Failed to deploy project %s to %s", job_name, host_ip)
 
@@ -399,7 +410,7 @@ class JobController(object):
                   where user_id = %s and job_id = %s'.format(db=os.getenv('SHEPHERD_DB_NAME'))
         cursor.execute(sql, (user_id, job_id))
 
-        start_time = cursor.fetchone()['start_time']
+        start_time = MySQLUtils.get_rs_as_dict(cursor)[0]['start_time']
 
         sql = 'update {db}.crawl_status set run_status = 3 where user_id = %s and job_id = %s \
                 and run_status in (0, 1) \
@@ -422,11 +433,11 @@ class Shepherd(object):
             (r"/job-control", JobControlRequestHandler),
         ])
 
-        self.conn = MySQLdb.connect(host=os.getenv('SHEPHERD_DB_HOST'), port=3306,
+        self.conn = mysql.connector.connect(host=os.getenv('SHEPHERD_DB_HOST'), port=3306,
                                     user=os.getenv('SHEPHERD_DB_USER'),
                                     passwd=os.getenv('SHEPHERD_DB_PASS'),
-                                    cursorclass=DictCursor, charset='utf8')
-        self.conn.autocommit(True)
+                                    charset='utf8')
+        self.conn.autocommit = True
 
         self.job_controller = JobController()
 
@@ -457,7 +468,7 @@ class Shepherd(object):
 
         cursor.execute(sql)
 
-        for row in cursor.fetchall():
+        for row in MySQLUtils.get_rs_as_dict(cursor):
             self.job_schedules[(row['user_id'], row['job_id'])] = {'job_info': row, 'schedule_param': {}}
 
         cursor.close()
@@ -468,7 +479,7 @@ class Shepherd(object):
         for job in self.job_schedules.keys():
             cursor = self.conn.cursor()
             cursor.execute(sql, (self.job_schedules[job]['job_info']['job_schedule_id'],))
-            for row in cursor.fetchall():
+            for row in MySQLUtils.get_rs_as_dict(cursor):
                 self.job_schedules[job]['schedule_param'][row['param_name']] = row['param_value']
             cursor.close()
 
@@ -483,7 +494,7 @@ class Shepherd(object):
 
         cursor.execute(sql, (user_id, job_id))
 
-        new_job = cursor.fetchone()
+        new_job = MySQLUtils.get_rs_as_dict(cursor)[0]
 
         cursor.close()
 
@@ -493,7 +504,7 @@ class Shepherd(object):
                 db=os.getenv('SHEPHERD_DB_NAME'))
             cursor = self.conn.cursor()
             cursor.execute(sql, (new_job['job_schedule_id'],))
-            for row in cursor.fetchall():
+            for row in MySQLUtils.get_rs_as_dict(cursor):
                 schedule_param[row['param_name']] = row['param_value']
             cursor.close()
 

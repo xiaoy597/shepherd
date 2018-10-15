@@ -1,10 +1,10 @@
 import re
 import urllib
-import urllib2
-import StringIO
+import urllib.parse
+import urllib.request
+import io
 import gzip
 import json
-
 
 class GeneralSpiderHelper(object):
     def __init__(self):
@@ -68,13 +68,13 @@ class SpiderHelperSLSJ(GeneralSpiderHelper):
             "pgnum": pgnum
         }
 
-        data = urllib.urlencode(params)
+        data = urllib.parse.quote(params)
 
-        req = urllib2.Request(url=SpiderHelperSLSJ.data_url, data=data, headers=SpiderHelperSLSJ.request_header)
-        rsp = urllib2.urlopen(req)
+        req = urllib.request.Request(url=SpiderHelperSLSJ.data_url, data=data, headers=SpiderHelperSLSJ.request_header)
+        rsp = urllib.request.urlopen(req)
 
         if rsp.headers.dict['content-encoding'] == 'gzip':
-            buf = StringIO.StringIO(rsp.read())
+            buf = io.StringIO(rsp.read())
             content = gzip.GzipFile(fileobj=buf).read()
         else:
             content = rsp.read()
@@ -91,7 +91,7 @@ if __name__ == "__main__":
     # content = open('c:/users/xiaoy/desktop/slsj.html').read()
     # print content
 
-    request = urllib2.Request('http://www.xinhuanet.com/silkroad/slsj.htm')
+    request = urllib.request.Request('http://www.xinhuanet.com/silkroad/slsj.htm')
     request.headers = {
         'Connection': 'keep-alive',
         'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
@@ -102,14 +102,14 @@ if __name__ == "__main__":
         'Cache-Control': 'max-age=0',
     }
 
-    response = urllib2.urlopen(request)
+    response = urllib.request.urlopen(request)
 
     if response.headers.dict['content-encoding'] == 'gzip':
-        stream = StringIO.StringIO(response.read())
+        stream = io.StringIO(response.read())
         html = gzip.GzipFile(fileobj=stream).read()
     else:
         html = response.read()
 
-    print html
+    print(html)
 
-    print SpiderHelperSLSJ().get_page_links(page_content=html)
+    print(SpiderHelperSLSJ().get_page_links(page_content=html))

@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 
+from clematis.clematis.mysql_utils import MySQLUtils
+
+
 class CrawlJob(object):
 
     def __init__(self):
@@ -15,17 +18,13 @@ class CrawlJob(object):
 
         cursor.execute(sql, (user_id, job_id))
 
-        self.fields = cursor.fetchone()
+        self.fields = MySQLUtils.get_rs_as_dict(cursor)[0]
 
         sql = "select * from spiderdb.crawl_page_config where user_id = %s and job_id = %s"
 
         cursor.execute(sql, (user_id, job_id))
 
-        pages = []
-        for page_config in cursor.fetchall():
-            pages.append(page_config)
-
-        self.fields['pages'] = pages
+        self.fields['pages'] = MySQLUtils.get_rs_as_dict(cursor)
 
         for page in self.fields['pages']:
             page['fields'] = self.load_page_field(user_id, job_id, page['page_id'], db_conn)
@@ -34,19 +33,19 @@ class CrawlJob(object):
         sql = "select * from spiderdb.data_store where user_id = %s and data_store_id = %s"
         cursor.execute(sql, (user_id, self.fields['data_store_id']))
 
-        self.fields['data_store'] = cursor.fetchone()
+        self.fields['data_store'] = MySQLUtils.get_rs_as_dict(cursor)[0]
 
         sql = "select * from spiderdb.data_store_param where user_id = %s and data_store_id = %s"
         cursor.execute(sql, (user_id, self.fields['data_store_id']))
 
-        for row in cursor.fetchall():
+        for row in MySQLUtils.get_rs_as_dict(cursor):
             self.fields['data_store'][str(row['param_name'])] = row['param_value']
 
         sql = "select param_name, param_value from spiderdb.crawl_config where user_id = %s and job_id = %s"
         cursor.execute(sql, (user_id, job_id))
         configs = {}
-        for row in cursor.fetchall():
-            configs[row['param_name']] = row['param_value']
+        for row in MySQLUtils.get_rs_as_dict(cursor):
+            configs[str(row['param_name'])] = row['param_value']
 
         self.fields['configs'] = configs
 
@@ -62,9 +61,7 @@ class CrawlJob(object):
 
         cursor.execute(sql, (user_id, job_id, page_id))
 
-        fields = []
-        for field in cursor.fetchall():
-            fields.append(field)
+        fields = MySQLUtils.get_rs_as_dict(cursor)
 
         cursor.close()
 
@@ -82,9 +79,7 @@ class CrawlJob(object):
 
         cursor.execute(sql, (user_id, job_id, page_id, field_id))
 
-        locates = []
-        for locate in cursor.fetchall():
-            locates.append(locate)
+        locates = MySQLUtils.get_rs_as_dict(cursor)
 
         cursor.close()
 
@@ -98,23 +93,20 @@ class CrawlJob(object):
 
         cursor.execute(sql, (user_id, job_id, page_id))
 
-        links = []
-        for link in cursor.fetchall():
-            links.append(link)
-
+        links = MySQLUtils.get_rs_as_dict(cursor)
         cursor.close()
 
         return links
 
-import MySQLdb
-from MySQLdb.cursors import DictCursor
+
 import sys
+import json
+import mysql.connector
 
 if __name__ == "__main__":
-
     sys.getdefaultencoding()
-    connection = MySQLdb.connect(host='localhost', port=3306, user='root', passwd='root',
-                                 cursorclass=DictCursor, use_unicode=0, charset='utf8')
+    connection = mysql.connector.connect(host='localhost', port=3306, user='root', passwd='root',
+                                         charset='utf8')
     job = CrawlJob().load(1, 2, connection)
 
-    print job.fields
+    print json.dumps(job.fields, indent=4)

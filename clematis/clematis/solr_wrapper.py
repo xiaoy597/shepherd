@@ -6,9 +6,9 @@ import json
 import logging
 import logging.config
 
-from StringIO import StringIO
+from io import StringIO
 import pycurl
-from urllib import urlencode
+from urllib.parse import quote
 
 class SolrWrapper(object):
     logger = logging.getLogger("SolrWrapper")

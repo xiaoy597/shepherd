@@ -5,14 +5,15 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import re
-import MySQLdb
 import logging
 
 import os
 import shutil
 
-from clematis.const import SPIDER_FIELD_TYPE_STRING
+from clematis import SPIDER_FIELD_TYPE_STRING
 from kafka import KafkaProducer
+
+import mysql.connector
 
 
 class ExporterPipeline(object):
@@ -68,10 +69,11 @@ class ExporterPipeline(object):
         exporter_vars = self.exporters['mysql']['vars']
         exporter_params = spider.params['data_store']
         if 'cxn' not in exporter_vars:
-            exporter_vars['cxn'] = MySQLdb.connect(host=exporter_params['host'], port=int(exporter_params['port']),
-                                                   user=exporter_params['user'], passwd=exporter_params['passwd'],
-                                                   charset='utf8')
-            exporter_vars['cxn'].autocommit(True)
+            exporter_vars['cxn'] = mysql.connector.connect(
+                host=exporter_params['host'], port=int(exporter_params['port']),
+                user=exporter_params['user'], passwd=exporter_params['passwd'],
+                charset='utf8')
+            exporter_vars['cxn'].autocommit = True
             exporter_vars['cursor'] = exporter_vars['cxn'].cursor()
 
         page_def = filter(lambda x: x['page_id'] == item['_page_id'], spider.params['pages'])[0]
