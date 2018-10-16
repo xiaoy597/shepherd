@@ -109,4 +109,4 @@ if __name__ == "__main__":
                                          charset='utf8')
     job = CrawlJob().load(1, 2, connection)
 
-    print json.dumps(job.fields, indent=4)
+    print(json.dumps(job.fields, indent=4))

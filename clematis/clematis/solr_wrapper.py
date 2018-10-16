@@ -6,7 +6,7 @@ import json
 import logging
 import logging.config
 
-from io import StringIO
+from io import BytesIO
 import pycurl
 from urllib.parse import quote
 
@@ -15,7 +15,7 @@ class SolrWrapper(object):
 
     @classmethod
     def create_core(cls, user_id, job_id):
-        buf = StringIO()
+        buf = BytesIO()
 
         core_name = 'job_%s_%s' % (user_id, job_id)
         curl = pycurl.Curl()
@@ -29,7 +29,7 @@ class SolrWrapper(object):
 
         curl.perform()
 
-        result = json.loads(buf.getvalue())
+        result = json.loads(buf.getvalue().decode('utf-8'))
 
         curl.close()
 
@@ -52,7 +52,7 @@ class SolrWrapper(object):
 
         core_name = 'job_%s_%s' % (user_id, job_id)
 
-        buf = StringIO()
+        buf = BytesIO()
         curl = pycurl.Curl()
 
         url = 'http://{solr_server}/solr/{core_name}/update?commit=true&wt=json'.format(
@@ -68,7 +68,7 @@ class SolrWrapper(object):
         curl.perform()
         print("Response received.")
 
-        result = json.loads(buf.getvalue())
+        result = json.loads(buf.getvalue().decode('utf-8'))
 
         curl.close()
 
@@ -91,7 +91,7 @@ class SolrWrapper(object):
 
         core_name = 'job_%s_%s' % (user_id, job_id)
 
-        buf = StringIO()
+        buf = BytesIO()
         curl = pycurl.Curl()
 
         url = 'http://{solr_server}/solr/{core_name}/schema?wt=json'.format(
@@ -105,7 +105,7 @@ class SolrWrapper(object):
 
         curl.perform()
 
-        result = json.loads(buf.getvalue())
+        result = json.loads(buf.getvalue().decode('utf-8'))
 
         curl.close()
 
@@ -119,7 +119,7 @@ class SolrWrapper(object):
             return True
 
 if __name__ == '__main__':
-    logging.config.fileConfig(os.environ['SHEPHERD_LOGGING_CONF'], disable_existing_loggers=False)
+    # logging.config.fileConfig(os.environ['SHEPHERD_LOGGING_CONF'], disable_existing_loggers=False)
 
     SolrWrapper.create_core('2', '4')
     # SolrWrapper.add_field('2', '4', 'field0001', 'strings', False)

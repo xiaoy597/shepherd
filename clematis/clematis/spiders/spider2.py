@@ -32,6 +32,7 @@ from clematis.solr_wrapper import SolrWrapper
 
 from clematis.spiders.helper.spider_helper import spiderHelpers
 
+
 class Spider2(scrapy.Spider):
     name = 'spider2'
     allowed_domains = []
@@ -57,8 +58,8 @@ class Spider2(scrapy.Spider):
         if not SolrWrapper.create_core(self.params['user_id'], self.params['job_id']):
             raise Exception("Failed to create solr index for job_%s_%s", self.params['user_id'], self.params['job_id'])
 
-        page_type = filter(lambda p: p['page_id'] == self.params['entry_page_id'],
-                           [page for page in self.params['pages']])[0]['page_type']
+        page_type = list(filter(lambda p: p['page_id'] == self.params['entry_page_id'],
+                                [page for page in self.params['pages']]))[0]['page_type']
 
         request_headers = self.crawler.settings.getdict('DEFAULT_REQUEST_HEADERS')
         for param in self.params['configs']:
@@ -284,7 +285,7 @@ class Spider2(scrapy.Spider):
         self.logger.info("Spider idle signal is caught.")
 
         stats_info = "Stats for last scrapping >>>"
-        for k, v in self.crawler.stats.__dict__['_stats'].iteritems():
+        for k, v in self.crawler.stats.__dict__['_stats'].items():
             stats_info += '\n' + k + ": " + str(v)
 
         stats_info += "\nStats for last scrapping <<<"
@@ -346,7 +347,7 @@ class Spider2(scrapy.Spider):
         if meta is None or 'my_page_id' not in meta:
             raise Exception('Meta is missing for request ' + response.request.url)
 
-        page_def = filter(lambda x: x['page_id'] == meta['my_page_id'], self.params['pages'])[0]
+        page_def = list(filter(lambda x: x['page_id'] == meta['my_page_id'], self.params['pages']))[0]
 
         self.logger.debug("Parsing page %s from URL %s", page_def['page_name'], response.request.url)
 
@@ -401,7 +402,7 @@ class Spider2(scrapy.Spider):
         if meta is None or 'my_page_id' not in meta:
             raise Exception('Meta is missing for request ' + response.request.url)
 
-        page_def = filter(lambda x: x['page_id'] == meta['my_page_id'], self.params['pages'])[0]
+        page_def = list(filter(lambda x: x['page_id'] == meta['my_page_id'], self.params['pages']))[0]
 
         self.logger.debug("Parsing page %s from URL %s", page_def['page_name'], response.request.url)
 
@@ -411,7 +412,8 @@ class Spider2(scrapy.Spider):
         for k in content.keys():
             if len(content[k]) == 0:
                 self.logger.error("Content is missing : %s", str(content))
-                raise Exception("Didn't find content from response of " + response.request.url)
+                raise Exception("Didn't find content for field {} from response of ".format(k)
+                                + response.request.url)
 
         # self.logger.debug("Page content: %s", str(content))
 
@@ -477,11 +479,12 @@ class Spider2(scrapy.Spider):
         if meta is None or 'my_page_id' not in meta:
             raise Exception('Meta is missing for request ' + response.request.url)
 
-        page_def = filter(lambda x: x['page_id'] == meta['my_page_id'], self.params['pages'])[0]
+        page_def = list(filter(lambda x: x['page_id'] == meta['my_page_id'], self.params['pages']))[0]
 
         self.logger.debug("Parsing page %s from URL %s", page_def['page_name'], response.request.url)
 
-        self.browser.switch_to.window(response.headers["handle"])
+        handle = response.headers["handle"]
+        self.browser.switch_to.window(handle.decode('utf-8'))
 
         time.sleep(2)
 
@@ -550,7 +553,7 @@ class Spider2(scrapy.Spider):
         for req in new_requests:
             yield req
 
-        self.browser.switch_to.window(response.headers["handle"])
+        self.browser.switch_to.window((response.headers["handle"]).decode('utf-8'))
         if page_def['is_multi_page']:
             if page_def['page_id'] not in self.page_numbers:
                 self.page_numbers[page_def['page_id']] = 1
@@ -626,8 +629,8 @@ class Spider2(scrapy.Spider):
             urls = helper.get_page_links(response.text)
             for url in urls:
                 links_for_url = [(url, link['next_page_id'])
-                         for link in page_def['links']
-                         if re.match(link['link_ext_pattern'], url)]
+                                 for link in page_def['links']
+                                 if re.match(link['link_ext_pattern'], url)]
                 links.extend(links_for_url)
 
         if page_type == SPIDER_STATIC_PAGE:
@@ -636,7 +639,7 @@ class Spider2(scrapy.Spider):
             count = 4 - len(self.browser.window_handles)
 
         for link, next_page_id in links:
-            next_page_def = filter(lambda x: x['page_id'] == next_page_id, self.params['pages'])[0]
+            next_page_def = list(filter(lambda x: x['page_id'] == next_page_id, self.params['pages']))[0]
             if next_page_def['page_type'] == SPIDER_STATIC_PAGE:
                 req = scrapy.Request(link, callback=self.parse_static_page,
                                      meta={"my_page_id": next_page_id}, dont_filter=True)
@@ -663,7 +666,7 @@ class Spider2(scrapy.Spider):
 
         content = {}
         if current_field_list is None:
-            current_field_list = filter(lambda x: x['parent_field_id'] == 0, page_def['fields'])
+            current_field_list = list(filter(lambda x: x['parent_field_id'] == 0, page_def['fields']))
 
         if len(current_field_list) == 0:
             return content
@@ -754,8 +757,8 @@ class Spider2(scrapy.Spider):
                 field_value_list.append((field_value, self.get_field_list(
                     response,
                     page_def,
-                    filter(lambda x: x['parent_field_id'] == field['field_id'],
-                           page_def['fields']),
+                    list(filter(lambda x: x['parent_field_id'] == field['field_id'],
+                                page_def['fields'])),
                     xpath_var_dict, level + 1)
                                          ))
             list_index += 1
@@ -870,4 +873,3 @@ class StatsExporter(object):
         self.logger.debug('Response for update stats is %d' % my_curl.getinfo(my_curl.RESPONSE_CODE))
 
         my_curl.close()
-

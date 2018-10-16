@@ -11,7 +11,7 @@ import signal
 
 def run_scrapyd():
     logger.info("Starting scrapyd in %s", scrapyd_work_dir)
-    p = subprocess.Popen(args=['scrapyd'], cwd=scrapyd_work_dir)
+    p = subprocess.Popen(args=[os.getenv('SPIDER_SCRAPYD_PATH')], cwd=scrapyd_work_dir)
     sub_process_list.append(p)
 
 
@@ -37,7 +37,7 @@ def clear_orphan_process():
 
 
 def run_xvfb():
-    if len(filter(lambda p: p.name().lower() == 'xvfb', psutil.process_iter())) > 0:
+    if len(list(filter(lambda p: p.name().lower() == 'xvfb', psutil.process_iter()))) > 0:
         logger.info("Xvfb is running.")
         return
 

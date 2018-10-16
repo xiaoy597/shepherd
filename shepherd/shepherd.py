@@ -9,9 +9,10 @@ import subprocess
 
 import mysql.connector
 
-from StringIO import StringIO
+from io import BytesIO
 import pycurl
-from urllib import urlencode
+import urllib.request
+import urllib.parse
 
 from datetime import datetime
 from datetime import timedelta
@@ -94,7 +95,7 @@ class UpdateStatusRequestHandler(tornado.web.RequestHandler):
                                    user=os.getenv('SHEPHERD_DB_USER'),
                                    passwd=os.getenv('SHEPHERD_DB_PASS'),
                                    charset='utf8')
-            conn.autocommit(True)
+            conn.autocommit = True
 
             sql = '''insert into {db}.{table_name} (
                           user_id, job_id, start_time, run_status, download_page_num,
@@ -213,9 +214,9 @@ class JobController(object):
 
         fields = None
         if post_data is not None:
-            fields = urlencode(post_data)
+            fields = urllib.parse.urlencode(post_data)
 
-        buf = StringIO()
+        buf = BytesIO()
 
         curl = pycurl.Curl()
 
@@ -233,7 +234,7 @@ class JobController(object):
 
         curl.perform()
 
-        result = json.loads(buf.getvalue())
+        result = json.loads(buf.getvalue().decode('utf-8'))
 
         curl.close()
 
@@ -254,14 +255,13 @@ class JobController(object):
 
         os.chdir(job_path)
         self.logger.debug("Deploying project %s to %s", job_name, host_ip)
-        scrapyd_deploy_exec_path = os.getenv('SHEPHERD_SCRAPYD_DEPLOY_PATH')
 
         self.logger.debug("Current searching path: %s", os.getenv('PATH'))
 
         # Must use the same python env in which scrapyd-deploy is installed to run scrapyd-deploy.
         ret = subprocess.call([
-            scrapyd_deploy_exec_path + os.path.sep + 'python',
-            scrapyd_deploy_exec_path + os.path.sep + 'scrapyd-deploy',
+            os.getenv('SPIDER_PYTHON_PATH') + os.path.sep + 'python',
+            os.getenv('SPIDER_SCRAPYD_PATH') + os.path.sep + 'scrapyd-deploy',
             '-p',
             job_name])
         if ret != 0:

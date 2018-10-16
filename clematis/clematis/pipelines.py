@@ -10,7 +10,7 @@ import logging
 import os
 import shutil
 
-from clematis import SPIDER_FIELD_TYPE_STRING
+from clematis.const import SPIDER_FIELD_TYPE_STRING
 from kafka import KafkaProducer
 
 import mysql.connector
@@ -63,7 +63,7 @@ class ExporterPipeline(object):
 
     def export_to_mysql(self, item, spider):
 
-        for k, v in dict(item).iteritems():
+        for k, v in dict(item).items():
             self.logger.debug("%s: %s", k, v)
 
         exporter_vars = self.exporters['mysql']['vars']
@@ -76,7 +76,7 @@ class ExporterPipeline(object):
             exporter_vars['cxn'].autocommit = True
             exporter_vars['cursor'] = exporter_vars['cxn'].cursor()
 
-        page_def = filter(lambda x: x['page_id'] == item['_page_id'], spider.params['pages'])[0]
+        page_def = list(filter(lambda x: x['page_id'] == item['_page_id'], spider.params['pages']))[0]
 
         sql_params = {
             'db': page_def['data_file'].split('.')[0],
@@ -102,7 +102,7 @@ class ExporterPipeline(object):
     def export_to_kafka(self, item, spider):
         self.logger.debug("Exporting data to kafka:")
 
-        for k, v in dict(item).iteritems():
+        for k, v in dict(item).items():
             self.logger.debug("%s: %s", k, v)
 
         exporter_vars = self.exporters['kafka']['vars']
@@ -111,7 +111,7 @@ class ExporterPipeline(object):
         if 'producer' not in exporter_vars:
             exporter_vars['producer'] = KafkaProducer(bootstrap_servers=exporter_params['bootstrap_servers'])
 
-        page_def = filter(lambda x: x['page_id'] == item['_page_id'], spider.params['pages'])[0]
+        page_def = list(filter(lambda x: x['page_id'] == item['_page_id'], spider.params['pages']))[0]
         message = {'collect_time': item['_collect_time'].encode('utf8')}
         for field in page_def['fields']:
             message[field['field_name'].encode('utf8')] = self.get_field_value(item, field)
