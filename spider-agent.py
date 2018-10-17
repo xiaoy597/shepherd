@@ -11,7 +11,7 @@ import signal
 
 def run_scrapyd():
     logger.info("Starting scrapyd in %s", scrapyd_work_dir)
-    p = subprocess.Popen(args=[os.getenv('SPIDER_SCRAPYD_PATH')], cwd=scrapyd_work_dir)
+    p = subprocess.Popen(args=['scrapyd'], cwd=scrapyd_work_dir)
     sub_process_list.append(p)
 
 

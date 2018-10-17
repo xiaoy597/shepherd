@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="538ac6b6-8645-4af2-8e8d-9eae4efbed24" name="Default" comment="The first draft of using helper class to implement very special data/link extraction logic.">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shepherd.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shepherd.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shepherd/shepherd.py" beforeDir="false" afterPath="$PROJECT_DIR$/shepherd/shepherd.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spider-agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider-agent.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start-scrapyd.bat" beforeDir="false" afterPath="$PROJECT_DIR$/start-agent.bat" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,14 +18,15 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/shepherd$Clematis.coverage" NAME="Clematis Coverage Results" MODIFIED="1539679141152" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/clematis" />
+    <SUITE FILE_PATH="coverage/shepherd$RunScrapyd.coverage" NAME="RunScrapyd Coverage Results" MODIFIED="1539741390161" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/shepherd$Build.coverage" NAME="Build Coverage Results" MODIFIED="1533259753982" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/shepherd$spider_helper.coverage" NAME="spider_helper Coverage Results" MODIFIED="1533196840565" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/clematis/clematis/spiders/helper" />
-    <SUITE FILE_PATH="coverage/shepherd$SpiderAgent.coverage" NAME="SpiderAgent Coverage Results" MODIFIED="1539702172341" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:/tmp/scrapyd" />
+    <SUITE FILE_PATH="coverage/shepherd$SpiderAgent.coverage" NAME="SpiderAgent Coverage Results" MODIFIED="1539740800748" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:/tmp/scrapyd" />
     <SUITE FILE_PATH="coverage/shepherd$SolrWrapper.coverage" NAME="SolrWrapper Coverage Results" MODIFIED="1503907655612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/" />
     <SUITE FILE_PATH="coverage/shepherd$Tornado_Hello_World.coverage" NAME="Shepherd Coverage Results" MODIFIED="1500974768806" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/shepherd$PSUTIL.coverage" NAME="PSUTIL Coverage Results" MODIFIED="1500976097260" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/shepherd$test1.coverage" NAME="test1 Coverage Results" MODIFIED="1500002199761" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/shepherd$Shepherd.coverage" NAME="Shepherd Coverage Results" MODIFIED="1539680794159" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/shepherd$Shepherd.coverage" NAME="Shepherd Coverage Results" MODIFIED="1539751340114" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/shepherd$CrawlJob.coverage" NAME="CrawlJob Coverage Results" MODIFIED="1539667365249" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/shepherd$PyCurl_Test.coverage" NAME="PyCurl-Test Coverage Results" MODIFIED="1500367207819" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -41,34 +48,38 @@
     <session id="-1132576406">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="22" />
+          <entry key="project.closed" value="26" />
           <entry key="project.open.time.10" value="1" />
-          <entry key="project.open.time.11" value="2" />
-          <entry key="project.open.time.12" value="5" />
-          <entry key="project.open.time.13" value="7" />
+          <entry key="project.open.time.11" value="3" />
+          <entry key="project.open.time.12" value="7" />
+          <entry key="project.open.time.13" value="8" />
           <entry key="project.open.time.14" value="3" />
           <entry key="project.open.time.15" value="2" />
           <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.2" value="1" />
-          <entry key="project.opened" value="24" />
+          <entry key="project.opened" value="28" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="bat" value="4" />
           <entry key="cfg" value="1" />
           <entry key="conf" value="2" />
-          <entry key="py" value="84" />
+          <entry key="md" value="1" />
+          <entry key="py" value="86" />
           <entry key="pyi" value="1" />
           <entry key="sql" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+          <entry key="Bat" value="1" />
           <entry key="Ini" value="1" />
-          <entry key="PLAIN_TEXT" value="2" />
-          <entry key="Python" value="84" />
+          <entry key="Markdown" value="1" />
+          <entry key="PLAIN_TEXT" value="5" />
+          <entry key="Python" value="86" />
           <entry key="PythonStub" value="1" />
           <entry key="Scratch" value="1" />
         </counts>
@@ -76,16 +87,20 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Python Console" value="507" />
+          <entry key="bat" value="572" />
           <entry key="conf" value="4" />
           <entry key="dummy" value="14" />
-          <entry key="py" value="6064" />
+          <entry key="md" value="1954" />
+          <entry key="py" value="6253" />
           <entry key="txt" value="168" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="186" />
-          <entry key="Python" value="6571" />
+          <entry key="Bat" value="196" />
+          <entry key="Markdown" value="1954" />
+          <entry key="PLAIN_TEXT" value="562" />
+          <entry key="Python" value="6760" />
         </counts>
       </usages-collector>
     </session>
@@ -127,32 +142,38 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/clematis/clematis/spiders/spider2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2888">
-              <caret line="374" column="21" selection-start-line="374" selection-start-column="21" selection-end-line="374" selection-end-column="21" />
-              <folding>
-                <element signature="e#24#35#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="476">
+              <caret line="28" selection-start-line="28" selection-end-line="28" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/clematis/clematis/solr_wrapper.py">
+        <entry file="file://$PROJECT_DIR$/start-agent.bat">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-366">
-              <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
-              <folding>
-                <element signature="e#25#34#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="357">
+              <caret line="21" selection-start-line="21" selection-end-line="21" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="289">
+                <caret line="17" column="6" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spider-agent.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="13" column="47" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
+            <state relative-caret-position="187">
+              <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
               <folding>
                 <element signature="e#25#34#0" expanded="true" />
               </folding>
@@ -161,10 +182,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/clematis/clematis/pipelines.py">
+        <entry file="file://$PROJECT_DIR$/clematis/clematis/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1558">
-              <caret line="82" column="30" selection-start-line="82" selection-start-column="30" selection-end-line="82" selection-end-column="30" />
+            <state relative-caret-position="431">
+              <caret line="110" selection-start-line="110" selection-end-line="110" />
             </state>
           </provider>
         </entry>
@@ -172,8 +193,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shepherd/shepherd.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6916">
-              <caret line="364" column="39" selection-start-line="364" selection-start-column="39" selection-end-line="364" selection-end-column="39" />
+            <state relative-caret-position="8398">
+              <caret line="519" column="63" selection-start-line="519" selection-start-column="63" selection-end-line="519" selection-end-column="63" />
             </state>
           </provider>
         </entry>
@@ -189,11 +210,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>7890</find>
-      <find>JobControlRequestHandler</find>
-      <find>6800</find>
-      <find>datetime</find>
-      <find>while</find>
       <find>switch</find>
       <find>Craw</find>
       <find>page_type</find>
@@ -219,9 +235,17 @@
       <find>add_</find>
       <find>iter</find>
       <find>filter</find>
+      <find>Engine</find>
+      <find>C:\Users\xiaoy\AppData\Local\conda\conda\envs\venv3.7</find>
+      <find>xiaooy</find>
+      <find>SPIDER_</find>
+      <find>c:\users\xiaoy\pycharmprojects\shepherd</find>
     </findStrings>
     <replaceStrings>
       <replace>MySQLUtils.get_rs_as_dict</replace>
+      <replace>c:\users\xiaooy\venvs\venv3.7</replace>
+      <replace>xiaoy</replace>
+      <replace>&lt;工程路径&gt;</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -268,9 +292,13 @@
         <option value="$USER_HOME$/AppData/Local/conda/conda/envs/venv3.7/Lib/site-packages/scrapy/pipelines/images.py" />
         <option value="$PROJECT_DIR$/clematis/clematis/solr_wrapper.py" />
         <option value="$PROJECT_DIR$/clematis/clematis/pipelines.py" />
-        <option value="$PROJECT_DIR$/spider-agent.py" />
-        <option value="$PROJECT_DIR$/shepherd/shepherd.py" />
         <option value="$PROJECT_DIR$/clematis/clematis/spiders/spider2.py" />
+        <option value="$PROJECT_DIR$/run-scrapyd.py" />
+        <option value="$PROJECT_DIR$/spider-agent.py" />
+        <option value="$PROJECT_DIR$/start-agent-test.bat" />
+        <option value="$PROJECT_DIR$/shepherd/shepherd.py" />
+        <option value="$PROJECT_DIR$/start-agent.bat" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -298,6 +326,28 @@
               <item name="shepherd" type="b2602c69:ProjectViewProjectNode" />
               <item name="shepherd" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="shepherd" type="b2602c69:ProjectViewProjectNode" />
+              <item name="shepherd" type="462c0819:PsiDirectoryNode" />
+              <item name="clematis" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shepherd" type="b2602c69:ProjectViewProjectNode" />
+              <item name="shepherd" type="462c0819:PsiDirectoryNode" />
+              <item name="clematis" type="462c0819:PsiDirectoryNode" />
+              <item name="clematis" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shepherd" type="b2602c69:ProjectViewProjectNode" />
+              <item name="shepherd" type="462c0819:PsiDirectoryNode" />
+              <item name="conf" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shepherd" type="b2602c69:ProjectViewProjectNode" />
+              <item name="shepherd" type="462c0819:PsiDirectoryNode" />
+              <item name="conf" type="462c0819:PsiDirectoryNode" />
+              <item name="example" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -310,7 +360,7 @@
     <property name="SearchEverywhereHistoryKey" value="strftime&#9;null&#9;null&#10;combine_field_value&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/Languages" value="Python" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/run-scrapyd.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -322,13 +372,14 @@
     </option>
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\xiaoy\PycharmProjects\shepherd" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\xiaoy\PycharmProjects\shepherd\conf" />
       <recent name="C:\Users\xiaoy\PycharmProjects\shepherd\clematis" />
       <recent name="C:\Users\xiaoy\PycharmProjects\shepherd\clematis\clematis" />
       <recent name="C:\Users\xiaoy\PycharmProjects\shepherd\shepherd" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\xiaoy\PycharmProjects\shepherd" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -343,7 +394,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.SpiderAgent">
+  <component name="RunManager" selected="Python.Shepherd">
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="INTERPRETER_PATH" value="" />
@@ -474,6 +525,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="RunScrapyd" type="PythonConfigurationType" factoryName="Python">
+      <module name="shepherd" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\xiaoy\AppData\Local\conda\conda\envs\venv3.7\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/run-scrapyd.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Shepherd" type="PythonConfigurationType" factoryName="Python">
       <module name="shepherd" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -488,10 +561,10 @@
         <env name="SHEPHERD_LOGGING_CONF" value="c:\users\xiaoy\pycharmprojects\shepherd\shepherd\logging.conf" />
         <env name="SHEPHERD_DB_PASS" value="spider" />
         <env name="SHEPHERD_DB_USER" value="spider" />
-        <env name="SPIDER_SCRAPYD_PATH" value="C:\Users\xiaoy\AppData\Local\conda\conda\envs\venv3.7\Scripts" />
-        <env name="SPIDER_PYTHON_PATH" value="C:\Users\xiaoy\AppData\Local\conda\conda\envs\venv3.7" />
+        <env name="SPIDER_SCRAPYD_PATH" value="C:\Users\xiaoy\pycharmprojects\shepherd\envs\venv3.7-win\Scripts" />
+        <env name="CONDA_PREFIX" value="C:\Users\xiaoy\pycharmprojects\shepherd\envs\venv3.7-win" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\xiaoy\AppData\Local\conda\conda\envs\venv3.7\python.exe" />
+      <option name="SDK_HOME" value="C:\Users\xiaoy\PycharmProjects\shepherd\envs\venv3.7-win\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -633,6 +706,7 @@
       <item itemvalue="Python.Build" />
       <item itemvalue="Python.SolrWrapper" />
       <item itemvalue="Python.SpiderAgent" />
+      <item itemvalue="Python.RunScrapyd" />
       <item itemvalue="Python.Clematis" />
       <item itemvalue="Python.Shepherd" />
       <item itemvalue="Python.test1" />
@@ -809,14 +883,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22386059" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2375189" />
       <window_info id="Favorites" order="1" side_tool="true" />
       <window_info id="Structure" order="2" weight="0.20978552" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32894737" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.27943262" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.06732348" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.44006568" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1023,10 +1097,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/AppData/Local/Enthought/Canopy/User/Lib/site-packages/scrapy/spidermiddlewares/referer.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Enthought/Canopy/User/Lib/site-packages/scrapy/spidermiddlewares/urllength.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Enthought/Canopy/User/Lib/site-packages/scrapy/spidermiddlewares/depth.py" />
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/afdcbca3-1578-4704-9bc1-28c7b022e63c/console.sql" />
     <entry file="file://$USER_HOME$/AppData/Local/Enthought/Canopy/User/Lib/site-packages/pydispatch/robustapply.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Enthought/Canopy/User/Lib/site-packages/scrapy/http/response/text.py" />
     <entry file="file://$USER_HOME$/.PyCharm2018.2/system/python_stubs/-908472801/pycurl.py" />
@@ -1218,61 +1288,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clematis/clematis/settings.py">
+    <entry file="file://$PROJECT_DIR$/run-scrapyd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="81" column="32" selection-start-line="81" selection-start-column="32" selection-end-line="81" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clematis/clematis/pipelines.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1558">
-          <caret line="82" column="30" selection-start-line="82" selection-start-column="30" selection-end-line="82" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shepherd/shepherd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6916">
-          <caret line="364" column="39" selection-start-line="364" selection-start-column="39" selection-end-line="364" selection-end-column="39" />
+        <state relative-caret-position="51">
+          <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/clematis/clematis/solr_wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-366">
-          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
-          <folding>
-            <element signature="e#25#34#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="204">
+          <caret line="23" column="53" lean-forward="true" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="53" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/start-agent-test.bat" />
     <entry file="file://$PROJECT_DIR$/clematis/clematis/spiders/spider2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2888">
-          <caret line="374" column="21" selection-start-line="374" selection-start-column="21" selection-end-line="374" selection-end-column="21" />
-          <folding>
-            <element signature="e#24#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clematis/setenv.bat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        <state relative-caret-position="476">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spider-agent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="47" selection-start-line="13" selection-start-column="47" selection-end-line="13" selection-end-column="47" />
+        <state relative-caret-position="187">
+          <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
           <folding>
             <element signature="e#25#34#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shepherd/shepherd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8398">
+          <caret line="519" column="63" selection-start-line="519" selection-start-column="63" selection-end-line="519" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/start-agent.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clematis/setenv.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clematis/clematis/pipelines.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="82" column="30" selection-start-line="82" selection-start-column="30" selection-end-line="82" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clematis/clematis/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="110" selection-start-line="110" selection-end-line="110" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="289">
+            <caret line="17" column="6" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

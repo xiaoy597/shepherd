@@ -1,0 +1,174 @@
+{
+  "build": "py_0",
+  "build_number": 0,
+  "channel": "https://conda.anaconda.org/conda-forge/noarch",
+  "constrains": [],
+  "depends": [
+    "attrs >=16.0.0",
+    "pyasn1",
+    "pyasn1-modules",
+    "pyopenssl >=0.12",
+    "python"
+  ],
+  "extracted_package_dir": "C:\\Users\\xiaoy\\AppData\\Local\\conda\\conda\\pkgs\\service_identity-17.0.0-py_0",
+  "features": "",
+  "files": [
+    "Lib/site-packages/service_identity-17.0.0-py2.7.egg-info/PKG-INFO",
+    "Lib/site-packages/service_identity-17.0.0-py2.7.egg-info/SOURCES.txt",
+    "Lib/site-packages/service_identity-17.0.0-py2.7.egg-info/dependency_links.txt",
+    "Lib/site-packages/service_identity-17.0.0-py2.7.egg-info/installed-files.txt",
+    "Lib/site-packages/service_identity-17.0.0-py2.7.egg-info/not-zip-safe",
+    "Lib/site-packages/service_identity-17.0.0-py2.7.egg-info/requires.txt",
+    "Lib/site-packages/service_identity-17.0.0-py2.7.egg-info/top_level.txt",
+    "Lib/site-packages/service_identity/__init__.py",
+    "Lib/site-packages/service_identity/_common.py",
+    "Lib/site-packages/service_identity/_compat.py",
+    "Lib/site-packages/service_identity/cryptography.py",
+    "Lib/site-packages/service_identity/exceptions.py",
+    "Lib/site-packages/service_identity/pyopenssl.py",
+    "Lib/site-packages/service_identity/__pycache__/__init__.cpython-36.pyc",
+    "Lib/site-packages/service_identity/__pycache__/_common.cpython-36.pyc",
+    "Lib/site-packages/service_identity/__pycache__/_compat.cpython-36.pyc",
+    "Lib/site-packages/service_identity/__pycache__/cryptography.cpython-36.pyc",
+    "Lib/site-packages/service_identity/__pycache__/exceptions.cpython-36.pyc",
+    "Lib/site-packages/service_identity/__pycache__/pyopenssl.cpython-36.pyc"
+  ],
+  "fn": "service_identity-17.0.0-py_0.tar.bz2",
+  "license": "MIT",
+  "license_family": "MIT",
+  "link": {
+    "source": "C:\\Users\\xiaoy\\AppData\\Local\\conda\\conda\\pkgs\\service_identity-17.0.0-py_0",
+    "type": 1
+  },
+  "md5": "18a0e21d34506d8e931921009d0c977d",
+  "name": "service_identity",
+  "noarch": "python",
+  "package_tarball_full_path": "C:\\Users\\xiaoy\\AppData\\Local\\conda\\conda\\pkgs\\service_identity-17.0.0-py_0.tar.bz2",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "site-packages/service_identity-17.0.0-py2.7.egg-info/PKG-INFO",
+        "path_type": "hardlink",
+        "sha256": "a0e5df3e1fb0cb78437842ccf998ba55f2841b4457052fca2be41b175c52015d",
+        "sha256_in_prefix": "a0e5df3e1fb0cb78437842ccf998ba55f2841b4457052fca2be41b175c52015d",
+        "size_in_bytes": 5048
+      },
+      {
+        "_path": "site-packages/service_identity-17.0.0-py2.7.egg-info/SOURCES.txt",
+        "path_type": "hardlink",
+        "sha256": "8b9c4d819d93c5a8f11d01a893fc4a120b146181c977ba999b524fdc4bba9339",
+        "sha256_in_prefix": "8b9c4d819d93c5a8f11d01a893fc4a120b146181c977ba999b524fdc4bba9339",
+        "size_in_bytes": 859
+      },
+      {
+        "_path": "site-packages/service_identity-17.0.0-py2.7.egg-info/dependency_links.txt",
+        "path_type": "hardlink",
+        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "sha256_in_prefix": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "size_in_bytes": 1
+      },
+      {
+        "_path": "site-packages/service_identity-17.0.0-py2.7.egg-info/installed-files.txt",
+        "path_type": "hardlink",
+        "sha256": "88a88bacebbba03024946a88193920a0d35da3f5fda4e885b0f0ed9e0295d0aa",
+        "sha256_in_prefix": "88a88bacebbba03024946a88193920a0d35da3f5fda4e885b0f0ed9e0295d0aa",
+        "size_in_bytes": 482
+      },
+      {
+        "_path": "site-packages/service_identity-17.0.0-py2.7.egg-info/not-zip-safe",
+        "path_type": "hardlink",
+        "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "sha256_in_prefix": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "size_in_bytes": 1
+      },
+      {
+        "_path": "site-packages/service_identity-17.0.0-py2.7.egg-info/requires.txt",
+        "path_type": "hardlink",
+        "sha256": "d75137ec7113d295b987e1d5d48eadc7fc40670099a94a36eedbeb2c51f26ba7",
+        "sha256_in_prefix": "d75137ec7113d295b987e1d5d48eadc7fc40670099a94a36eedbeb2c51f26ba7",
+        "size_in_bytes": 57
+      },
+      {
+        "_path": "site-packages/service_identity-17.0.0-py2.7.egg-info/top_level.txt",
+        "path_type": "hardlink",
+        "sha256": "3fa6c8892f0a619e7bf31734e6baa31eedd12f76683d16ce90b426ac498cf45d",
+        "sha256_in_prefix": "3fa6c8892f0a619e7bf31734e6baa31eedd12f76683d16ce90b426ac498cf45d",
+        "size_in_bytes": 17
+      },
+      {
+        "_path": "site-packages/service_identity/__init__.py",
+        "path_type": "hardlink",
+        "sha256": "a969ed3ffb94e83c027e21ebefacd876670b4f7cf27f272f288abe7a82a87c9b",
+        "sha256_in_prefix": "a969ed3ffb94e83c027e21ebefacd876670b4f7cf27f272f288abe7a82a87c9b",
+        "size_in_bytes": 675
+      },
+      {
+        "_path": "site-packages/service_identity/_common.py",
+        "path_type": "hardlink",
+        "sha256": "2b1076303e845971c698f8d7b0252b7d73cf2fd2973a7801e4ec70f7e7737a36",
+        "sha256_in_prefix": "2b1076303e845971c698f8d7b0252b7d73cf2fd2973a7801e4ec70f7e7737a36",
+        "size_in_bytes": 11306
+      },
+      {
+        "_path": "site-packages/service_identity/_compat.py",
+        "path_type": "hardlink",
+        "sha256": "f95958548eef3009bcd13181298acfbf83eb71b35c49ae3699df25ea18cf978e",
+        "sha256_in_prefix": "f95958548eef3009bcd13181298acfbf83eb71b35c49ae3699df25ea18cf978e",
+        "size_in_bytes": 307
+      },
+      {
+        "_path": "site-packages/service_identity/cryptography.py",
+        "path_type": "hardlink",
+        "sha256": "3358ec1c1b01d384f084b566c234dcc4ab5432b749e8f0db5003aa535b8d2cf2",
+        "sha256_in_prefix": "3358ec1c1b01d384f084b566c234dcc4ab5432b749e8f0db5003aa535b8d2cf2",
+        "size_in_bytes": 3737
+      },
+      {
+        "_path": "site-packages/service_identity/exceptions.py",
+        "path_type": "hardlink",
+        "sha256": "daa649110e3e94d36e1d7eb97a9d2d5fc0dafc58fb9c034fb3104a3b2c2c9167",
+        "sha256_in_prefix": "daa649110e3e94d36e1d7eb97a9d2d5fc0dafc58fb9c034fb3104a3b2c2c9167",
+        "size_in_bytes": 1124
+      },
+      {
+        "_path": "site-packages/service_identity/pyopenssl.py",
+        "path_type": "hardlink",
+        "sha256": "c773cc2d7c87cfbd53ac3acde2ba39f0dd2a4a939387d35a43123503f4dce8e7",
+        "sha256_in_prefix": "c773cc2d7c87cfbd53ac3acde2ba39f0dd2a4a939387d35a43123503f4dce8e7",
+        "size_in_bytes": 3854
+      },
+      {
+        "_path": "Lib/site-packages/service_identity/__pycache__/__init__.cpython-36.pyc",
+        "path_type": "pyc_file"
+      },
+      {
+        "_path": "Lib/site-packages/service_identity/__pycache__/_common.cpython-36.pyc",
+        "path_type": "pyc_file"
+      },
+      {
+        "_path": "Lib/site-packages/service_identity/__pycache__/_compat.cpython-36.pyc",
+        "path_type": "pyc_file"
+      },
+      {
+        "_path": "Lib/site-packages/service_identity/__pycache__/cryptography.cpython-36.pyc",
+        "path_type": "pyc_file"
+      },
+      {
+        "_path": "Lib/site-packages/service_identity/__pycache__/exceptions.cpython-36.pyc",
+        "path_type": "pyc_file"
+      },
+      {
+        "_path": "Lib/site-packages/service_identity/__pycache__/pyopenssl.cpython-36.pyc",
+        "path_type": "pyc_file"
+      }
+    ],
+    "paths_version": 1
+  },
+  "requested_spec": "conda-forge/noarch::service_identity==17.0.0=py_0",
+  "size": 11178,
+  "subdir": "noarch",
+  "timestamp": 1528047299255,
+  "track_features": "",
+  "url": "https://conda.anaconda.org/conda-forge/noarch/service_identity-17.0.0-py_0.tar.bz2",
+  "version": "17.0.0"
+}

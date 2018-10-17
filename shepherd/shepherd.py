@@ -260,7 +260,7 @@ class JobController(object):
 
         # Must use the same python env in which scrapyd-deploy is installed to run scrapyd-deploy.
         ret = subprocess.call([
-            os.getenv('SPIDER_PYTHON_PATH') + os.path.sep + 'python',
+            os.getenv('CONDA_PREFIX') + os.path.sep + 'python',
             os.getenv('SPIDER_SCRAPYD_PATH') + os.path.sep + 'scrapyd-deploy',
             '-p',
             job_name])

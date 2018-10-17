@@ -1,0 +1,1143 @@
+{
+  "arch": "x86_64",
+  "build": "vc14_0",
+  "build_number": 0,
+  "channel": "https://conda.anaconda.org/conda-forge/win-64",
+  "constrains": [],
+  "depends": [
+    "zlib 1.2.11"
+  ],
+  "extracted_package_dir": "C:\\Users\\xiaoy\\AppData\\Local\\conda\\conda\\pkgs\\libprotobuf-3.5.2-vc14_0",
+  "features": "vc14",
+  "files": [
+    "Library/bin/protoc.exe",
+    "Library/cmake/protobuf-config-version.cmake",
+    "Library/cmake/protobuf-config.cmake",
+    "Library/cmake/protobuf-module.cmake",
+    "Library/cmake/protobuf-options.cmake",
+    "Library/cmake/protobuf-targets-release.cmake",
+    "Library/cmake/protobuf-targets.cmake",
+    "Library/include/google/protobuf/any.h",
+    "Library/include/google/protobuf/any.pb.h",
+    "Library/include/google/protobuf/any.proto",
+    "Library/include/google/protobuf/api.pb.h",
+    "Library/include/google/protobuf/api.proto",
+    "Library/include/google/protobuf/arena.h",
+    "Library/include/google/protobuf/arena_impl.h",
+    "Library/include/google/protobuf/arenastring.h",
+    "Library/include/google/protobuf/compiler/code_generator.h",
+    "Library/include/google/protobuf/compiler/command_line_interface.h",
+    "Library/include/google/protobuf/compiler/cpp/cpp_generator.h",
+    "Library/include/google/protobuf/compiler/csharp/csharp_generator.h",
+    "Library/include/google/protobuf/compiler/csharp/csharp_names.h",
+    "Library/include/google/protobuf/compiler/importer.h",
+    "Library/include/google/protobuf/compiler/java/java_generator.h",
+    "Library/include/google/protobuf/compiler/java/java_names.h",
+    "Library/include/google/protobuf/compiler/javanano/javanano_generator.h",
+    "Library/include/google/protobuf/compiler/js/js_generator.h",
+    "Library/include/google/protobuf/compiler/js/well_known_types_embed.h",
+    "Library/include/google/protobuf/compiler/objectivec/objectivec_generator.h",
+    "Library/include/google/protobuf/compiler/objectivec/objectivec_helpers.h",
+    "Library/include/google/protobuf/compiler/parser.h",
+    "Library/include/google/protobuf/compiler/php/php_generator.h",
+    "Library/include/google/protobuf/compiler/plugin.h",
+    "Library/include/google/protobuf/compiler/plugin.pb.h",
+    "Library/include/google/protobuf/compiler/plugin.proto",
+    "Library/include/google/protobuf/compiler/python/python_generator.h",
+    "Library/include/google/protobuf/compiler/ruby/ruby_generator.h",
+    "Library/include/google/protobuf/descriptor.h",
+    "Library/include/google/protobuf/descriptor.pb.h",
+    "Library/include/google/protobuf/descriptor.proto",
+    "Library/include/google/protobuf/descriptor_database.h",
+    "Library/include/google/protobuf/duration.pb.h",
+    "Library/include/google/protobuf/duration.proto",
+    "Library/include/google/protobuf/dynamic_message.h",
+    "Library/include/google/protobuf/empty.pb.h",
+    "Library/include/google/protobuf/empty.proto",
+    "Library/include/google/protobuf/extension_set.h",
+    "Library/include/google/protobuf/field_mask.pb.h",
+    "Library/include/google/protobuf/field_mask.proto",
+    "Library/include/google/protobuf/generated_enum_reflection.h",
+    "Library/include/google/protobuf/generated_enum_util.h",
+    "Library/include/google/protobuf/generated_message_reflection.h",
+    "Library/include/google/protobuf/generated_message_table_driven.h",
+    "Library/include/google/protobuf/generated_message_util.h",
+    "Library/include/google/protobuf/has_bits.h",
+    "Library/include/google/protobuf/io/coded_stream.h",
+    "Library/include/google/protobuf/io/gzip_stream.h",
+    "Library/include/google/protobuf/io/printer.h",
+    "Library/include/google/protobuf/io/strtod.h",
+    "Library/include/google/protobuf/io/tokenizer.h",
+    "Library/include/google/protobuf/io/zero_copy_stream.h",
+    "Library/include/google/protobuf/io/zero_copy_stream_impl.h",
+    "Library/include/google/protobuf/io/zero_copy_stream_impl_lite.h",
+    "Library/include/google/protobuf/map.h",
+    "Library/include/google/protobuf/map_entry.h",
+    "Library/include/google/protobuf/map_entry_lite.h",
+    "Library/include/google/protobuf/map_field.h",
+    "Library/include/google/protobuf/map_field_inl.h",
+    "Library/include/google/protobuf/map_field_lite.h",
+    "Library/include/google/protobuf/map_type_handler.h",
+    "Library/include/google/protobuf/message.h",
+    "Library/include/google/protobuf/message_lite.h",
+    "Library/include/google/protobuf/metadata.h",
+    "Library/include/google/protobuf/metadata_lite.h",
+    "Library/include/google/protobuf/reflection.h",
+    "Library/include/google/protobuf/reflection_ops.h",
+    "Library/include/google/protobuf/repeated_field.h",
+    "Library/include/google/protobuf/service.h",
+    "Library/include/google/protobuf/source_context.pb.h",
+    "Library/include/google/protobuf/source_context.proto",
+    "Library/include/google/protobuf/struct.pb.h",
+    "Library/include/google/protobuf/struct.proto",
+    "Library/include/google/protobuf/stubs/atomic_sequence_num.h",
+    "Library/include/google/protobuf/stubs/atomicops.h",
+    "Library/include/google/protobuf/stubs/atomicops_internals_arm64_gcc.h",
+    "Library/include/google/protobuf/stubs/atomicops_internals_arm_gcc.h",
+    "Library/include/google/protobuf/stubs/atomicops_internals_arm_qnx.h",
+    "Library/include/google/protobuf/stubs/atomicops_internals_generic_c11_atomic.h",
+    "Library/include/google/protobuf/stubs/atomicops_internals_generic_gcc.h",
+    "Library/include/google/protobuf/stubs/atomicops_internals_mips_gcc.h",
+    "Library/include/google/protobuf/stubs/atomicops_internals_power.h",
+    "Library/include/google/protobuf/stubs/atomicops_internals_ppc_gcc.h",
+    "Library/include/google/protobuf/stubs/atomicops_internals_solaris.h",
+    "Library/include/google/protobuf/stubs/atomicops_internals_tsan.h",
+    "Library/include/google/protobuf/stubs/atomicops_internals_x86_gcc.h",
+    "Library/include/google/protobuf/stubs/atomicops_internals_x86_msvc.h",
+    "Library/include/google/protobuf/stubs/bytestream.h",
+    "Library/include/google/protobuf/stubs/callback.h",
+    "Library/include/google/protobuf/stubs/casts.h",
+    "Library/include/google/protobuf/stubs/common.h",
+    "Library/include/google/protobuf/stubs/fastmem.h",
+    "Library/include/google/protobuf/stubs/hash.h",
+    "Library/include/google/protobuf/stubs/logging.h",
+    "Library/include/google/protobuf/stubs/macros.h",
+    "Library/include/google/protobuf/stubs/mutex.h",
+    "Library/include/google/protobuf/stubs/once.h",
+    "Library/include/google/protobuf/stubs/platform_macros.h",
+    "Library/include/google/protobuf/stubs/port.h",
+    "Library/include/google/protobuf/stubs/scoped_ptr.h",
+    "Library/include/google/protobuf/stubs/shared_ptr.h",
+    "Library/include/google/protobuf/stubs/singleton.h",
+    "Library/include/google/protobuf/stubs/status.h",
+    "Library/include/google/protobuf/stubs/stl_util.h",
+    "Library/include/google/protobuf/stubs/stringpiece.h",
+    "Library/include/google/protobuf/stubs/template_util.h",
+    "Library/include/google/protobuf/stubs/type_traits.h",
+    "Library/include/google/protobuf/text_format.h",
+    "Library/include/google/protobuf/timestamp.pb.h",
+    "Library/include/google/protobuf/timestamp.proto",
+    "Library/include/google/protobuf/type.pb.h",
+    "Library/include/google/protobuf/type.proto",
+    "Library/include/google/protobuf/unknown_field_set.h",
+    "Library/include/google/protobuf/util/delimited_message_util.h",
+    "Library/include/google/protobuf/util/field_comparator.h",
+    "Library/include/google/protobuf/util/field_mask_util.h",
+    "Library/include/google/protobuf/util/json_util.h",
+    "Library/include/google/protobuf/util/message_differencer.h",
+    "Library/include/google/protobuf/util/time_util.h",
+    "Library/include/google/protobuf/util/type_resolver.h",
+    "Library/include/google/protobuf/util/type_resolver_util.h",
+    "Library/include/google/protobuf/wire_format.h",
+    "Library/include/google/protobuf/wire_format_lite.h",
+    "Library/include/google/protobuf/wire_format_lite_inl.h",
+    "Library/include/google/protobuf/wrappers.pb.h",
+    "Library/include/google/protobuf/wrappers.proto",
+    "Library/lib/libprotobuf-lite.lib",
+    "Library/lib/libprotobuf.lib",
+    "Library/lib/libprotoc.lib",
+    "Library/lib/pkgconfig/protobuf-lite.pc",
+    "Library/lib/pkgconfig/protobuf.pc"
+  ],
+  "fn": "libprotobuf-3.5.2-vc14_0.tar.bz2",
+  "license": "BSD 3-Clause",
+  "link": {
+    "source": "C:\\Users\\xiaoy\\AppData\\Local\\conda\\conda\\pkgs\\libprotobuf-3.5.2-vc14_0",
+    "type": 1
+  },
+  "md5": "735f5fe1ceab6dcf981a9dad3aed0da1",
+  "name": "libprotobuf",
+  "package_tarball_full_path": "C:\\Users\\xiaoy\\AppData\\Local\\conda\\conda\\pkgs\\libprotobuf-3.5.2-vc14_0.tar.bz2",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "Library/bin/protoc.exe",
+        "path_type": "hardlink",
+        "sha256": "151cb7ade8e7028a24c220f3f5d26f3f77d52d9e616a779218d9ae063e965831",
+        "sha256_in_prefix": "151cb7ade8e7028a24c220f3f5d26f3f77d52d9e616a779218d9ae063e965831",
+        "size_in_bytes": 3167232
+      },
+      {
+        "_path": "Library/cmake/protobuf-config-version.cmake",
+        "path_type": "hardlink",
+        "sha256": "61b2f52e51ebb43c4a0baabf95d16123739ee9372483e7f230c3a0a795948414",
+        "sha256_in_prefix": "61b2f52e51ebb43c4a0baabf95d16123739ee9372483e7f230c3a0a795948414",
+        "size_in_bytes": 2671
+      },
+      {
+        "_path": "Library/cmake/protobuf-config.cmake",
+        "path_type": "hardlink",
+        "sha256": "999516ea04db6b813c0e656a44ae01a20515924b85a7c24fbdf2075861cb5f3a",
+        "sha256_in_prefix": "999516ea04db6b813c0e656a44ae01a20515924b85a7c24fbdf2075861cb5f3a",
+        "size_in_bytes": 4380
+      },
+      {
+        "_path": "Library/cmake/protobuf-module.cmake",
+        "path_type": "hardlink",
+        "sha256": "03dd0b2ca36aa07cbdc6e6d5accbd50a6f5a30ce81f6425ba6eb1c813c02f1e5",
+        "sha256_in_prefix": "03dd0b2ca36aa07cbdc6e6d5accbd50a6f5a30ce81f6425ba6eb1c813c02f1e5",
+        "size_in_bytes": 5652
+      },
+      {
+        "_path": "Library/cmake/protobuf-options.cmake",
+        "path_type": "hardlink",
+        "sha256": "f2434e3c6583586b447d035d24e07ba370d6a9020bfc8c781695f3fda9c638cb",
+        "sha256_in_prefix": "f2434e3c6583586b447d035d24e07ba370d6a9020bfc8c781695f3fda9c638cb",
+        "size_in_bytes": 288
+      },
+      {
+        "_path": "Library/cmake/protobuf-targets-release.cmake",
+        "path_type": "hardlink",
+        "sha256": "58c842e0198d9e829d86598bdc4d6b5cb07eedc3b4e25d4d385bc74d2b1ffc68",
+        "sha256_in_prefix": "58c842e0198d9e829d86598bdc4d6b5cb07eedc3b4e25d4d385bc74d2b1ffc68",
+        "size_in_bytes": 2346
+      },
+      {
+        "_path": "Library/cmake/protobuf-targets.cmake",
+        "path_type": "hardlink",
+        "sha256": "8088072f432c6d08208a247e2a64e388d917dc69640fdcf882db37d03c3a6c13",
+        "sha256_in_prefix": "8088072f432c6d08208a247e2a64e388d917dc69640fdcf882db37d03c3a6c13",
+        "size_in_bytes": 4085
+      },
+      {
+        "_path": "Library/include/google/protobuf/any.h",
+        "path_type": "hardlink",
+        "sha256": "1f54b2b46432cba182d814581fa68972df295b551ac150aee5caac76ece71c16",
+        "sha256_in_prefix": "1f54b2b46432cba182d814581fa68972df295b551ac150aee5caac76ece71c16",
+        "size_in_bytes": 4727
+      },
+      {
+        "_path": "Library/include/google/protobuf/any.pb.h",
+        "path_type": "hardlink",
+        "sha256": "76048e580505afe17c6ed0af917308c4c53be3f3f279a4a91b125648201f5b0a",
+        "sha256_in_prefix": "76048e580505afe17c6ed0af917308c4c53be3f3f279a4a91b125648201f5b0a",
+        "size_in_bytes": 11566
+      },
+      {
+        "_path": "Library/include/google/protobuf/any.proto",
+        "path_type": "hardlink",
+        "sha256": "b4fc1d499b09472b4be086e3953f989a1fd74f98df69e8543d0a2b474529b2b5",
+        "sha256_in_prefix": "b4fc1d499b09472b4be086e3953f989a1fd74f98df69e8543d0a2b474529b2b5",
+        "size_in_bytes": 5483
+      },
+      {
+        "_path": "Library/include/google/protobuf/api.pb.h",
+        "path_type": "hardlink",
+        "sha256": "ff6acf5a1b5965145fb85e992219ceb89ef689e63edd8184f7e65d12d68c0134",
+        "sha256_in_prefix": "ff6acf5a1b5965145fb85e992219ceb89ef689e63edd8184f7e65d12d68c0134",
+        "size_in_bytes": 43245
+      },
+      {
+        "_path": "Library/include/google/protobuf/api.proto",
+        "path_type": "hardlink",
+        "sha256": "dc01037a072410e5f7cd08c52fb6415acd6707b59ace2dfb4df878a6e016f9b8",
+        "sha256_in_prefix": "dc01037a072410e5f7cd08c52fb6415acd6707b59ace2dfb4df878a6e016f9b8",
+        "size_in_bytes": 7734
+      },
+      {
+        "_path": "Library/include/google/protobuf/arena.h",
+        "path_type": "hardlink",
+        "sha256": "b3318d6ab8ec983791989f9f468702ff95a35211b599a3e4706018e8c7323d57",
+        "sha256_in_prefix": "b3318d6ab8ec983791989f9f468702ff95a35211b599a3e4706018e8c7323d57",
+        "size_in_bytes": 38762
+      },
+      {
+        "_path": "Library/include/google/protobuf/arena_impl.h",
+        "path_type": "hardlink",
+        "sha256": "f49fdba05893a965cf5c5f729d34d689d4db93cf8eb39dec91e4dcd298316839",
+        "sha256_in_prefix": "f49fdba05893a965cf5c5f729d34d689d4db93cf8eb39dec91e4dcd298316839",
+        "size_in_bytes": 9655
+      },
+      {
+        "_path": "Library/include/google/protobuf/arenastring.h",
+        "path_type": "hardlink",
+        "sha256": "bfa4bde4580929385a3c0a4610cfaf8b06a254f2b51d29eb8a2752812e0d9a95",
+        "sha256_in_prefix": "bfa4bde4580929385a3c0a4610cfaf8b06a254f2b51d29eb8a2752812e0d9a95",
+        "size_in_bytes": 12536
+      },
+      {
+        "_path": "Library/include/google/protobuf/compiler/code_generator.h",
+        "path_type": "hardlink",
+        "sha256": "f2d15247b34547cd9a21ae86a5f457c0b1164f4300ee7df5a483530c79fa1d65",
+        "sha256_in_prefix": "f2d15247b34547cd9a21ae86a5f457c0b1164f4300ee7df5a483530c79fa1d65",
+        "size_in_bytes": 7392
+      },
+      {
+        "_path": "Library/include/google/protobuf/compiler/command_line_interface.h",
+        "path_type": "hardlink",
+        "sha256": "899be0c7191ea1b89ac4db74a866e7e5e3bc0f738fade33134e4e7cd8f631da9",
+        "sha256_in_prefix": "899be0c7191ea1b89ac4db74a866e7e5e3bc0f738fade33134e4e7cd8f631da9",
+        "size_in_bytes": 19022
+      },
+      {
+        "_path": "Library/include/google/protobuf/compiler/cpp/cpp_generator.h",
+        "path_type": "hardlink",
+        "sha256": "d118fc0caf08382fa9b3aff0d4b0a274b47bebf8327ce7877b40a34fbb4ad479",
+        "sha256_in_prefix": "d118fc0caf08382fa9b3aff0d4b0a274b47bebf8327ce7877b40a34fbb4ad479",
+        "size_in_bytes": 2963
+      },
+      {
+        "_path": "Library/include/google/protobuf/compiler/csharp/csharp_generator.h",
+        "path_type": "hardlink",
+        "sha256": "a12b9255d6d4d8954e1d8e1e128aeab6564053e74f53aa4b9662c2800897930e",
+        "sha256_in_prefix": "a12b9255d6d4d8954e1d8e1e128aeab6564053e74f53aa4b9662c2800897930e",
+        "size_in_bytes": 2678
+      },
+      {
+        "_path": "Library/include/google/protobuf/compiler/csharp/csharp_names.h",
+        "path_type": "hardlink",
+        "sha256": "28b3f7743f0161dc53e3700f4e746f5d1b6b250af1357dc44853ebac09a39a8f",
+        "sha256_in_prefix": "28b3f7743f0161dc53e3700f4e746f5d1b6b250af1357dc44853ebac09a39a8f",
+        "size_in_bytes": 3916
+      },
+      {
+        "_path": "Library/include/google/protobuf/compiler/importer.h",
+        "path_type": "hardlink",
+        "sha256": "31a1e1321e1f958566e1c888590d75a92a5168e731c6dcd4f6a50be53bf0168f",
+        "sha256_in_prefix": "31a1e1321e1f958566e1c888590d75a92a5168e731c6dcd4f6a50be53bf0168f",
+        "size_in_bytes": 13733
+      },
+      {
+        "_path": "Library/include/google/protobuf/compiler/java/java_generator.h",
+        "path_type": "hardlink",
+        "sha256": "1095e4adc9affcaaddef7a33d79328f02e488818637e24e371c472bc9a06bf37",
+        "sha256_in_prefix": "1095e4adc9affcaaddef7a33d79328f02e488818637e24e371c472bc9a06bf37",
+        "size_in_bytes": 2945
+      },
+      {
+        "_path": "Library/include/google/protobuf/compiler/java/java_names.h",
+        "path_type": "hardlink",
+        "sha256": "5d13a389a378bc11cf3fe7fb03403375fc1cf388308fad533399224934ea1600",
+        "sha256_in_prefix": "5d13a389a378bc11cf3fe7fb03403375fc1cf388308fad533399224934ea1600",
+        "size_in_bytes": 2931
+      },
+      {
+        "_path": "Library/include/google/protobuf/compiler/javanano/javanano_generator.h",
+        "path_type": "hardlink",
+        "sha256": "788ccec156e3a4e7760e200e23535e7ff841fa1725ea7c761a5c5aab072b9e47",
+        "sha256_in_prefix": "788ccec156e3a4e7760e200e23535e7ff841fa1725ea7c761a5c5aab072b9e47",
+        "size_in_bytes": 3023
+      },
+      {
+        "_path": "Library/include/google/protobuf/compiler/js/js_generator.h",
+        "path_type": "hardlink",
+        "sha256": "cce200da5789f8064eda36a4b2e01d3486a2b0c61aee500347175bd463cf11cf",
+        "sha256_in_prefix": "cce200da5789f8064eda36a4b2e01d3486a2b0c61aee500347175bd463cf11cf",
+        "size_in_bytes": 15161
+      },
+      {
+        "_path": "Library/include/google/protobuf/compiler/js/well_known_types_embed.h",
+        "path_type": "hardlink",
+        "sha256": "86e8c4977f37224c657cd8d0a690751ccead55e469326babbaa27b1f24988584",
+        "sha256_in_prefix": "86e8c4977f37224c657cd8d0a690751ccead55e469326babbaa27b1f24988584",
+        "size_in_bytes": 1981
+      },
+      {
+        "_path": "Library/include/google/protobuf/compiler/objectivec/objectivec_generator.h",
+        "path_type": "hardlink",
+        "sha256": "5e7f110856221db5eb90b4937b46914ffe88c8d9e3436d2b3af51ca91a2e96c6",
+        "sha256_in_prefix": "5e7f110856221db5eb90b4937b46914ffe88c8d9e3436d2b3af51ca91a2e96c6",
+        "size_in_bytes": 3121
+      },
+      {
+        "_path": "Library/include/google/protobuf/compiler/objectivec/objectivec_helpers.h",
+        "path_type": "hardlink",
+        "sha256": "c276e32c318f13d0352e8f3110c05d8bf62c1f7e7e3dbbb5b0fde75c69bae46a",
+        "sha256_in_prefix": "c276e32c318f13d0352e8f3110c05d8bf62c1f7e7e3dbbb5b0fde75c69bae46a",
+        "size_in_bytes": 10956
+      },
+      {
+        "_path": "Library/include/google/protobuf/compiler/parser.h",
+        "path_type": "hardlink",
+        "sha256": "6714cd7e1a8c46747980a9f094bd12bb7a41706e27c611eccd3939eaed461a15",
+        "sha256_in_prefix": "6714cd7e1a8c46747980a9f094bd12bb7a41706e27c611eccd3939eaed461a15",
+        "size_in_bytes": 26584
+      },
+      {
+        "_path": "Library/include/google/protobuf/compiler/php/php_generator.h",
+        "path_type": "hardlink",
+        "sha256": "2423d274743d8d5f73ccdfcea95b72e790e77414e19fd0d0fd1cd606cc2ee1c8",
+        "sha256_in_prefix": "2423d274743d8d5f73ccdfcea95b72e790e77414e19fd0d0fd1cd606cc2ee1c8",
+        "size_in_bytes": 2755
+      },
+      {
+        "_path": "Library/include/google/protobuf/compiler/plugin.h",
+        "path_type": "hardlink",
+        "sha256": "6a81b5f060ae0453da37e071608133e2def74de1df9a7587175f87b275fd707c",
+        "sha256_in_prefix": "6a81b5f060ae0453da37e071608133e2def74de1df9a7587175f87b275fd707c",
+        "size_in_bytes": 4250
+      },
+      {
+        "_path": "Library/include/google/protobuf/compiler/plugin.pb.h",
+        "path_type": "hardlink",
+        "sha256": "da13205d5d7f21b04b441564f3743c0b5fbb93020ba16136cf98fada05e112f5",
+        "sha256_in_prefix": "da13205d5d7f21b04b441564f3743c0b5fbb93020ba16136cf98fada05e112f5",
+        "size_in_bytes": 56487
+      },
+      {
+        "_path": "Library/include/google/protobuf/compiler/plugin.proto",
+        "path_type": "hardlink",
+        "sha256": "63881dd80d7ddc345d5cc4dd495f6fc0a73fc475cedfc79c78c284ad0b3e8618",
+        "sha256_in_prefix": "63881dd80d7ddc345d5cc4dd495f6fc0a73fc475cedfc79c78c284ad0b3e8618",
+        "size_in_bytes": 8200
+      },
+      {
+        "_path": "Library/include/google/protobuf/compiler/python/python_generator.h",
+        "path_type": "hardlink",
+        "sha256": "0eed053887764278c4567c9ecff6e7f6d7984a927b31c5b9a1680923e7001ace",
+        "sha256_in_prefix": "0eed053887764278c4567c9ecff6e7f6d7984a927b31c5b9a1680923e7001ace",
+        "size_in_bytes": 7550
+      },
+      {
+        "_path": "Library/include/google/protobuf/compiler/ruby/ruby_generator.h",
+        "path_type": "hardlink",
+        "sha256": "e54e82ada2f5f205b2e742ab260a3e43e5be6699a2e071d697316d7e5f5cb2d4",
+        "sha256_in_prefix": "e54e82ada2f5f205b2e742ab260a3e43e5be6699a2e071d697316d7e5f5cb2d4",
+        "size_in_bytes": 2663
+      },
+      {
+        "_path": "Library/include/google/protobuf/descriptor.h",
+        "path_type": "hardlink",
+        "sha256": "f5623e98c767eff4e394a093c2d35972796f1b242b2e0514aa546a19bd973e13",
+        "sha256_in_prefix": "f5623e98c767eff4e394a093c2d35972796f1b242b2e0514aa546a19bd973e13",
+        "size_in_bytes": 89233
+      },
+      {
+        "_path": "Library/include/google/protobuf/descriptor.pb.h",
+        "path_type": "hardlink",
+        "sha256": "216377dd0915871596a274c60af1039dc9499386a007d2b49f747273d756f991",
+        "sha256_in_prefix": "216377dd0915871596a274c60af1039dc9499386a007d2b49f747273d756f991",
+        "size_in_bytes": 485062
+      },
+      {
+        "_path": "Library/include/google/protobuf/descriptor.proto",
+        "path_type": "hardlink",
+        "sha256": "2083afefc9ae208bc9cca2bf3fe7d1c32c1fc90d462d7e0c48c37bd90c0545b1",
+        "sha256_in_prefix": "2083afefc9ae208bc9cca2bf3fe7d1c32c1fc90d462d7e0c48c37bd90c0545b1",
+        "size_in_bytes": 36277
+      },
+      {
+        "_path": "Library/include/google/protobuf/descriptor_database.h",
+        "path_type": "hardlink",
+        "sha256": "903c194ee95332092ae91867faa9cbe1214060ae35df16f985252e457336d9d5",
+        "sha256_in_prefix": "903c194ee95332092ae91867faa9cbe1214060ae35df16f985252e457336d9d5",
+        "size_in_bytes": 17877
+      },
+      {
+        "_path": "Library/include/google/protobuf/duration.pb.h",
+        "path_type": "hardlink",
+        "sha256": "461dd777a0aba1fcc348f9358b5531168b39578794f092f8705ea611974583e0",
+        "sha256_in_prefix": "461dd777a0aba1fcc348f9358b5531168b39578794f092f8705ea611974583e0",
+        "size_in_bytes": 7982
+      },
+      {
+        "_path": "Library/include/google/protobuf/duration.proto",
+        "path_type": "hardlink",
+        "sha256": "933001db4a42dba2b99b4c6663b83c8ae0965765a5cbb6ca5da7bbc587741388",
+        "sha256_in_prefix": "933001db4a42dba2b99b4c6663b83c8ae0965765a5cbb6ca5da7bbc587741388",
+        "size_in_bytes": 4890
+      },
+      {
+        "_path": "Library/include/google/protobuf/dynamic_message.h",
+        "path_type": "hardlink",
+        "sha256": "ce54f768f99d78d34da6213532b3255a84b473684be9d523a9a4f5a2171fc0b2",
+        "sha256_in_prefix": "ce54f768f99d78d34da6213532b3255a84b473684be9d523a9a4f5a2171fc0b2",
+        "size_in_bytes": 10053
+      },
+      {
+        "_path": "Library/include/google/protobuf/empty.pb.h",
+        "path_type": "hardlink",
+        "sha256": "fbf327c2b22b7e91df19fe1fd7e42fa0265de24b24bfbdbb29dc99c7694ac7ac",
+        "sha256_in_prefix": "fbf327c2b22b7e91df19fe1fd7e42fa0265de24b24bfbdbb29dc99c7694ac7ac",
+        "size_in_bytes": 6592
+      },
+      {
+        "_path": "Library/include/google/protobuf/empty.proto",
+        "path_type": "hardlink",
+        "sha256": "b18e0cd44e0d054202c1403c48327180f3995d08ead2a6d4d012c0551a7a3563",
+        "sha256_in_prefix": "b18e0cd44e0d054202c1403c48327180f3995d08ead2a6d4d012c0551a7a3563",
+        "size_in_bytes": 2422
+      },
+      {
+        "_path": "Library/include/google/protobuf/extension_set.h",
+        "path_type": "hardlink",
+        "sha256": "42c19b1838b7d7a029f89d4d4018a196363d841fcd6b145a76df97b6c370c41c",
+        "sha256_in_prefix": "42c19b1838b7d7a029f89d4d4018a196363d841fcd6b145a76df97b6c370c41c",
+        "size_in_bytes": 70875
+      },
+      {
+        "_path": "Library/include/google/protobuf/field_mask.pb.h",
+        "path_type": "hardlink",
+        "sha256": "fff14c34378f560454ae62ca0133b7de06a17d7b0f30f60f3ff40beb82d36fb7",
+        "sha256_in_prefix": "fff14c34378f560454ae62ca0133b7de06a17d7b0f30f60f3ff40beb82d36fb7",
+        "size_in_bytes": 9718
+      },
+      {
+        "_path": "Library/include/google/protobuf/field_mask.proto",
+        "path_type": "hardlink",
+        "sha256": "14224dac3de7c39e645b522e0757b324e51154eec1b17b4bc43c99c0ec0f1d38",
+        "sha256_in_prefix": "14224dac3de7c39e645b522e0757b324e51154eec1b17b4bc43c99c0ec0f1d38",
+        "size_in_bytes": 8196
+      },
+      {
+        "_path": "Library/include/google/protobuf/generated_enum_reflection.h",
+        "path_type": "hardlink",
+        "sha256": "37728d56d577ce584975bd8240c7a5f5c9f7c38e76ff65e7cf16c066f08154f6",
+        "sha256_in_prefix": "37728d56d577ce584975bd8240c7a5f5c9f7c38e76ff65e7cf16c066f08154f6",
+        "size_in_bytes": 3754
+      },
+      {
+        "_path": "Library/include/google/protobuf/generated_enum_util.h",
+        "path_type": "hardlink",
+        "sha256": "bf968e54cf20d8af5a91964fa2d87f7956028b22397973ab99dc82b58f0773b6",
+        "sha256_in_prefix": "bf968e54cf20d8af5a91964fa2d87f7956028b22397973ab99dc82b58f0773b6",
+        "size_in_bytes": 2125
+      },
+      {
+        "_path": "Library/include/google/protobuf/generated_message_reflection.h",
+        "path_type": "hardlink",
+        "sha256": "bc2c1e52661f584d9f5250f7d9483236ce0bec28a32b2899b56ed9251fbecfa3",
+        "sha256_in_prefix": "bc2c1e52661f584d9f5250f7d9483236ce0bec28a32b2899b56ed9251fbecfa3",
+        "size_in_bytes": 32888
+      },
+      {
+        "_path": "Library/include/google/protobuf/generated_message_table_driven.h",
+        "path_type": "hardlink",
+        "sha256": "f700b7ac4ff49d34b792ac22a0aeb30e97891303c152d7858ce89b60c0b28921",
+        "sha256_in_prefix": "f700b7ac4ff49d34b792ac22a0aeb30e97891303c152d7858ce89b60c0b28921",
+        "size_in_bytes": 8143
+      },
+      {
+        "_path": "Library/include/google/protobuf/generated_message_util.h",
+        "path_type": "hardlink",
+        "sha256": "b159b3fd301eb38a3310af922ed8e60671dd3fa30a8c0c20ce3196eaaeda4408",
+        "sha256_in_prefix": "b159b3fd301eb38a3310af922ed8e60671dd3fa30a8c0c20ce3196eaaeda4408",
+        "size_in_bytes": 12926
+      },
+      {
+        "_path": "Library/include/google/protobuf/has_bits.h",
+        "path_type": "hardlink",
+        "sha256": "70a48427de01ce50fe2bd0cbc6fa57404cbf89bc653ad370db82f643fa807450",
+        "sha256_in_prefix": "70a48427de01ce50fe2bd0cbc6fa57404cbf89bc653ad370db82f643fa807450",
+        "size_in_bytes": 3401
+      },
+      {
+        "_path": "Library/include/google/protobuf/io/coded_stream.h",
+        "path_type": "hardlink",
+        "sha256": "d0ec46a899750b400463858a1dee8e3981982c63d091e4b1910c9943221c3d07",
+        "sha256_in_prefix": "d0ec46a899750b400463858a1dee8e3981982c63d091e4b1910c9943221c3d07",
+        "size_in_bytes": 58718
+      },
+      {
+        "_path": "Library/include/google/protobuf/io/gzip_stream.h",
+        "path_type": "hardlink",
+        "sha256": "5036ddb6d32f80f9644cbad87fe7efa5d7a5fbc6e548297bd6dbed3e27b972ad",
+        "sha256_in_prefix": "5036ddb6d32f80f9644cbad87fe7efa5d7a5fbc6e548297bd6dbed3e27b972ad",
+        "size_in_bytes": 6579
+      },
+      {
+        "_path": "Library/include/google/protobuf/io/printer.h",
+        "path_type": "hardlink",
+        "sha256": "3c99b92122627de9d9f03d9204637bdb792922e65abb16a14b8bdfea9fe6476b",
+        "sha256_in_prefix": "3c99b92122627de9d9f03d9204637bdb792922e65abb16a14b8bdfea9fe6476b",
+        "size_in_bytes": 16985
+      },
+      {
+        "_path": "Library/include/google/protobuf/io/strtod.h",
+        "path_type": "hardlink",
+        "sha256": "aaea86a44c3594e4a2aff7322e1e1ff6c614e7a0d2b77cf0b7c09d69da1d386d",
+        "sha256_in_prefix": "aaea86a44c3594e4a2aff7322e1e1ff6c614e7a0d2b77cf0b7c09d69da1d386d",
+        "size_in_bytes": 2431
+      },
+      {
+        "_path": "Library/include/google/protobuf/io/tokenizer.h",
+        "path_type": "hardlink",
+        "sha256": "bb41b8d0493642e25810c86935ea516b4b10ee5da2826250201edb1321cd2e49",
+        "sha256_in_prefix": "bb41b8d0493642e25810c86935ea516b4b10ee5da2826250201edb1321cd2e49",
+        "size_in_bytes": 16598
+      },
+      {
+        "_path": "Library/include/google/protobuf/io/zero_copy_stream.h",
+        "path_type": "hardlink",
+        "sha256": "4f2d779732ee3d4da013350170e0e4df369979c2eef2e83330291fc2b5f8e1c9",
+        "sha256_in_prefix": "4f2d779732ee3d4da013350170e0e4df369979c2eef2e83330291fc2b5f8e1c9",
+        "size_in_bytes": 10175
+      },
+      {
+        "_path": "Library/include/google/protobuf/io/zero_copy_stream_impl.h",
+        "path_type": "hardlink",
+        "sha256": "314cfe8f486976ac4ac1d9a69b35287b536562018e469b163163f788113cf8cb",
+        "sha256_in_prefix": "314cfe8f486976ac4ac1d9a69b35287b536562018e469b163163f788113cf8cb",
+        "size_in_bytes": 13577
+      },
+      {
+        "_path": "Library/include/google/protobuf/io/zero_copy_stream_impl_lite.h",
+        "path_type": "hardlink",
+        "sha256": "40c673237eadadfe70be810b2aabaf1dd16951536431022512fcd2803340fa33",
+        "sha256_in_prefix": "40c673237eadadfe70be810b2aabaf1dd16951536431022512fcd2803340fa33",
+        "size_in_bytes": 15879
+      },
+      {
+        "_path": "Library/include/google/protobuf/map.h",
+        "path_type": "hardlink",
+        "sha256": "aab4fb73360d92861105cb106ada57366317b424d7903a3498f5125701459fc3",
+        "sha256_in_prefix": "aab4fb73360d92861105cb106ada57366317b424d7903a3498f5125701459fc3",
+        "size_in_bytes": 43367
+      },
+      {
+        "_path": "Library/include/google/protobuf/map_entry.h",
+        "path_type": "hardlink",
+        "sha256": "5253354e7da991dd0a52d65c6cd11441eadc9e62588ef108d679023657066a23",
+        "sha256_in_prefix": "5253354e7da991dd0a52d65c6cd11441eadc9e62588ef108d679023657066a23",
+        "size_in_bytes": 6404
+      },
+      {
+        "_path": "Library/include/google/protobuf/map_entry_lite.h",
+        "path_type": "hardlink",
+        "sha256": "10e4ff9813de53c91a38a40014896b41fa1b09fa6e19839ddaf92f53b913a55a",
+        "sha256_in_prefix": "10e4ff9813de53c91a38a40014896b41fa1b09fa6e19839ddaf92f53b913a55a",
+        "size_in_bytes": 26112
+      },
+      {
+        "_path": "Library/include/google/protobuf/map_field.h",
+        "path_type": "hardlink",
+        "sha256": "cfbfe7698a47d12c8680603c314a2982864bb0eff7b7acc19084ccc1dd40917c",
+        "sha256_in_prefix": "cfbfe7698a47d12c8680603c314a2982864bb0eff7b7acc19084ccc1dd40917c",
+        "size_in_bytes": 30025
+      },
+      {
+        "_path": "Library/include/google/protobuf/map_field_inl.h",
+        "path_type": "hardlink",
+        "sha256": "83272301335b44544f47573d06d942d62be2927d4015e5f852549460e1c50f72",
+        "sha256_in_prefix": "83272301335b44544f47573d06d942d62be2927d4015e5f852549460e1c50f72",
+        "size_in_bytes": 13692
+      },
+      {
+        "_path": "Library/include/google/protobuf/map_field_lite.h",
+        "path_type": "hardlink",
+        "sha256": "6900f6459f679ef1965c0cd639a43c84793899ad4819b3de6a303eaa7be6c735",
+        "sha256_in_prefix": "6900f6459f679ef1965c0cd639a43c84793899ad4819b3de6a303eaa7be6c735",
+        "size_in_bytes": 5606
+      },
+      {
+        "_path": "Library/include/google/protobuf/map_type_handler.h",
+        "path_type": "hardlink",
+        "sha256": "8eb815256174fdf44fdf9dc6a1343ed37299070d458ddaf7fd2c15c92d982240",
+        "sha256_in_prefix": "8eb815256174fdf44fdf9dc6a1343ed37299070d458ddaf7fd2c15c92d982240",
+        "size_in_bytes": 37863
+      },
+      {
+        "_path": "Library/include/google/protobuf/message.h",
+        "path_type": "hardlink",
+        "sha256": "e63c3ff89036ac88e94a88ef6f8d48796879178219726f3decc28c4fc656b11b",
+        "sha256_in_prefix": "e63c3ff89036ac88e94a88ef6f8d48796879178219726f3decc28c4fc656b11b",
+        "size_in_bytes": 53948
+      },
+      {
+        "_path": "Library/include/google/protobuf/message_lite.h",
+        "path_type": "hardlink",
+        "sha256": "29bcf8b475bcc4822e97ef3819293f67eb918b374acaa4c128fd7330dd1c4dfd",
+        "sha256_in_prefix": "29bcf8b475bcc4822e97ef3819293f67eb918b374acaa4c128fd7330dd1c4dfd",
+        "size_in_bytes": 18730
+      },
+      {
+        "_path": "Library/include/google/protobuf/metadata.h",
+        "path_type": "hardlink",
+        "sha256": "c4985833bc4c4ab5eb66180f3e9e883283942f9a2066661fb2ca067a8647eace",
+        "sha256_in_prefix": "c4985833bc4c4ab5eb66180f3e9e883283942f9a2066661fb2ca067a8647eace",
+        "size_in_bytes": 3110
+      },
+      {
+        "_path": "Library/include/google/protobuf/metadata_lite.h",
+        "path_type": "hardlink",
+        "sha256": "d1ed3e9721f8b8648a3f4b6b10430c8f10a37431b5026711352985e34cd9303b",
+        "sha256_in_prefix": "d1ed3e9721f8b8648a3f4b6b10430c8f10a37431b5026711352985e34cd9303b",
+        "size_in_bytes": 8196
+      },
+      {
+        "_path": "Library/include/google/protobuf/reflection.h",
+        "path_type": "hardlink",
+        "sha256": "b8a0629e99831e295397b74d74350f640fc213deca1052ead68141ee2514da0a",
+        "sha256_in_prefix": "b8a0629e99831e295397b74d74350f640fc213deca1052ead68141ee2514da0a",
+        "size_in_bytes": 22519
+      },
+      {
+        "_path": "Library/include/google/protobuf/reflection_ops.h",
+        "path_type": "hardlink",
+        "sha256": "6b94c730ba5240d4921ba552baf6c226723dfbffe6081af680e6a94cf777a67f",
+        "sha256_in_prefix": "6b94c730ba5240d4921ba552baf6c226723dfbffe6081af680e6a94cf777a67f",
+        "size_in_bytes": 3536
+      },
+      {
+        "_path": "Library/include/google/protobuf/repeated_field.h",
+        "path_type": "hardlink",
+        "sha256": "160a0c96a134486b63d115b48281263089fc41ba4e4df81833465934e06a5c30",
+        "sha256_in_prefix": "160a0c96a134486b63d115b48281263089fc41ba4e4df81833465934e06a5c30",
+        "size_in_bytes": 92873
+      },
+      {
+        "_path": "Library/include/google/protobuf/service.h",
+        "path_type": "hardlink",
+        "sha256": "e8758acc1eb3e5ad549673258a77d536f5c4e459d9b78a1f14b688042f2b461d",
+        "sha256_in_prefix": "e8758acc1eb3e5ad549673258a77d536f5c4e459d9b78a1f14b688042f2b461d",
+        "size_in_bytes": 13137
+      },
+      {
+        "_path": "Library/include/google/protobuf/source_context.pb.h",
+        "path_type": "hardlink",
+        "sha256": "a69c2c6e706579d1b0b2076cb8e61b8dbbad3f1e96c0f2ecaadfa8190166d5b7",
+        "sha256_in_prefix": "a69c2c6e706579d1b0b2076cb8e61b8dbbad3f1e96c0f2ecaadfa8190166d5b7",
+        "size_in_bytes": 9209
+      },
+      {
+        "_path": "Library/include/google/protobuf/source_context.proto",
+        "path_type": "hardlink",
+        "sha256": "64ac204d47270547bde952a1c7a202d0af0c955292a21f513ef269f6f8a0c78d",
+        "sha256_in_prefix": "64ac204d47270547bde952a1c7a202d0af0c955292a21f513ef269f6f8a0c78d",
+        "size_in_bytes": 2352
+      },
+      {
+        "_path": "Library/include/google/protobuf/struct.pb.h",
+        "path_type": "hardlink",
+        "sha256": "688ed676a31f7eaf569592ff9435df8daca0cd7edc6b43416cd79cf34a347ca5",
+        "sha256_in_prefix": "688ed676a31f7eaf569592ff9435df8daca0cd7edc6b43416cd79cf34a347ca5",
+        "size_in_bytes": 36345
+      },
+      {
+        "_path": "Library/include/google/protobuf/struct.proto",
+        "path_type": "hardlink",
+        "sha256": "82b23cc319988977fd61eca7b6ad8f17269b36522ca24a06dde374005fa74353",
+        "sha256_in_prefix": "82b23cc319988977fd61eca7b6ad8f17269b36522ca24a06dde374005fa74353",
+        "size_in_bytes": 3781
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/atomic_sequence_num.h",
+        "path_type": "hardlink",
+        "sha256": "f7b2a7f2476281e73532dba92db0c9d27ff041eaf64bf1b9d3347135c797f348",
+        "sha256_in_prefix": "f7b2a7f2476281e73532dba92db0c9d27ff041eaf64bf1b9d3347135c797f348",
+        "size_in_bytes": 2168
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/atomicops.h",
+        "path_type": "hardlink",
+        "sha256": "5eea93d73cca5a0d2afad0e094b06364488b54b573a62ce062e40c38b7ff9527",
+        "sha256_in_prefix": "5eea93d73cca5a0d2afad0e094b06364488b54b573a62ce062e40c38b7ff9527",
+        "size_in_bytes": 10519
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/atomicops_internals_arm64_gcc.h",
+        "path_type": "hardlink",
+        "sha256": "d0ea615e7f9b509e117744b50af3fafe55f21b99ba8eff58647d5f39291cc0e4",
+        "sha256_in_prefix": "d0ea615e7f9b509e117744b50af3fafe55f21b99ba8eff58647d5f39291cc0e4",
+        "size_in_bytes": 10396
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/atomicops_internals_arm_gcc.h",
+        "path_type": "hardlink",
+        "sha256": "13863ce9cc301fcaf8c824ebb4c5821857acb2577fd5caa41161e1b12cc55f60",
+        "sha256_in_prefix": "13863ce9cc301fcaf8c824ebb4c5821857acb2577fd5caa41161e1b12cc55f60",
+        "size_in_bytes": 5618
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/atomicops_internals_arm_qnx.h",
+        "path_type": "hardlink",
+        "sha256": "916cbd7d04dbcabd62c9ecf09be6cfae014e0009892401309bafab95c8cc4479",
+        "sha256_in_prefix": "916cbd7d04dbcabd62c9ecf09be6cfae014e0009892401309bafab95c8cc4479",
+        "size_in_bytes": 5028
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/atomicops_internals_generic_c11_atomic.h",
+        "path_type": "hardlink",
+        "sha256": "468b738e6afc57bbcbcc6bb50e4339e00c412754c953c53e4bbbf80ffad49065",
+        "sha256_in_prefix": "468b738e6afc57bbcbcc6bb50e4339e00c412754c953c53e4bbbf80ffad49065",
+        "size_in_bytes": 9134
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/atomicops_internals_generic_gcc.h",
+        "path_type": "hardlink",
+        "sha256": "86f8f19a9f6d4caf3603f8542e37e7d2db872d56b4001d3330a276be4bbd3e4e",
+        "sha256_in_prefix": "86f8f19a9f6d4caf3603f8542e37e7d2db872d56b4001d3330a276be4bbd3e4e",
+        "size_in_bytes": 5915
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/atomicops_internals_mips_gcc.h",
+        "path_type": "hardlink",
+        "sha256": "2e2a22e361cd3f0e2b7ee140636d319041e1ff533d991164251a1fc4d860203b",
+        "sha256_in_prefix": "2e2a22e361cd3f0e2b7ee140636d319041e1ff533d991164251a1fc4d860203b",
+        "size_in_bytes": 12090
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/atomicops_internals_power.h",
+        "path_type": "hardlink",
+        "sha256": "3f91dea5d6ec3029c91f86f6800f2fa3199dc0553d0a86093961516afebcadf0",
+        "sha256_in_prefix": "3f91dea5d6ec3029c91f86f6800f2fa3199dc0553d0a86093961516afebcadf0",
+        "size_in_bytes": 15521
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/atomicops_internals_ppc_gcc.h",
+        "path_type": "hardlink",
+        "sha256": "2cdaa0b21139938ada4d8eeb26ded81cdb54903ac7883ed87431d6d74d92eed3",
+        "sha256_in_prefix": "2cdaa0b21139938ada4d8eeb26ded81cdb54903ac7883ed87431d6d74d92eed3",
+        "size_in_bytes": 5530
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/atomicops_internals_solaris.h",
+        "path_type": "hardlink",
+        "sha256": "c30f11a80bdc1dc30f8c52b57d5ef0306abbaae940de5f802e188e1da49dd3d5",
+        "sha256_in_prefix": "c30f11a80bdc1dc30f8c52b57d5ef0306abbaae940de5f802e188e1da49dd3d5",
+        "size_in_bytes": 6307
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/atomicops_internals_tsan.h",
+        "path_type": "hardlink",
+        "sha256": "b951a3654496689a5e3b33330db7c86c9500e6f76c81bfa912c106b933c2d798",
+        "sha256_in_prefix": "b951a3654496689a5e3b33330db7c86c9500e6f76c81bfa912c106b933c2d798",
+        "size_in_bytes": 8565
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/atomicops_internals_x86_gcc.h",
+        "path_type": "hardlink",
+        "sha256": "c210e863626ebd959669c9cfbfc65f31750bf93420a0c9151379093b25db990c",
+        "sha256_in_prefix": "c210e863626ebd959669c9cfbfc65f31750bf93420a0c9151379093b25db990c",
+        "size_in_bytes": 10755
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/atomicops_internals_x86_msvc.h",
+        "path_type": "hardlink",
+        "sha256": "ddb7e824295c607262001f2f5156d08178dbd800288df5dd7b3a7116d5127aff",
+        "sha256_in_prefix": "ddb7e824295c607262001f2f5156d08178dbd800288df5dd7b3a7116d5127aff",
+        "size_in_bytes": 5382
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/bytestream.h",
+        "path_type": "hardlink",
+        "sha256": "64f10e5f1c8b3b5100d2b301be3f511e984b2a17ba3f045a90f67b03c415ae3e",
+        "sha256_in_prefix": "64f10e5f1c8b3b5100d2b301be3f511e984b2a17ba3f045a90f67b03c415ae3e",
+        "size_in_bytes": 11609
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/callback.h",
+        "path_type": "hardlink",
+        "sha256": "5310609cdfee25f10e81b8bc01f6b1fcbb6fe91ea4973dc6926d5727da3e514f",
+        "sha256_in_prefix": "5310609cdfee25f10e81b8bc01f6b1fcbb6fe91ea4973dc6926d5727da3e514f",
+        "size_in_bytes": 16725
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/casts.h",
+        "path_type": "hardlink",
+        "sha256": "0bc6ca62cb540e1c47a4c4ae3e69a62c07a7e4a0db16b1a9cd6976f92b467e67",
+        "sha256_in_prefix": "0bc6ca62cb540e1c47a4c4ae3e69a62c07a7e4a0db16b1a9cd6976f92b467e67",
+        "size_in_bytes": 5697
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/common.h",
+        "path_type": "hardlink",
+        "sha256": "ce6213bf3ae2171e0af7e32800b889ca5f72e386a7a566829a1edc846c56d793",
+        "sha256_in_prefix": "ce6213bf3ae2171e0af7e32800b889ca5f72e386a7a566829a1edc846c56d793",
+        "size_in_bytes": 9003
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/fastmem.h",
+        "path_type": "hardlink",
+        "sha256": "bdfccdff54550a6590e8640c265095d09c9cf9b762cec82437d74144caf3a387",
+        "sha256_in_prefix": "bdfccdff54550a6590e8640c265095d09c9cf9b762cec82437d74144caf3a387",
+        "size_in_bytes": 5930
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/hash.h",
+        "path_type": "hardlink",
+        "sha256": "612fdec73115c836f0585521933114e332d9c0f09b0439990b60f58c8e0a85ba",
+        "sha256_in_prefix": "612fdec73115c836f0585521933114e332d9c0f09b0439990b60f58c8e0a85ba",
+        "size_in_bytes": 15220
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/logging.h",
+        "path_type": "hardlink",
+        "sha256": "4e1b0ef092501d8dc5c8c544a47c3ff1dd39a993ea6efd551cee410ef4320584",
+        "sha256_in_prefix": "4e1b0ef092501d8dc5c8c544a47c3ff1dd39a993ea6efd551cee410ef4320584",
+        "size_in_bytes": 8910
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/macros.h",
+        "path_type": "hardlink",
+        "sha256": "7fe61e67f6effe7628191c7e83c05f6135b916338195171ab2bdbeca38755973",
+        "sha256_in_prefix": "7fe61e67f6effe7628191c7e83c05f6135b916338195171ab2bdbeca38755973",
+        "size_in_bytes": 6625
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/mutex.h",
+        "path_type": "hardlink",
+        "sha256": "7394cf7a973715bc5bfd0487ab7fe3e705ff7b14d9cbd880e5815875a51d4a25",
+        "sha256_in_prefix": "7394cf7a973715bc5bfd0487ab7fe3e705ff7b14d9cbd880e5815875a51d4a25",
+        "size_in_bytes": 4536
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/once.h",
+        "path_type": "hardlink",
+        "sha256": "9a0b57d42f01cd1efedc0d0e985682f58a792748723d8cd0fe70605dc3e2e996",
+        "sha256_in_prefix": "9a0b57d42f01cd1efedc0d0e985682f58a792748723d8cd0fe70605dc3e2e996",
+        "size_in_bytes": 6148
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/platform_macros.h",
+        "path_type": "hardlink",
+        "sha256": "c9f94cfa32405192398c30c5630f8d72216413be27fac3ae65315e31b3d5cd64",
+        "sha256_in_prefix": "c9f94cfa32405192398c30c5630f8d72216413be27fac3ae65315e31b3d5cd64",
+        "size_in_bytes": 4907
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/port.h",
+        "path_type": "hardlink",
+        "sha256": "3da8c4820304afc6c3c45664a70fc0bdce546190e329e8ec8cc6dd2349ea59b6",
+        "sha256_in_prefix": "3da8c4820304afc6c3c45664a70fc0bdce546190e329e8ec8cc6dd2349ea59b6",
+        "size_in_bytes": 16228
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/scoped_ptr.h",
+        "path_type": "hardlink",
+        "sha256": "7b815b53bbac871f68eb3c867253385ced21f6c3763f832539527e841292500b",
+        "sha256_in_prefix": "7b815b53bbac871f68eb3c867253385ced21f6c3763f832539527e841292500b",
+        "size_in_bytes": 7903
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/shared_ptr.h",
+        "path_type": "hardlink",
+        "sha256": "bc3daef953a61c0594ccf2e99a253c02eebf9d379a2586e0285248d1ff16b8f8",
+        "sha256_in_prefix": "bc3daef953a61c0594ccf2e99a253c02eebf9d379a2586e0285248d1ff16b8f8",
+        "size_in_bytes": 16211
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/singleton.h",
+        "path_type": "hardlink",
+        "sha256": "a9c009f397066926ec0ff3266ebc78494937b4d427b3481e509b2eb8597b79ce",
+        "sha256_in_prefix": "a9c009f397066926ec0ff3266ebc78494937b4d427b3481e509b2eb8597b79ce",
+        "size_in_bytes": 2514
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/status.h",
+        "path_type": "hardlink",
+        "sha256": "75b97b4c5f33f48a4c4d56206869a7e74c99394cd1669b229409ada6c893600e",
+        "sha256_in_prefix": "75b97b4c5f33f48a4c4d56206869a7e74c99394cd1669b229409ada6c893600e",
+        "size_in_bytes": 3782
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/stl_util.h",
+        "path_type": "hardlink",
+        "sha256": "ab1d4b41a24e077ed55078851506706057734439f8830bb9968d81631bf77de4",
+        "sha256_in_prefix": "ab1d4b41a24e077ed55078851506706057734439f8830bb9968d81631bf77de4",
+        "size_in_bytes": 5190
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/stringpiece.h",
+        "path_type": "hardlink",
+        "sha256": "6d03927ea23c2df617ff2da5c8f0a797cc33c1a0cd2b3eec30c09ef2431e549c",
+        "sha256_in_prefix": "6d03927ea23c2df617ff2da5c8f0a797cc33c1a0cd2b3eec30c09ef2431e549c",
+        "size_in_bytes": 17661
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/template_util.h",
+        "path_type": "hardlink",
+        "sha256": "79659b54c2909ce47eeaa24201771dfb0e6b7cddd30b10cc6beeddf92153bc08",
+        "sha256_in_prefix": "79659b54c2909ce47eeaa24201771dfb0e6b7cddd30b10cc6beeddf92153bc08",
+        "size_in_bytes": 4834
+      },
+      {
+        "_path": "Library/include/google/protobuf/stubs/type_traits.h",
+        "path_type": "hardlink",
+        "sha256": "a90c6fcec96a287fadc6a8cb618a74927f281eb3aeb23f8df090afd3e46c8850",
+        "sha256_in_prefix": "a90c6fcec96a287fadc6a8cb618a74927f281eb3aeb23f8df090afd3e46c8850",
+        "size_in_bytes": 15614
+      },
+      {
+        "_path": "Library/include/google/protobuf/text_format.h",
+        "path_type": "hardlink",
+        "sha256": "8c6423013481e5affc3ed105234e9d3fd4da50c1d0a8be624d0c4108ced6dba6",
+        "sha256_in_prefix": "8c6423013481e5affc3ed105234e9d3fd4da50c1d0a8be624d0c4108ced6dba6",
+        "size_in_bytes": 24051
+      },
+      {
+        "_path": "Library/include/google/protobuf/timestamp.pb.h",
+        "path_type": "hardlink",
+        "sha256": "ac66f9e1894e7bfe9ff96448701c454298f1aac8d65b04af7030f52396b3de31",
+        "sha256_in_prefix": "ac66f9e1894e7bfe9ff96448701c454298f1aac8d65b04af7030f52396b3de31",
+        "size_in_bytes": 8037
+      },
+      {
+        "_path": "Library/include/google/protobuf/timestamp.proto",
+        "path_type": "hardlink",
+        "sha256": "0c53ddb154888d7ec38f9d668840b94767939e306cd97ae9912f833c91a2c0b7",
+        "sha256_in_prefix": "0c53ddb154888d7ec38f9d668840b94767939e306cd97ae9912f833c91a2c0b7",
+        "size_in_bytes": 5975
+      },
+      {
+        "_path": "Library/include/google/protobuf/type.pb.h",
+        "path_type": "hardlink",
+        "sha256": "960b927586b0f000dcf9e2b0b973c092043baf840fabd70f6c3ffdb3b53ec2cb",
+        "sha256_in_prefix": "960b927586b0f000dcf9e2b0b973c092043baf840fabd70f6c3ffdb3b53ec2cb",
+        "size_in_bytes": 88901
+      },
+      {
+        "_path": "Library/include/google/protobuf/type.proto",
+        "path_type": "hardlink",
+        "sha256": "e007d8d8763d564ea4724712cc737c60573a411c46572167c0236ec621d21de1",
+        "sha256_in_prefix": "e007d8d8763d564ea4724712cc737c60573a411c46572167c0236ec621d21de1",
+        "size_in_bytes": 6283
+      },
+      {
+        "_path": "Library/include/google/protobuf/unknown_field_set.h",
+        "path_type": "hardlink",
+        "sha256": "33a00c58c76d2f9b842ca73571df5853161573ce7f860c1a85cfb54f0649e1a2",
+        "sha256_in_prefix": "33a00c58c76d2f9b842ca73571df5853161573ce7f860c1a85cfb54f0649e1a2",
+        "size_in_bytes": 12663
+      },
+      {
+        "_path": "Library/include/google/protobuf/util/delimited_message_util.h",
+        "path_type": "hardlink",
+        "sha256": "f912748c87d87b7897c9f047ffc3f93adf2232029ff398e53b64da3a23de1beb",
+        "sha256_in_prefix": "f912748c87d87b7897c9f047ffc3f93adf2232029ff398e53b64da3a23de1beb",
+        "size_in_bytes": 3487
+      },
+      {
+        "_path": "Library/include/google/protobuf/util/field_comparator.h",
+        "path_type": "hardlink",
+        "sha256": "41c93b8efc1565ab537bbc476d41f98941bfe5e3c7f5332fa1bb11001b5be347",
+        "sha256_in_prefix": "41c93b8efc1565ab537bbc476d41f98941bfe5e3c7f5332fa1bb11001b5be347",
+        "size_in_bytes": 10224
+      },
+      {
+        "_path": "Library/include/google/protobuf/util/field_mask_util.h",
+        "path_type": "hardlink",
+        "sha256": "ba62599a0a6a0ea25f2eb201c73cbe1fff699dc26b8999482363a24e09a4d20f",
+        "sha256_in_prefix": "ba62599a0a6a0ea25f2eb201c73cbe1fff699dc26b8999482363a24e09a4d20f",
+        "size_in_bytes": 10221
+      },
+      {
+        "_path": "Library/include/google/protobuf/util/json_util.h",
+        "path_type": "hardlink",
+        "sha256": "47ce56920ffd1b0e0e1624f6b72068b4484af98af7fee5c6e7cd83c1cfc1d0b2",
+        "sha256_in_prefix": "47ce56920ffd1b0e0e1624f6b72068b4484af98af7fee5c6e7cd83c1cfc1d0b2",
+        "size_in_bytes": 7775
+      },
+      {
+        "_path": "Library/include/google/protobuf/util/message_differencer.h",
+        "path_type": "hardlink",
+        "sha256": "cf630dd361286d7362ff474f6c821113aee02e0f355f52dbef4d0c709657c0b9",
+        "sha256_in_prefix": "cf630dd361286d7362ff474f6c821113aee02e0f355f52dbef4d0c709657c0b9",
+        "size_in_bytes": 41754
+      },
+      {
+        "_path": "Library/include/google/protobuf/util/time_util.h",
+        "path_type": "hardlink",
+        "sha256": "2ad22ed44edb01c4233886cdfb6ef1dd25519e17e0fa8fbe1fa1612236d78438",
+        "sha256_in_prefix": "2ad22ed44edb01c4233886cdfb6ef1dd25519e17e0fa8fbe1fa1612236d78438",
+        "size_in_bytes": 11702
+      },
+      {
+        "_path": "Library/include/google/protobuf/util/type_resolver.h",
+        "path_type": "hardlink",
+        "sha256": "c87282a27574925db84a4118cf3c6c88155cf541cead7e6ac7506e76d7dd9045",
+        "sha256_in_prefix": "c87282a27574925db84a4118cf3c6c88155cf541cead7e6ac7506e76d7dd9045",
+        "size_in_bytes": 2798
+      },
+      {
+        "_path": "Library/include/google/protobuf/util/type_resolver_util.h",
+        "path_type": "hardlink",
+        "sha256": "1a2a39eb1fff29f1f1d0ef0cff14654490e42ca6b90a6297a60a51b1e6b2639e",
+        "sha256_in_prefix": "1a2a39eb1fff29f1f1d0ef0cff14654490e42ca6b90a6297a60a51b1e6b2639e",
+        "size_in_bytes": 2363
+      },
+      {
+        "_path": "Library/include/google/protobuf/wire_format.h",
+        "path_type": "hardlink",
+        "sha256": "2cf43f0f80bdfed99f1c52d0f93668e0f7701e49ca39d87b20c3a66dfbac1aee",
+        "sha256_in_prefix": "2cf43f0f80bdfed99f1c52d0f93668e0f7701e49ca39d87b20c3a66dfbac1aee",
+        "size_in_bytes": 13829
+      },
+      {
+        "_path": "Library/include/google/protobuf/wire_format_lite.h",
+        "path_type": "hardlink",
+        "sha256": "49cda7e21ed170adcd82ad35e3a1fe98da2fe716875ed22d1ed76184adcb1716",
+        "sha256_in_prefix": "49cda7e21ed170adcd82ad35e3a1fe98da2fe716875ed22d1ed76184adcb1716",
+        "size_in_bytes": 41142
+      },
+      {
+        "_path": "Library/include/google/protobuf/wire_format_lite_inl.h",
+        "path_type": "hardlink",
+        "sha256": "fb623f14825eb4a2c435d016a383bf30fef95900bf3851dbf1d177bf2b119628",
+        "sha256_in_prefix": "fb623f14825eb4a2c435d016a383bf30fef95900bf3851dbf1d177bf2b119628",
+        "size_in_bytes": 45356
+      },
+      {
+        "_path": "Library/include/google/protobuf/wrappers.pb.h",
+        "path_type": "hardlink",
+        "sha256": "f94ead232fd1c8349876a270ac51903f7085629c9f72f73f846be513022b6f2b",
+        "sha256_in_prefix": "f94ead232fd1c8349876a270ac51903f7085629c9f72f73f846be513022b6f2b",
+        "size_in_bytes": 52915
+      },
+      {
+        "_path": "Library/include/google/protobuf/wrappers.proto",
+        "path_type": "hardlink",
+        "sha256": "0d0c7cf568359354d6fec5ddb63d80716807625cb13d3a69f5144742257eb1f9",
+        "sha256_in_prefix": "0d0c7cf568359354d6fec5ddb63d80716807625cb13d3a69f5144742257eb1f9",
+        "size_in_bytes": 3745
+      },
+      {
+        "_path": "Library/lib/libprotobuf-lite.lib",
+        "path_type": "hardlink",
+        "sha256": "3368f0bd241013c1c1a952649d059854eed52050adf8083ac56e17a0f0738313",
+        "sha256_in_prefix": "3368f0bd241013c1c1a952649d059854eed52050adf8083ac56e17a0f0738313",
+        "size_in_bytes": 4703996
+      },
+      {
+        "_path": "Library/lib/libprotobuf.lib",
+        "path_type": "hardlink",
+        "sha256": "d6ca6e33d28ca1e48d07f85d97cdaccaf958e810edf9af72a59c84c51e1ace07",
+        "sha256_in_prefix": "d6ca6e33d28ca1e48d07f85d97cdaccaf958e810edf9af72a59c84c51e1ace07",
+        "size_in_bytes": 44592898
+      },
+      {
+        "_path": "Library/lib/libprotoc.lib",
+        "path_type": "hardlink",
+        "sha256": "b66759c2ebb008f97cd7d05bdde25b60a9d0e89613f6ada85de2984666eb0451",
+        "sha256_in_prefix": "b66759c2ebb008f97cd7d05bdde25b60a9d0e89613f6ada85de2984666eb0451",
+        "size_in_bytes": 44238078
+      },
+      {
+        "_path": "Library/lib/pkgconfig/protobuf-lite.pc",
+        "file_mode": "text",
+        "path_type": "hardlink",
+        "prefix_placeholder": "C:/bld/libprotobuf_1520478922253/_b_env",
+        "sha256": "a740fde60e3e41f3e4249a693a8df2c2965a2887a8e4724dcad003c58b43193c",
+        "sha256_in_prefix": "db03faf786f816ec643fb124ec55fb5302e17e6aa56a57c45765c3a2b1a8b913",
+        "size_in_bytes": 417
+      },
+      {
+        "_path": "Library/lib/pkgconfig/protobuf.pc",
+        "file_mode": "text",
+        "path_type": "hardlink",
+        "prefix_placeholder": "C:/bld/libprotobuf_1520478922253/_b_env",
+        "sha256": "b2c512089ac12347eee03c93fa70239b1a6867bdeff94cf1edaea7009b4e9ad9",
+        "sha256_in_prefix": "68ab663bcd2193e26426c698015cec52a9839c063c419e3978479c6add2d6b4e",
+        "size_in_bytes": 417
+      }
+    ],
+    "paths_version": 1
+  },
+  "platform": "win32",
+  "requested_spec": "conda-forge/win-64::libprotobuf==3.5.2=vc14_0",
+  "size": 10656960,
+  "subdir": "win-64",
+  "track_features": "",
+  "url": "https://conda.anaconda.org/conda-forge/win-64/libprotobuf-3.5.2-vc14_0.tar.bz2",
+  "version": "3.5.2"
+}
