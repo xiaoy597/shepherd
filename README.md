@@ -22,6 +22,8 @@ https://repo.anaconda.com/archive/Anaconda3-5.3.0-Windows-x86_64.exe
 - 将代码路径下conf/solr/crawler_configs目录拷贝到Solr安装路径下的server/solr/configsets目录下。
 - 将Solr安装路径下的contrib/analysis-extras/lucene-libs/lucene-analyzers-smartcn-7.5.0.jar拷贝到server/solr-webapp/webapp/WEB-INF/lib目录下。
 
+## 安装 Firefox 
+最新版本
 
 ## 环境设置
 - Spider-Agent<br>
@@ -53,11 +55,11 @@ https://repo.anaconda.com/archive/Anaconda3-5.3.0-Windows-x86_64.exe
         - CONDA_PREFIX	<工程路径>\envs\venv3.7-win<br>
             Conda环境路径
 - 作业配置数据库<br>
+    在MySQL中创建作业配置数据库，数据库的名称应与Shepherd使用的配置一致。<br>
     使用项目路径下conf/spider/spiderdb.sql创建采集作业配置需要的表。<br>
-    在conf/example/spiderdb-with-sample-job.sql中有一些配置好的作业可供参考。数据库的名称应与Shepherd使用的配置一致。<br>
-    大部分配置作业样例会将采集结果存入MySQL数据库，数据库的访问参数在data_store_param表中。
+    在conf/example/spiderdb-with-sample-job.sql中有一些配置好的作业可供参考。
 - 采集结果数据库（可选）<br>
-    如果需要运行样例作业，需要创建采集结果数据库，执行conf/example/spider_data.sql。
+    如果需要运行样例作业，需要创建采集结果数据库。执行conf/example/spider_data.sql创建采集结果数据库，数据库的访问参数在作业配置数据库的data_store_param表中。
 
 # 运行采集作业
 ## 运行 Spider-Agent
