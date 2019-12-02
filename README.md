@@ -20,7 +20,7 @@ https://repo.anaconda.com/archive/Anaconda3-5.3.0-Windows-x86_64.exe
 ## 安装 Solr
 - 下载并安装Solr 7.3+。
 - 将代码路径下conf/solr/crawler_configs目录拷贝到Solr安装路径下的server/solr/configsets目录下。
-- 将Solr安装路径下的contrib/analysis-extras/lucene-libs/lucene-analyzers-smartcn-7.5.0.jar拷贝到server/solr-webapp/webapp/WEB-INF/lib目录下。
+- 将Solr安装路径下的contrib/analysis-extras/lucene-libs/lucene-analyzers-smartcn-7.3.0.jar拷贝到server/solr-webapp/webapp/WEB-INF/lib目录下。
 
 ## 安装 Firefox 
 最新版本
@@ -29,7 +29,7 @@ https://repo.anaconda.com/archive/Anaconda3-5.3.0-Windows-x86_64.exe
 - Spider-Agent<br>
     根据本地环境修改start-agent.bat文件中变量设置，可参考脚本中对变量的注释。
 - Gecko Driver<br>
-    将工程目录下的tool目录加入系统搜索路径。
+    将工程目录下的tool目录加入系统搜索路径。对于Firefox 64.0+，需要使用geckodriver 0.23以上版本。
 - Shepherd<br>
     在PyCharm中打开本项目，
     1. 在 File->Settings 菜单中设置项目的Python Interpreter为“项目路径/envs/venv3.7-win”。
@@ -173,7 +173,7 @@ Spider-agent服务负责接收Shepherd服务分配的抓取任务，并执行这
 	```
 4. 在spider-agent用户目录下安装spider-agent模块<br>
    a. 在spider-agent用户目录下解压spider-agent_0.1.0.zip<br>
-   b. 为spider-agent_0.1.0/bin目录下所有文件增加执行权限。<br>
+   b. 为spider-agent_0.1.0/bin目录下所有文件增加执行权限。（如果Firefox版本为64.0+，需要使用geckodriver 0.23以上版本）<br>
    c. 在.bashrc中设置环境变量， 
    ```shell
    export DISPLAY=:1
