@@ -144,6 +144,7 @@ Shepherd服务负责监听管理监控界面发来的任务调度命令，将相
     export SHEPHERD_SPIDER_TEMPLATE=$SHEPHERD_HOME/clematis/clematis
     export SHEPHERD_JOB_PREPARE_PATH=$SHEPHERD_HOME/tmp
     export SHEPHERD_DB_HOST=127.0.0.1  # 根据本地环境修改
+    export SHEPHERD_DB_PORT=3306       # 根据本地环境修改
     export SHEPHERD_DB_NAME=spiderdb
     export SHEPHERD_DB_USER=spider     # 根据本地环境修改
     export SHEPHERD_DB_PASS=spider     # 根据本地环境修改

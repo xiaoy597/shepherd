@@ -28,7 +28,6 @@ from crawl_job import CrawlJob
 from clematis.clematis.mysql_utils import MySQLUtils
 
 
-
 class SpiderConfigRequestHandler(tornado.web.RequestHandler):
     def data_received(self, chunk):
         pass
@@ -46,7 +45,8 @@ class SpiderConfigRequestHandler(tornado.web.RequestHandler):
 
         self.logger.debug("Getting job configuration for user %s and job %s", user_id, job_id)
 
-        conn = mysql.connector.connect(host=os.getenv('SHEPHERD_DB_HOST'), port=3306,
+        conn = mysql.connector.connect(host=os.getenv('SHEPHERD_DB_HOST'),
+                                       port=int(os.getenv('SHEPHERD_DB_PORT', '3306')),
                                        user=os.getenv('SHEPHERD_DB_USER'),
                                        passwd=os.getenv('SHEPHERD_DB_PASS'),
                                        charset='utf8')
@@ -91,10 +91,11 @@ class UpdateStatusRequestHandler(tornado.web.RequestHandler):
     def save_stats_info(self, stats_info):
         conn = None
         try:
-            conn = mysql.connector.connect(host=os.getenv('SHEPHERD_DB_HOST'), port=3306,
-                                   user=os.getenv('SHEPHERD_DB_USER'),
-                                   passwd=os.getenv('SHEPHERD_DB_PASS'),
-                                   charset='utf8')
+            conn = mysql.connector.connect(host=os.getenv('SHEPHERD_DB_HOST'),
+                                           port=int(os.getenv('SHEPHERD_DB_PORT', '3306')),
+                                           user=os.getenv('SHEPHERD_DB_USER'),
+                                           passwd=os.getenv('SHEPHERD_DB_PASS'),
+                                           charset='utf8')
             conn.autocommit = True
 
             sql = '''insert into {db}.{table_name} (
@@ -202,10 +203,11 @@ class JobController(object):
         super(JobController, self).__init__()
         self.logger = logging.getLogger(self.__class__.__name__)
 
-        self.conn = mysql.connector.connect(host=os.getenv('SHEPHERD_DB_HOST'), port=3306,
-                                    user=os.getenv('SHEPHERD_DB_USER'),
-                                    passwd=os.getenv('SHEPHERD_DB_PASS'),
-                                    charset='utf8')
+        self.conn = mysql.connector.connect(host=os.getenv('SHEPHERD_DB_HOST'),
+                                            port=int(os.getenv('SHEPHERD_DB_PORT', '3306')),
+                                            user=os.getenv('SHEPHERD_DB_USER'),
+                                            passwd=os.getenv('SHEPHERD_DB_PASS'),
+                                            charset='utf8')
         self.conn.autocommit = True
 
         self.lock = RLock()
@@ -433,10 +435,11 @@ class Shepherd(object):
             (r"/job-control", JobControlRequestHandler),
         ])
 
-        self.conn = mysql.connector.connect(host=os.getenv('SHEPHERD_DB_HOST'), port=3306,
-                                    user=os.getenv('SHEPHERD_DB_USER'),
-                                    passwd=os.getenv('SHEPHERD_DB_PASS'),
-                                    charset='utf8')
+        self.conn = mysql.connector.connect(host=os.getenv('SHEPHERD_DB_HOST'),
+                                            port=int(os.getenv('SHEPHERD_DB_PORT', '3306')),
+                                            user=os.getenv('SHEPHERD_DB_USER'),
+                                            passwd=os.getenv('SHEPHERD_DB_PASS'),
+                                            charset='utf8')
         self.conn.autocommit = True
 
         self.job_controller = JobController()

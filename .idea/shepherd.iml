@@ -8,11 +8,10 @@
       <excludeFolder url="file://$MODULE_DIR$/venv2.7" />
       <excludeFolder url="file://$MODULE_DIR$/venv3.7" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.6 (shepherd) Local" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.7 (shepherd)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TestRunnerService">
-    <option name="projectConfiguration" value="Nosetests" />
     <option name="PROJECT_TEST_RUNNER" value="Nosetests" />
   </component>
 </module>
