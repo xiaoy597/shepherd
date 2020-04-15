@@ -47,13 +47,13 @@ def build_pack(pack_name, file_list):
 
 pack_def = {
     'shepherd': [
-        ('clematis', 'clematis'),
+        ('clematis_wrapper', 'clematis_wrapper'),
         ('shepherd', 'shepherd'),
         ('tool', 'bin'),
     ],
     'spider-agent': [
         ('spider-agent.py', 'spider-agent.py'),
-        ('clematis/clematis/logging.conf', 'logging.conf'),
+        ('clematis_wrapper/clematis/logging.conf', 'logging.conf'),
         ('scrapyd.conf.default', 'scrapyd.conf.default'),
         ('tool', 'bin'),
         ('', 'scrapyd')

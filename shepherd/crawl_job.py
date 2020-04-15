@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from clematis.clematis.mysql_utils import MySQLUtils
+from clematis_wrapper.clematis.mysql_utils import MySQLUtils
 
 
 class CrawlJob(object):

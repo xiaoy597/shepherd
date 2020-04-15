@@ -1,12 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="538ac6b6-8645-4af2-8e8d-9eae4efbed24" name="Default" comment="The first draft of using helper class to implement very special data/link extraction logic.">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="538ac6b6-8645-4af2-8e8d-9eae4efbed24" name="Default" comment="Get spider configuration database port from env parameter 'SHEPHERD_DB_PORT'.">
       <change beforePath="$PROJECT_DIR$/.idea/shepherd.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shepherd.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.py" beforeDir="false" afterPath="$PROJECT_DIR$/build.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clematis/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/spiders/helper/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clematis/clematis.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clematis/clematis/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clematis/clematis/const.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/const.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clematis/clematis/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/items.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clematis/clematis/logging.conf" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/logging.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clematis/clematis/middlewares.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/middlewares.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clematis/clematis/mysql_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/mysql_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clematis/clematis/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/pipelines.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clematis/clematis/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clematis/clematis/solr_wrapper.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/solr_wrapper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clematis/clematis/spiders/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/spiders/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clematis/clematis/spiders/helper/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clematis/clematis/spiders/helper/spider_helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/spiders/helper/spider_helper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clematis/clematis/spiders/spider1.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/spiders/spider1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clematis/clematis/spiders/spider2.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/spiders/spider2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clematis/hbase-test.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/hbase-test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clematis/scrapy.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/scrapy.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clematis/setenv.bat" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/setenv.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clematis/test_data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/test_data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shepherd/crawl_job.py" beforeDir="false" afterPath="$PROJECT_DIR$/shepherd/crawl_job.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shepherd/shepherd.py" beforeDir="false" afterPath="$PROJECT_DIR$/shepherd/shepherd.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start-agent.bat" beforeDir="false" afterPath="$PROJECT_DIR$/start-agent.bat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,52 +63,15 @@
     <expand />
     <select />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="shepherd" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>switch</find>
-      <find>Craw</find>
-      <find>page_type</find>
-      <find>data_format</find>
-      <find>request_queue</find>
-      <find>evalu</find>
-      <find>Pagecon</find>
-      <find>content</find>
-      <find>Sending</find>
-      <find>Page content</find>
-      <find>Sending row</find>
-      <find>Didn</find>
-      <find>Did</find>
-      <find>WRITEDATA</find>
-      <find>lambda</find>
-      <find>CrawlJob.get_rs_as_dict</find>
-      <find>JOB_PRE</find>
-      <find>MySQL</find>
-      <find>auto</find>
-      <find>urllib2</find>
-      <find>urlencode</find>
-      <find>perform</find>
-      <find>add_</find>
-      <find>iter</find>
-      <find>filter</find>
-      <find>Engine</find>
-      <find>C:\Users\xiaoy\AppData\Local\conda\conda\envs\venv3.7</find>
-      <find>xiaooy</find>
-      <find>SPIDER_</find>
-      <find>c:\users\xiaoy\pycharmprojects\shepherd</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>MySQLUtils.get_rs_as_dict</replace>
-      <replace>c:\users\xiaooy\venvs\venv3.7</replace>
-      <replace>xiaoy</replace>
-      <replace>&lt;工程路径&gt;</replace>
-    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -109,7 +94,7 @@
     <property name="SearchEverywhereHistoryKey" value="strftime&#9;null&#9;null&#10;combine_field_value&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/Languages" value="Python" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Anaconda3/envs/shepherd-env" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/clematis_wrapper/clematis.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -131,7 +116,7 @@
       <recent name="C:\Users\xiaoy\PycharmProjects\shepherd" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Build">
+  <component name="RunManager" selected="Python.Clematis">
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="INTERPRETER_PATH" value="" />
@@ -159,9 +144,9 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\xiaoy\AppData\Local\conda\conda\envs\venv3.7\python.exe" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -181,22 +166,22 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
         <env name="SHEPHERD_PORT" value="8888" />
-        <env name="SPIDER_PAGE_DUMP_HOST" value="10.1.3.70" />
+        <env name="SPIDER_PAGE_DUMP_HOST" value="localhost" />
         <env name="SPIDER_PAGE_DUMP" value="False" />
-        <env name="SPIDER_LOGGING_CONF" value="c:\users\xiaoy\pycharmprojects\shepherd\clematis\clematis\logging.conf" />
+        <env name="SPIDER_LOGGING_CONF" value="c:\git\shepherd\clematis_wrapper\clematis\logging.conf" />
         <env name="SHEPHERD_HOST" value="127.0.0.1" />
         <env name="SOLR_SERVER" value="127.0.0.1:8983" />
         <env name="SPIDER_PAGE_DUMP_PORT" value="9090" />
         <env name="SPIDER_PAGE_DUMP_TABLE" value="spider_page" />
         <env name="SCRAPY_SETTINGS_MODULE" value="clematis.settings" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\xiaoy\AppData\Local\conda\conda\envs\venv3.7\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/clematis" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/clematis_wrapper" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/clematis/clematis.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/clematis_wrapper/clematis.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -358,12 +343,12 @@
         <env name="SHEPHERD_PORT" value="8888" />
         <env name="SPIDER_PAGE_DUMP" value="False" />
         <env name="SHEPHERD_HOST" value="127.0.0.1" />
-        <env name="SPIDER_LOGGING_CONF" value="c:\users\xiaoy\pycharmprojects\shepherd\clematis\clematis\logging.conf" />
+        <env name="SPIDER_LOGGING_CONF" value="c:\git\shepherd\clematis\clematis\logging.conf" />
         <env name="SPIDER_SCRAPYD_PATH" value="c:\users\xiaoy\pycharmprojects\shepherd\start-scrapyd.bat" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\xiaoy\AppData\Local\conda\conda\envs\venv3.7\python.exe" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="C:/tmp/scrapyd" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -437,17 +422,17 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.Clematis" />
-      <item itemvalue="Python.PSUTIL" />
-      <item itemvalue="Python.SolrWrapper" />
-      <item itemvalue="Python.PyCurl-Test" />
-      <item itemvalue="Python.Shepherd" />
       <item itemvalue="Python.Build" />
-      <item itemvalue="Python.SpiderAgent" />
+      <item itemvalue="Python.Clematis" />
       <item itemvalue="Python.CrawlJob" />
+      <item itemvalue="Python.PSUTIL" />
+      <item itemvalue="Python.PyCurl-Test" />
       <item itemvalue="Python.RunScrapyd" />
-      <item itemvalue="Python.test1" />
+      <item itemvalue="Python.Shepherd" />
+      <item itemvalue="Python.SolrWrapper" />
+      <item itemvalue="Python.SpiderAgent" />
       <item itemvalue="Python.spider_helper" />
+      <item itemvalue="Python.test1" />
     </list>
     <recent_temporary>
       <list>
@@ -619,7 +604,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533209867055</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Get spider configuration database port from env parameter 'SHEPHERD_DB_PORT'.">
+      <created>1577174609734</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1577174609735</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TodoView">
@@ -679,51 +671,104 @@
     <MESSAGE value="Finished the support for crawling szse market overview page.&#10;Add environment variable SHEPHERD_PORT for shepherd module to allow customizing shepherd listening port.(No default is set)" />
     <MESSAGE value="add spider_helper.py(not finished)." />
     <MESSAGE value="The first draft of using helper class to implement very special data/link extraction logic." />
-    <option name="LAST_COMMIT_MESSAGE" value="The first draft of using helper class to implement very special data/link extraction logic." />
+    <MESSAGE value="Get spider configuration database port from env parameter 'SHEPHERD_DB_PORT'." />
+    <option name="LAST_COMMIT_MESSAGE" value="Get spider configuration database port from env parameter 'SHEPHERD_DB_PORT'." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="227" y="75" key="CommitChangelistDialog2" timestamp="1577174573271">
+    <state x="148" y="169" width="1127" height="704" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586266103568">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state x="227" y="75" key="CommitChangelistDialog2/0.0.1500.960@0.0.1500.960" timestamp="1577174573271" />
-    <state x="532" y="236" key="FileChooserDialogImpl" timestamp="1577171345502">
+    <state x="148" y="169" width="1127" height="704" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1500.960@0.0.1500.960" timestamp="1586266103568" />
+    <state x="247" y="234" key="#xdebugger.XInspectDialog" timestamp="1586265788792">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state x="532" y="236" key="FileChooserDialogImpl/0.0.1500.960@0.0.1500.960" timestamp="1577171345502" />
-    <state x="253" y="124" key="SettingsEditor" timestamp="1577173945310">
+    <state x="247" y="234" key="#xdebugger.XInspectDialog/0.0.1500.960@0.0.1500.960" timestamp="1586265788792" />
+    <state x="449" y="286" width="865" height="582" key="EnvironmentVariablesDialog" timestamp="1586266101387">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state x="253" y="124" key="SettingsEditor/0.0.1500.960@0.0.1500.960" timestamp="1577173945310" />
-    <state x="451" y="306" key="com.intellij.ide.util.TipDialog" timestamp="1577170918057">
+    <state x="449" y="286" width="865" height="582" key="EnvironmentVariablesDialog/0.0.1500.960@0.0.1500.960" timestamp="1586266101387" />
+    <state x="494" y="279" key="FileChooserDialogImpl" timestamp="1586265019400">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state x="451" y="306" key="com.intellij.ide.util.TipDialog/0.0.1500.960@0.0.1500.960" timestamp="1577170918057" />
+    <state x="494" y="279" key="FileChooserDialogImpl/0.0.1500.960@0.0.1500.960" timestamp="1586265019400" />
+    <state width="1480" height="316" key="GridCell.Tab.0.bottom" timestamp="1586348102940">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state width="1480" height="316" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1586348102940" />
+    <state width="1480" height="316" key="GridCell.Tab.0.center" timestamp="1586348102939">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state width="1480" height="316" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1586348102939" />
+    <state width="1480" height="316" key="GridCell.Tab.0.left" timestamp="1586348102938">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state width="1480" height="316" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1586348102938" />
+    <state width="1480" height="316" key="GridCell.Tab.0.right" timestamp="1586348102940">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state width="1480" height="316" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1586348102940" />
+    <state width="1480" height="316" key="GridCell.Tab.1.bottom" timestamp="1586348102941">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state width="1480" height="316" key="GridCell.Tab.1.bottom/0.0.1500.960@0.0.1500.960" timestamp="1586348102941" />
+    <state width="1480" height="316" key="GridCell.Tab.1.center" timestamp="1586348102941">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state width="1480" height="316" key="GridCell.Tab.1.center/0.0.1500.960@0.0.1500.960" timestamp="1586348102941" />
+    <state width="1480" height="316" key="GridCell.Tab.1.left" timestamp="1586348102941">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state width="1480" height="316" key="GridCell.Tab.1.left/0.0.1500.960@0.0.1500.960" timestamp="1586348102941" />
+    <state width="1480" height="316" key="GridCell.Tab.1.right" timestamp="1586348102941">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state width="1480" height="316" key="GridCell.Tab.1.right/0.0.1500.960@0.0.1500.960" timestamp="1586348102941" />
+    <state x="253" y="124" key="SettingsEditor" timestamp="1585058860852">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="253" y="124" key="SettingsEditor/0.0.1500.960@0.0.1500.960" timestamp="1585058860852" />
+    <state width="756" height="486" key="XDebugger.FullValuePopup" timestamp="1586265768199">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state width="756" height="486" key="XDebugger.FullValuePopup/0.0.1500.960@0.0.1500.960" timestamp="1586265768199" />
+    <state x="451" y="306" key="com.intellij.ide.util.TipDialog" timestamp="1586412767411">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="451" y="306" key="com.intellij.ide.util.TipDialog/0.0.1500.960@0.0.1500.960" timestamp="1586412767411" />
+    <state x="443" y="211" width="951" height="616" key="find.popup" timestamp="1585059408995">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="443" y="211" width="951" height="616" key="find.popup/0.0.1500.960@0.0.1500.960" timestamp="1585059408995" />
+    <state x="413" y="206" width="672" height="678" key="search.everywhere.popup" timestamp="1585059297174">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="413" y="206" width="672" height="678" key="search.everywhere.popup/0.0.1500.960@0.0.1500.960" timestamp="1585059297174" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/clematis/clematis/spiders/spider2.py</url>
+          <url>file://$PROJECT_DIR$/clematis_wrapper/clematis/spiders/spider2.py</url>
           <line>43</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/clematis/clematis/spiders/helper/spider_helper.py</url>
+          <url>file://$PROJECT_DIR$/clematis_wrapper/clematis/spiders/helper/spider_helper.py</url>
           <line>34</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/clematis/clematis/spiders/spider2.py</url>
+          <url>file://$PROJECT_DIR$/clematis_wrapper/clematis/spiders/spider2.py</url>
           <line>626</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/clematis/clematis/spiders/spider2.py</url>
+          <url>file://$PROJECT_DIR$/clematis_wrapper/clematis/spiders/spider2.py</url>
           <line>635</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/clematis/clematis/spiders/spider2.py</url>
+          <url>file://$PROJECT_DIR$/clematis_wrapper/clematis/spiders/spider2.py</url>
           <line>656</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
@@ -733,13 +778,33 @@
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/clematis/clematis.py</url>
+          <url>file://$PROJECT_DIR$/clematis_wrapper/clematis.py</url>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/clematis/clematis/spiders/spider2.py</url>
+          <url>file://$PROJECT_DIR$/clematis_wrapper/clematis/spiders/spider2.py</url>
           <line>57</line>
           <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/clematis_wrapper/clematis.py</url>
+          <line>4</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$USER_HOME$/Anaconda3/envs/shepherd/Lib/site-packages/scrapy/cmdline.py</url>
+          <line>33</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/clematis_wrapper/clematis/spiders/spider2.py</url>
+          <line>245</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/clematis_wrapper/clematis/spiders/spider2.py</url>
+          <line>269</line>
+          <option name="timeStamp" value="35" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

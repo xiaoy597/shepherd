@@ -141,7 +141,7 @@ Shepherd服务负责监听管理监控界面发来的任务调度命令，将相
     export PATH="$SHEPHERD_HOME/bin:$PATH"
     export PYTHONPATH="$SHEPHERD_HOME"
     export SHEPHERD_LOGGING_CONF=$SHEPHERD_HOME/shepherd/logging.conf
-    export SHEPHERD_SPIDER_TEMPLATE=$SHEPHERD_HOME/clematis/clematis
+    export SHEPHERD_SPIDER_TEMPLATE=$SHEPHERD_HOME/clematis_wrapper/clematis
     export SHEPHERD_JOB_PREPARE_PATH=$SHEPHERD_HOME/tmp
     export SHEPHERD_DB_HOST=127.0.0.1  # 根据本地环境修改
     export SHEPHERD_DB_PORT=3306       # 根据本地环境修改
@@ -200,3 +200,15 @@ Spider-agent服务负责接收Shepherd服务分配的抓取任务，并执行这
    ```shell
    python $HOME/spider-agent_0.1.0/spider-agent.py
    ```
+## 测试爬虫后台服务器
+
+* 启动作业
+```shell script
+curl -X POST "http://<shepherd-host>:<shepherd-port/job-control?command=start&user_id=<user_id>&job_id=<job_id>"
+```
+
+* 更新作业
+```shell script
+curl -X POST "http://<shepherd-host>:<shepherd-port/job-control?command=update&user_id=<user_id>&job_id=<job_id>"
+```
+

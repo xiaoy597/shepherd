@@ -1,5 +1,5 @@
 @rem 工程目录
-@SET SPIDER_HOME=C:\users\xiaoy\pycharmprojects\shepherd
+@SET SPIDER_HOME=C:\git\shepherd
 
 @rem Spider-Agent的工作目录，需要提前创建
 @SET SPIDER_AGENT_WORK_DIR=c:\tmp\scrapyd
@@ -13,7 +13,7 @@
 @SET SPIDER_PAGE_DUMP=False
 
 @rem 日志配置文件的路径，一般不需要修改
-@SET SPIDER_LOGGING_CONF=%SPIDER_HOME%\clematis\clematis\logging.conf
+@SET SPIDER_LOGGING_CONF=%SPIDER_HOME%\clematis_wrapper\clematis\logging.conf
 
 @rem Solr服务的地址和端口
 @SET SOLR_SERVER=127.0.0.1:8983

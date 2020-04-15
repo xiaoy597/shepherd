@@ -25,7 +25,7 @@ from apscheduler.jobstores.base import JobLookupError
 from threading import RLock
 
 from crawl_job import CrawlJob
-from clematis.clematis.mysql_utils import MySQLUtils
+from clematis_wrapper.clematis.mysql_utils import MySQLUtils
 
 
 class SpiderConfigRequestHandler(tornado.web.RequestHandler):
