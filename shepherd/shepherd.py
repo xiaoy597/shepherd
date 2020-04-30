@@ -6,6 +6,7 @@ import json
 import logging
 import logging.config
 import subprocess
+import time
 
 import mysql.connector
 
@@ -18,6 +19,7 @@ from datetime import datetime
 from datetime import timedelta
 
 import tornado.web
+from mysql.connector import OperationalError
 from tornado.ioloop import IOLoop
 
 from apscheduler.schedulers.tornado import TornadoScheduler
@@ -164,8 +166,7 @@ class JobControlRequestHandler(tornado.web.RequestHandler):
         try:
             self.shepherd.update_job(user_id, job_id)
         except Exception as e:
-            self.logger.exception("Error:")
-            self.write(e.message if len(e.message) > 0 else 'Exception')
+            self.logger.exception("Error")
         else:
             self.write("DONE")
 
@@ -177,7 +178,6 @@ class JobControlRequestHandler(tornado.web.RequestHandler):
             self.shepherd.job_controller.stop_job(user_id, job_id)
         except Exception as e:
             self.logger.exception("Error:")
-            self.write(e.message if len(e.message) > 0 else 'Exception')
         else:
             self.write("DONE")
 
@@ -189,7 +189,6 @@ class JobControlRequestHandler(tornado.web.RequestHandler):
             self.shepherd.job_controller.start_job(user_id, job_id)
         except Exception as e:
             self.logger.exception("Error:")
-            self.write(e.message if len(e.message) > 0 else 'Exception')
         else:
             self.write("DONE")
 
@@ -262,7 +261,7 @@ class JobController(object):
 
         # Must use the same python env in which scrapyd-deploy is installed to run scrapyd-deploy.
         ret = subprocess.call([
-            os.getenv('CONDA_PREFIX') + os.path.sep + 'python',
+            'python',
             os.getenv('SPIDER_SCRAPYD_PATH') + os.path.sep + 'scrapyd-deploy',
             '-p',
             job_name])
@@ -487,7 +486,21 @@ class Shepherd(object):
             cursor.close()
 
     def update_job(self, user_id, job_id):
-        cursor = self.conn.cursor()
+        self.logger.debug('Received job update request for user(%s), job(%s)', user_id, job_id)
+
+        while True:
+            try:
+                cursor = self.conn.cursor()
+                break
+            except OperationalError as e:
+                self.logger.error(f'Error raised when opening cursor: {e.msg}')
+                self.conn = mysql.connector.connect(host=os.getenv('SHEPHERD_DB_HOST'),
+                                                    port=int(os.getenv('SHEPHERD_DB_PORT', '3306')),
+                                                    user=os.getenv('SHEPHERD_DB_USER'),
+                                                    passwd=os.getenv('SHEPHERD_DB_PASS'),
+                                                    charset='utf8')
+                self.conn.autocommit = True
+                time.sleep(1)
 
         sql = 'select j.*, s.job_schedule_type, h.host_ip \
                   from {db}.crawl_job j, {db}.job_schedule s, {db}.crawl_host h \
@@ -497,7 +510,12 @@ class Shepherd(object):
 
         cursor.execute(sql, (user_id, job_id))
 
-        new_job = MySQLUtils.get_rs_as_dict(cursor)[0]
+        result = MySQLUtils.get_rs_as_dict(cursor)
+        if result is None or len(result) == 0:
+            self.logger.error('Can not find information for specified job of (%s,%s)', user_id, job_id)
+            return
+
+        new_job = result[0]
 
         cursor.close()
 

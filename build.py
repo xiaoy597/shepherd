@@ -4,10 +4,17 @@ import sys
 import os
 import shutil
 import zipfile
+import pathlib
+
+
+def clear_cache(root_path):
+    for file in pathlib.Path(root_path).rglob('*'):
+        if file.exists() and file.is_dir() and file.name == '__pycache__':
+            print(f'Removing {file} ...')
+            shutil.rmtree(str(file))
 
 
 def build_pack(pack_name, file_list):
-
     print('Building pack %s ...' % pack_name)
 
     build_name = '_'.join([pack_name, version])
@@ -21,6 +28,7 @@ def build_pack(pack_name, file_list):
         if src == '':
             os.mkdir(os.path.join(release_path, dst))
         elif os.path.isdir(src):
+            clear_cache(src)
             shutil.copytree(src, os.path.join(release_path, dst))
         else:
             shutil.copy(src, os.path.join(release_path, dst))
@@ -79,5 +87,3 @@ for my_pack in pack_list:
         exit(1)
 
     build_pack(my_pack, pack_def[my_pack])
-
-

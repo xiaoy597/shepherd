@@ -65,17 +65,17 @@ if __name__ == '__main__':
     logging.config.fileConfig(os.environ['SPIDER_LOGGING_CONF'], disable_existing_loggers=False)
     logger = logging.getLogger('spider-agent')
 
-    if os.name != 'nt':
-        run_xvfb()
+    # if os.name != 'nt':
+    #     run_xvfb()
 
     run_scrapyd()
 
     signal.signal(signal.SIGTERM, signal_handler)
     signal.signal(signal.SIGINT, signal_handler)
 
-    t1 = threading.Thread(target=clear_orphan_process)
-    t1.daemon = True
-    t1.start()
+    # t1 = threading.Thread(target=clear_orphan_process)
+    # t1.daemon = True
+    # t1.start()
 
     while not should_exit:
         time.sleep(1)

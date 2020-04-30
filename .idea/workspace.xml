@@ -2,33 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="538ac6b6-8645-4af2-8e8d-9eae4efbed24" name="Default" comment="Get spider configuration database port from env parameter 'SHEPHERD_DB_PORT'.">
-      <change beforePath="$PROJECT_DIR$/.idea/shepherd.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shepherd.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.py" beforeDir="false" afterPath="$PROJECT_DIR$/build.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clematis/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/spiders/helper/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clematis/clematis.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clematis/clematis/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clematis/clematis/const.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/const.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clematis/clematis/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/items.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clematis/clematis/logging.conf" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/logging.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clematis/clematis/middlewares.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/middlewares.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clematis/clematis/mysql_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/mysql_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clematis/clematis/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/pipelines.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clematis/clematis/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clematis/clematis/solr_wrapper.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/solr_wrapper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clematis/clematis/spiders/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/spiders/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clematis/clematis/spiders/helper/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clematis/clematis/spiders/helper/spider_helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/spiders/helper/spider_helper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clematis/clematis/spiders/spider1.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/spiders/spider1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clematis/clematis/spiders/spider2.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/spiders/spider2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clematis/hbase-test.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/hbase-test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clematis/scrapy.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/scrapy.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clematis/setenv.bat" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/setenv.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clematis/test_data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/test_data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shepherd/crawl_job.py" beforeDir="false" afterPath="$PROJECT_DIR$/shepherd/crawl_job.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clematis_wrapper/clematis/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clematis_wrapper/clematis/spiders/spider1.py" beforeDir="false" afterPath="$PROJECT_DIR$/doc/spider1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shepherd/shepherd.py" beforeDir="false" afterPath="$PROJECT_DIR$/shepherd/shepherd.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/start-agent.bat" beforeDir="false" afterPath="$PROJECT_DIR$/start-agent.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spider-agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider-agent.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,17 +85,18 @@
     </option>
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\xiaoy\PycharmProjects\shepherd" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\git\shepherd\doc" />
       <recent name="C:\Users\xiaoy\PycharmProjects\shepherd\conf" />
       <recent name="C:\Users\xiaoy\PycharmProjects\shepherd\clematis" />
       <recent name="C:\Users\xiaoy\PycharmProjects\shepherd\clematis\clematis" />
       <recent name="C:\Users\xiaoy\PycharmProjects\shepherd\shepherd" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\xiaoy\PycharmProjects\shepherd" />
-    </key>
   </component>
-  <component name="RunManager" selected="Python.Clematis">
+  <component name="RunManager" selected="Python.SpiderAgent">
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="INTERPRETER_PATH" value="" />
@@ -285,19 +265,19 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
         <env name="SHEPHERD_DB_NAME" value="spiderdb" />
-        <env name="SHEPHERD_SPIDER_TEMPLATE" value="c:\users\xiaoy\pycharmprojects\shepherd\clematis\clematis" />
+        <env name="SHEPHERD_SPIDER_TEMPLATE" value="c:\git\shepherd\clematis_wrapper\clematis" />
         <env name="SHEPHERD_JOB_PREPARE_PATH" value="c:\tmp\job_prepare" />
         <env name="SHEPHERD_PORT" value="8888" />
         <env name="SHEPHERD_DB_HOST" value="localhost" />
-        <env name="SHEPHERD_LOGGING_CONF" value="c:\users\xiaoy\pycharmprojects\shepherd\shepherd\logging.conf" />
-        <env name="SHEPHERD_DB_PASS" value="spider" />
-        <env name="SHEPHERD_DB_USER" value="spider" />
-        <env name="SPIDER_SCRAPYD_PATH" value="C:\Users\xiaoy\pycharmprojects\shepherd\envs\venv3.7-win\Scripts" />
-        <env name="CONDA_PREFIX" value="C:\Users\xiaoy\pycharmprojects\shepherd\envs\venv3.7-win" />
+        <env name="SHEPHERD_LOGGING_CONF" value="c:\git\shepherd\shepherd\logging.conf" />
+        <env name="SHEPHERD_DB_PASS" value="root" />
+        <env name="SHEPHERD_DB_USER" value="root" />
+        <env name="SPIDER_SCRAPYD_PATH" value="C:\git\shepherd\envs\venv3.7-win\Scripts" />
+        <env name="CONDA_PREFIX" value="C:\git\shepherd\envs\venv3.7-win" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\xiaoy\PycharmProjects\shepherd\envs\venv3.7-win\python.exe" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
@@ -343,8 +323,9 @@
         <env name="SHEPHERD_PORT" value="8888" />
         <env name="SPIDER_PAGE_DUMP" value="False" />
         <env name="SHEPHERD_HOST" value="127.0.0.1" />
-        <env name="SPIDER_LOGGING_CONF" value="c:\git\shepherd\clematis\clematis\logging.conf" />
-        <env name="SPIDER_SCRAPYD_PATH" value="c:\users\xiaoy\pycharmprojects\shepherd\start-scrapyd.bat" />
+        <env name="SPIDER_LOGGING_CONF" value="c:\git\shepherd\clematis_wrapper\clematis\logging.conf" />
+        <env name="SPIDER_SCRAPYD_PATH" value="c:\git\shepherd\start-scrapyd.bat" />
+        <env name="SOLR_SERVER" value="127.0.0.1:8983" />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="C:/tmp/scrapyd" />
@@ -675,66 +656,70 @@
     <option name="LAST_COMMIT_MESSAGE" value="Get spider configuration database port from env parameter 'SHEPHERD_DB_PORT'." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="148" y="169" width="1127" height="704" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586266103568">
+    <state x="315" y="202" width="1127" height="704" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588239503320">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state x="148" y="169" width="1127" height="704" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1500.960@0.0.1500.960" timestamp="1586266103568" />
+    <state x="315" y="202" width="1127" height="704" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1500.960@0.0.1500.960" timestamp="1588239503320" />
     <state x="247" y="234" key="#xdebugger.XInspectDialog" timestamp="1586265788792">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
     <state x="247" y="234" key="#xdebugger.XInspectDialog/0.0.1500.960@0.0.1500.960" timestamp="1586265788792" />
-    <state x="449" y="286" width="865" height="582" key="EnvironmentVariablesDialog" timestamp="1586266101387">
+    <state x="871" y="247" key="#xdebugger.evaluate" timestamp="1588219365450">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state x="449" y="286" width="865" height="582" key="EnvironmentVariablesDialog/0.0.1500.960@0.0.1500.960" timestamp="1586266101387" />
+    <state x="871" y="247" key="#xdebugger.evaluate/0.0.1500.960@0.0.1500.960" timestamp="1588219365450" />
+    <state x="379" y="247" width="865" height="582" key="EnvironmentVariablesDialog" timestamp="1588239500939">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="379" y="247" width="865" height="582" key="EnvironmentVariablesDialog/0.0.1500.960@0.0.1500.960" timestamp="1588239500939" />
     <state x="494" y="279" key="FileChooserDialogImpl" timestamp="1586265019400">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
     <state x="494" y="279" key="FileChooserDialogImpl/0.0.1500.960@0.0.1500.960" timestamp="1586265019400" />
-    <state width="1480" height="316" key="GridCell.Tab.0.bottom" timestamp="1586348102940">
+    <state width="1480" height="385" key="GridCell.Tab.0.bottom" timestamp="1588239725889">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1480" height="316" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1586348102940" />
-    <state width="1480" height="316" key="GridCell.Tab.0.center" timestamp="1586348102939">
+    <state width="1480" height="385" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1588239725889" />
+    <state width="1480" height="385" key="GridCell.Tab.0.center" timestamp="1588239725889">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1480" height="316" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1586348102939" />
-    <state width="1480" height="316" key="GridCell.Tab.0.left" timestamp="1586348102938">
+    <state width="1480" height="385" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1588239725889" />
+    <state width="1480" height="385" key="GridCell.Tab.0.left" timestamp="1588239725888">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1480" height="316" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1586348102938" />
-    <state width="1480" height="316" key="GridCell.Tab.0.right" timestamp="1586348102940">
+    <state width="1480" height="385" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1588239725888" />
+    <state width="1480" height="385" key="GridCell.Tab.0.right" timestamp="1588239725889">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1480" height="316" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1586348102940" />
-    <state width="1480" height="316" key="GridCell.Tab.1.bottom" timestamp="1586348102941">
+    <state width="1480" height="385" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1588239725889" />
+    <state width="1480" height="276" key="GridCell.Tab.1.bottom" timestamp="1588239725876">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1480" height="316" key="GridCell.Tab.1.bottom/0.0.1500.960@0.0.1500.960" timestamp="1586348102941" />
-    <state width="1480" height="316" key="GridCell.Tab.1.center" timestamp="1586348102941">
+    <state width="1480" height="276" key="GridCell.Tab.1.bottom/0.0.1500.960@0.0.1500.960" timestamp="1588239725876" />
+    <state width="1480" height="276" key="GridCell.Tab.1.center" timestamp="1588239725876">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1480" height="316" key="GridCell.Tab.1.center/0.0.1500.960@0.0.1500.960" timestamp="1586348102941" />
-    <state width="1480" height="316" key="GridCell.Tab.1.left" timestamp="1586348102941">
+    <state width="1480" height="276" key="GridCell.Tab.1.center/0.0.1500.960@0.0.1500.960" timestamp="1588239725876" />
+    <state width="1480" height="276" key="GridCell.Tab.1.left" timestamp="1588239725876">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1480" height="316" key="GridCell.Tab.1.left/0.0.1500.960@0.0.1500.960" timestamp="1586348102941" />
-    <state width="1480" height="316" key="GridCell.Tab.1.right" timestamp="1586348102941">
+    <state width="1480" height="276" key="GridCell.Tab.1.left/0.0.1500.960@0.0.1500.960" timestamp="1588239725876" />
+    <state width="1480" height="276" key="GridCell.Tab.1.right" timestamp="1588239725876">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1480" height="316" key="GridCell.Tab.1.right/0.0.1500.960@0.0.1500.960" timestamp="1586348102941" />
-    <state x="253" y="124" key="SettingsEditor" timestamp="1585058860852">
+    <state width="1480" height="276" key="GridCell.Tab.1.right/0.0.1500.960@0.0.1500.960" timestamp="1588239725876" />
+    <state x="189" y="123" key="SettingsEditor" timestamp="1588236989365">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state x="253" y="124" key="SettingsEditor/0.0.1500.960@0.0.1500.960" timestamp="1585058860852" />
+    <state x="189" y="123" key="SettingsEditor/0.0.1500.960@0.0.1500.960" timestamp="1588236989365" />
     <state width="756" height="486" key="XDebugger.FullValuePopup" timestamp="1586265768199">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
     <state width="756" height="486" key="XDebugger.FullValuePopup/0.0.1500.960@0.0.1500.960" timestamp="1586265768199" />
-    <state x="451" y="306" key="com.intellij.ide.util.TipDialog" timestamp="1586412767411">
+    <state x="451" y="306" key="com.intellij.ide.util.TipDialog" timestamp="1587817809020">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state x="451" y="306" key="com.intellij.ide.util.TipDialog/0.0.1500.960@0.0.1500.960" timestamp="1586412767411" />
+    <state x="451" y="306" key="com.intellij.ide.util.TipDialog/0.0.1500.960@0.0.1500.960" timestamp="1587817809020" />
     <state x="443" y="211" width="951" height="616" key="find.popup" timestamp="1585059408995">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
@@ -792,11 +777,6 @@
           <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$USER_HOME$/Anaconda3/envs/shepherd/Lib/site-packages/scrapy/cmdline.py</url>
-          <line>33</line>
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/clematis_wrapper/clematis/spiders/spider2.py</url>
           <line>245</line>
           <option name="timeStamp" value="34" />
@@ -806,56 +786,17 @@
           <line>269</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/spider-agent.py</url>
+          <line>60</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/spider-agent.py</url>
+          <line>12</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="debuggerHistoryManager">
-    <expressions id="evaluateExpression">
-      <expression>
-        <expression-string>''.join(element.xpath('.//text()').extract())</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>response.headers['Handle']</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>response.headers['handle']</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>page_content</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>response.headers.dict['content-encoding']</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>response.headers</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>response.headers()</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>response</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>response.info()</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
   </component>
 </project>
