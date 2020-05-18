@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import os
 from clematis_wrapper.clematis.mysql_utils import MySQLUtils
 
 
@@ -14,13 +15,14 @@ class CrawlJob(object):
 
         cursor = db_conn.cursor()
 
-        sql = "select * from spiderdb.crawl_job where user_id = %s and job_id = %s"
+        sql = f"select * from {os.getenv('SHEPHERD_DB_NAME', 'spiderdb')}.crawl_job where user_id = %s and job_id = %s"
 
         cursor.execute(sql, (user_id, job_id))
 
         self.fields = MySQLUtils.get_rs_as_dict(cursor)[0]
 
-        sql = "select * from spiderdb.crawl_page_config where user_id = %s and job_id = %s"
+        sql = f"select * from {os.getenv('SHEPHERD_DB_NAME', 'spiderdb')}.crawl_page_config " \
+              f"where user_id = %s and job_id = %s"
 
         cursor.execute(sql, (user_id, job_id))
 
@@ -30,18 +32,21 @@ class CrawlJob(object):
             page['fields'] = self.load_page_field(user_id, job_id, page['page_id'], db_conn)
             page['links'] = self.load_page_link(user_id, job_id, page['page_id'], db_conn)
 
-        sql = "select * from spiderdb.data_store where user_id = %s and data_store_id = %s"
+        sql = f"select * from {os.getenv('SHEPHERD_DB_NAME', 'spiderdb')}.data_store " \
+              f"where user_id = %s and data_store_id = %s"
         cursor.execute(sql, (user_id, self.fields['data_store_id']))
 
         self.fields['data_store'] = MySQLUtils.get_rs_as_dict(cursor)[0]
 
-        sql = "select * from spiderdb.data_store_param where user_id = %s and data_store_id = %s"
+        sql = f"select * from {os.getenv('SHEPHERD_DB_NAME', 'spiderdb')}.data_store_param " \
+              f"where user_id = %s and data_store_id = %s"
         cursor.execute(sql, (user_id, self.fields['data_store_id']))
 
         for row in MySQLUtils.get_rs_as_dict(cursor):
             self.fields['data_store'][str(row['param_name'])] = row['param_value']
 
-        sql = "select param_name, param_value from spiderdb.crawl_config where user_id = %s and job_id = %s"
+        sql = f"select param_name, param_value from {os.getenv('SHEPHERD_DB_NAME', 'spiderdb')}.crawl_config " \
+              f"where user_id = %s and job_id = %s"
         cursor.execute(sql, (user_id, job_id))
         configs = {}
         for row in MySQLUtils.get_rs_as_dict(cursor):
@@ -56,7 +61,7 @@ class CrawlJob(object):
     def load_page_field(self, user_id, job_id, page_id, db_conn):
         cursor = db_conn.cursor()
 
-        sql = "select * from spiderdb.page_field " \
+        sql = f"select * from {os.getenv('SHEPHERD_DB_NAME', 'spiderdb')}.page_field " \
               "  where user_id = %s and job_id = %s and page_id = %s"
 
         cursor.execute(sql, (user_id, job_id, page_id))
@@ -73,7 +78,9 @@ class CrawlJob(object):
     def load_field_locate(self, user_id, job_id, page_id, field_id, db_conn):
         cursor = db_conn.cursor()
 
-        sql = "select l.* from spiderdb.page_field_locate_relation r, spiderdb.page_field_locate l " \
+        sql = f"select l.* " \
+              f"from {os.getenv('SHEPHERD_DB_NAME', 'spiderdb')}.page_field_locate_relation r, " \
+              f"{os.getenv('SHEPHERD_DB_NAME', 'spiderdb')}.page_field_locate l " \
               "  where r.field_locate_id = l.field_locate_id and " \
               "  r.user_id = %s and r.job_id = %s and r.page_id = %s and r.field_id = %s"
 
@@ -88,7 +95,7 @@ class CrawlJob(object):
     def load_page_link(self, user_id, job_id, page_id, db_conn):
         cursor = db_conn.cursor()
 
-        sql = "select * from spiderdb.page_link " \
+        sql = f"select * from {os.getenv('SHEPHERD_DB_NAME', 'spiderdb')}.page_link " \
               "  where user_id = %s and job_id = %s and page_id = %s"
 
         cursor.execute(sql, (user_id, job_id, page_id))

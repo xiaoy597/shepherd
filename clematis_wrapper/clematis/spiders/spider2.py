@@ -610,9 +610,9 @@ class Spider2(scrapy.Spider):
                 try:
                     for link_element in response.xpath(link['link_locate_pattern']):
                         self.logger.debug('Find link: %s[%s]',
-                                          link_element.xpath('./@href').extract(),
-                                          link_element.xpath('.//text()').extract())
-                        links.append((link_element.xpath('./@href').extract(), link['next_page_id']))
+                                          link_element.xpath('./@href').extract_first(),
+                                          link_element.xpath('.//text()').extract_first())
+                        links.append((link_element.xpath('./@href').extract_first(), link['next_page_id']))
                 except (NoSuchElementException, StaleElementReferenceException) as e:
                     self.logger.exception('No element is found from path %s', link['link_locate_pattern'])
         else:
