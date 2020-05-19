@@ -412,8 +412,9 @@ class Spider2(scrapy.Spider):
         for k in content.keys():
             if len(content[k]) == 0:
                 self.logger.error("Content is missing : %s", str(content))
-                raise Exception("Didn't find content for field {} from response of ".format(k)
-                                + response.request.url)
+                content[k] = [('', {})]
+                # raise Exception("Didn't find content for field {} from response of ".format(k)
+                #                 + response.request.url)
 
         # self.logger.debug("Page content: %s", str(content))
 
