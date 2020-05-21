@@ -1,0 +1,109 @@
+= Shepherd运行环境设置（CentOS 7.3）
+肖燏 <yu.xiao@seaboxdata.com>
+v1.0
+:toc:
+
+== 操作系统环境准备
+. 关闭SELINUX
+. 关闭防火墙
+
+== 安装Anaconda
+. 下载Anaconda3-2020.02-Linux-x86_64.sh
+. 创建conda用户
+. 在conda用户下，执行Anaconda3-2020.02-Linux-x86_64.sh，在看到下面提示的时候，输入'yes'初始化conda环境。
++
+----
+Do you wish the installer to initialize Anaconda3
+by running conda init? [yes|no]
+[no] >>>
+----
+
+== 安装Shepherd的Python运行环境
+. 登录conda用户，在conda用户home路径下解压shepherd-conda_0.1.0.zip
+. 执行下列命令：
+----
+conda create -n shepherd
+conda activate shepherd
+cp shepherd-conda_0.1.0/condarc $HOME/.condarc
+mkdir $HOME/.pip
+cp shepherd-conda_0.1.0/pip.conf $HOME/.pip/pip.conf
+pip install --upgrade pip
+conda install --yes --file $HOME/shepherd-conda_0.1.0/conda-requirements.txt
+pip install -r $HOME/shepherd-conda_0.1.0/pip-requirements.txt
+----
+
+== 数据库配置
+Shepherd使用MySQL存放配置数据和抓取的结果数据。
+
+可以安装或者选择一个现有的MySQL数据库（5.6+），创建shepherd的配置数据库和抓取结果数据库，并导入初始数据。
+
+=== 创建shepherd配置数据库
+. 在MySQL数据库中创建spider用户
+. 在MySQL数据库中创建spiderdb数据库，默认字符集为utf8
+. 解压缩shepherd-db_0.1.0.zip，获得spiderdb.sql和spider_data.sql
+. 用MySQL的root用户登录，并导入shepherd配置数据库
+----
+use spiderdb;
+source spiderdb.sql;
+grant all on spiderdb.* to 'spider'@'%' identified by 'spider';
+flush privileges;
+----
+=== 创建shepherd抓取结果数据库
+. 在MySQL数据库中创建spider_data数据库，默认字符集为utf8
+. 用MySQL的root用户登录，并导入spider_data数据库
+----
+use spider_data;
+source spider_data.sql;
+grant all on spider_data.* to 'spider'@'%' identified by 'spider';
+flush privileges;
+----
+
+== 搜索引擎配置
+Shepherd使用Solr保存抓取的页面原始数据，可以使用现有的Solr服务或者单独安装一个新的Solr Server。
+假设需要安装独立的solr服务。
+
+. 创建solr用户
+. 下载solr-7.7.3.tgz
+. 用solr用户登录，解压solr-7.7.3.tgz
+. 在solr用户home路径下解压shepherd-solr_0.1.0.zip
+. 执行下列命令
++
+----
+cp solr-7.7.3/contrib/analysis-extras/lucene-libs/lucene-analyzers-smartcn-7.7.3.jar solr-7.7.3/server/solr-webapp/webapp/WEB-INF/lib/lucene-analyzers-smartcn-7.7.3.jar
+cp -r crawler_configs solr-7.7.3/server/solr/configsets
+----
+. 启动solr
+----
+solr-7.7.3/bin/solr start
+----
+
+== 配置shepherd执行环境
+. 创建操作系统用户shepherd
+. 将shepherd_0.1.0.zip拷贝到shepherd用户home路径下
+. 用shepherd用户登录，执行unzip shepherd_0.1.0.zip
+. 根据shepherd使用的MySQL服务器的配置修改shepherd_0.1.0/shepherd-env文件中的以下变量定义
+----
+export SHEPHERD_DB_HOST=127.0.0.1  # 上述MySQL服务器的地址
+export SHEPHERD_DB_PORT=3306       # 上述MySQL服务器的端口
+----
++
+. 在shepherd用户的.bashrc文件中，增加下列内容：
+----
+source shepherd_0.1.0/shepherd-env
+----
+
+== 配置spider-agent执行环境
+. 创建操作系统用户spider-agent
+. 将spider-agent_0.1.0.zip拷贝到spider-agent用户home路径下
+. 用spider-agent用户登录，执行unzip spider-agent_0.1.0.zip
+. 根据Solr服务器的配置修改spider-agent_0.1.0/spider-agent-env文件中的以下变量定义
++
+----
+export SOLR_SERVER=127.0.0.1:8983    # 需要修改为上述Solr服务的地址
+----
++
+. 在spider-agent用户的.bashrc文件中，增加下列内容：
++
+----
+source spider-agent_0.1.0/spider-agent-env
+----

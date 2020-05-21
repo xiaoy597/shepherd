@@ -58,13 +58,28 @@ pack_def = {
         ('clematis_wrapper', 'clematis_wrapper'),
         ('shepherd', 'shepherd'),
         ('tool', 'bin'),
+        ('setup/shepherd-env', 'shepherd-env')
     ],
     'spider-agent': [
         ('spider-agent.py', 'spider-agent.py'),
         ('clematis_wrapper/clematis/logging.conf', 'logging.conf'),
         ('scrapyd.conf.default', 'scrapyd.conf.default'),
         ('tool', 'bin'),
+        ('setup/spider-agent-env', 'spider-agent-env'),
         ('', 'scrapyd')
+    ],
+    'shepherd-conda': [
+        ('setup/conda-requirements.txt', 'conda-requirements.txt'),
+        ('setup/pip-requirements.txt', 'pip-requirements.txt'),
+        ('setup/condarc', 'condarc'),
+        ('setup/pip.conf', 'pip.conf')
+    ],
+    'shepherd-db': [
+        ('setup/demo/spiderdb.sql', 'spiderdb.sql'),
+        ('setup/demo/spider_data.sql', 'spider_data.sql')
+    ],
+    'shepherd-solr': [
+        ('setup/solr/crawler_configs', 'crawler_configs')
     ]
 }
 
@@ -83,7 +98,7 @@ if not os.path.exists('dist'):
 
 for my_pack in pack_list:
     if my_pack not in pack_def:
-        print('Unknown pack %s' % sys.argv[1])
+        print('Unknown pack %s' % my_pack)
         exit(1)
 
     build_pack(my_pack, pack_def[my_pack])
