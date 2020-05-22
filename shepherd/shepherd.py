@@ -29,6 +29,8 @@ from threading import RLock
 from crawl_job import CrawlJob
 from clematis_wrapper.clematis.mysql_utils import MySQLUtils
 
+from logging_conf import LOGGING_CONF
+
 
 class SpiderConfigRequestHandler(tornado.web.RequestHandler):
     def data_received(self, chunk):
@@ -598,7 +600,9 @@ class Shepherd(object):
 
 
 if __name__ == "__main__":
-    logging.config.fileConfig(os.environ['SHEPHERD_LOGGING_CONF'], disable_existing_loggers=False)
+    # logging.config.fileConfig(os.environ['SHEPHERD_LOGGING_CONF'], disable_existing_loggers=False)
+
+    logging.config.dictConfig(LOGGING_CONF)
 
     shepherd = Shepherd()
 

@@ -62,6 +62,8 @@ pack_def = {
     ],
     'spider-agent': [
         ('spider-agent.py', 'spider-agent.py'),
+        ('', 'shepherd'),
+        ('shepherd/logging_conf.py', 'shepherd/logging_conf.py'),
         ('clematis_wrapper/clematis/logging.conf', 'logging.conf'),
         ('scrapyd.conf.default', 'scrapyd.conf.default'),
         ('tool', 'bin'),

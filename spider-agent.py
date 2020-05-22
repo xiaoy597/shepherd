@@ -8,6 +8,8 @@ import threading
 import time
 import signal
 
+from shepherd.logging_conf import LOGGING_CONF
+
 
 def run_scrapyd():
     logger.info("Starting scrapyd in %s", scrapyd_work_dir)
@@ -19,13 +21,13 @@ def clear_orphan_process():
     while True:
         logger.debug('Checking orphant process ...')
         plist = []
-        for proc in filter(lambda p: p.name().lower().startswith('firefox') or p.name().lower().startswith('geckodriver'),
-                           psutil.process_iter()):
+        for proc in filter(
+                lambda p: p.name().lower().startswith('firefox') or p.name().lower().startswith('geckodriver'),
+                psutil.process_iter()):
             plist.append((proc, proc.parent()))
 
         for p, parent in plist:
             if p.name().lower().startswith('geckodriver') and (parent is None or parent.pid == 1):
-
                 child = filter(lambda x: x[0].name().lower().startswith('firefox') and x[1].pid == p.pid, plist)[0]
                 logger.info('killing firefox(%d) ...', child[0].pid)
                 os.kill(child[0].pid, 9)
@@ -62,7 +64,8 @@ if __name__ == '__main__':
 
     os.chdir(scrapyd_work_dir)
 
-    logging.config.fileConfig(os.environ['SPIDER_LOGGING_CONF'], disable_existing_loggers=False)
+    # logging.config.fileConfig(os.environ['SPIDER_LOGGING_CONF'], disable_existing_loggers=False)
+    logging.config.dictConfig(LOGGING_CONF)
     logger = logging.getLogger('spider-agent')
 
     # if os.name != 'nt':

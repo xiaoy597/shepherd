@@ -38,7 +38,7 @@ Shepherd使用MySQL存放配置数据和抓取的结果数据。
 可以安装或者选择一个现有的MySQL数据库（5.6+），创建shepherd的配置数据库和抓取结果数据库，并导入初始数据。
 
 === 创建shepherd配置数据库
-. 在MySQL数据库中创建spider用户
+. 在MySQL数据库中创建spider用户，用户口令也是spider
 . 在MySQL数据库中创建spiderdb数据库，默认字符集为utf8
 . 解压缩shepherd-db_0.1.0.zip，获得spiderdb.sql和spider_data.sql
 . 用MySQL的root用户登录，并导入shepherd配置数据库
@@ -60,7 +60,7 @@ flush privileges;
 
 == 搜索引擎配置
 Shepherd使用Solr保存抓取的页面原始数据，可以使用现有的Solr服务或者单独安装一个新的Solr Server。
-假设需要安装独立的solr服务。
+以下是安装独立的solr服务的操作步骤。
 
 . 创建solr用户
 . 下载solr-7.7.3.tgz
@@ -70,7 +70,7 @@ Shepherd使用Solr保存抓取的页面原始数据，可以使用现有的Solr�
 +
 ----
 cp solr-7.7.3/contrib/analysis-extras/lucene-libs/lucene-analyzers-smartcn-7.7.3.jar solr-7.7.3/server/solr-webapp/webapp/WEB-INF/lib/lucene-analyzers-smartcn-7.7.3.jar
-cp -r crawler_configs solr-7.7.3/server/solr/configsets
+cp -r shepherd-solr_0.1.0/crawler_configs solr-7.7.3/server/solr/configsets
 ----
 . 启动solr
 ----
@@ -81,7 +81,9 @@ solr-7.7.3/bin/solr start
 . 创建操作系统用户shepherd
 . 将shepherd_0.1.0.zip拷贝到shepherd用户home路径下
 . 用shepherd用户登录，执行unzip shepherd_0.1.0.zip
+. 在shepherd用户home路径下创建tmp目录
 . 根据shepherd使用的MySQL服务器的配置修改shepherd_0.1.0/shepherd-env文件中的以下变量定义
++
 ----
 export SHEPHERD_DB_HOST=127.0.0.1  # 上述MySQL服务器的地址
 export SHEPHERD_DB_PORT=3306       # 上述MySQL服务器的端口
@@ -107,3 +109,36 @@ export SOLR_SERVER=127.0.0.1:8983    # 需要修改为上述Solr服务的地址
 ----
 source spider-agent_0.1.0/spider-agent-env
 ----
+
+
+== 测试
+
+. 重新登录spider-agent用户，执行：
++
+----
+python spider-agent_0.1.0/spider-agent.py
+----
++
+. 在另一终端上登录shepherd用户，执行：
++
+----
+python shepherd_0.1.0/shepherd/shepherd.py
+----
++
+. 在启动shepherd.py的终端上，看到以下信息时，表示测试作业已经执行完毕。
+----
+ 2020-05-22 14:57:26,655 UpdateStatusRequestHandler MainThread INFO     Instance created.
+ 2020-05-22 14:57:26,655 UpdateStatusRequestHandler MainThread DEBUG    {'user_id': '1', 'job_id': '2', 'start_time': '2020-05-22 14:57:26', 'run_status': '0', 'download_num': '0', 'pending_num': '0', 'error_num': '0'}
+ 2020-05-22 14:57:26,671 tornado.access  MainThread INFO     200 POST /update-status (127.0.0.1) 16.44ms
+ 2020-05-22 14:57:33,920 UpdateStatusRequestHandler MainThread INFO     Instance created.
+ 2020-05-22 14:57:33,921 UpdateStatusRequestHandler MainThread DEBUG    {'user_id': '1', 'job_id': '2', 'start_time': '2020-05-22 14:57:26', 'run_status': '1', 'download_num': '1', 'pending_num': '0', 'error_num': '0'}
+ 2020-05-22 14:57:33,928 tornado.access  MainThread INFO     200 POST /update-status (127.0.0.1) 9.08ms
+ 2020-05-22 14:57:33,933 UpdateStatusRequestHandler MainThread INFO     Instance created.
+ 2020-05-22 14:57:33,933 UpdateStatusRequestHandler MainThread DEBUG    {'user_id': '1', 'job_id': '2', 'start_time': '2020-05-22 14:57:26', 'run_status': '2', 'download_num': '1', 'pending_num': '0', 'error_num': '0'}
+ 2020-05-22 14:57:33,939 tornado.access  MainThread INFO     200 POST /update-status (127.0.0.1) 6.64ms
+----
+此时可以到MySQL的spider_data.weather表中查看抓取到的天气预报数据，如果没有找到，可以在启动spider-agent.py的终端上查找以下信息
+----
+2020-05-22T14:57:34+0800 [-] Process finished:  project='job_1_2' spider='spider2' job='7de4a2ba9bf911ea923e000c295349dc' pid=55759 log='logs/job_1_2/spider2/7de4a2ba9bf911ea923e000c295349dc.log' items=None
+----
+然后进入/home/spider-agent/spider-agent_0.1.0/scrapyd目录，打开日志中提示的作业日志文件（log='...'），检查具体错误原因。

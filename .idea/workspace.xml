@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="538ac6b6-8645-4af2-8e8d-9eae4efbed24" name="Default" comment="Get spider configuration database port from env parameter 'SHEPHERD_DB_PORT'.">
+      <change afterPath="$PROJECT_DIR$/shepherd/logging_conf.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.py" beforeDir="false" afterPath="$PROJECT_DIR$/build.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clematis_wrapper/clematis/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/clematis_wrapper/clematis/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clematis_wrapper/clematis/spiders/spider1.py" beforeDir="false" afterPath="$PROJECT_DIR$/doc/spider1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.adoc" beforeDir="false" afterPath="$PROJECT_DIR$/setup.adoc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup/demo/spider_data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/setup/demo/spider_data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup/demo/spiderdb.sql" beforeDir="false" afterPath="$PROJECT_DIR$/setup/demo/spiderdb.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shepherd/shepherd.py" beforeDir="false" afterPath="$PROJECT_DIR$/shepherd/shepherd.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spider-agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider-agent.py" afterDir="false" />
     </list>
@@ -96,7 +99,7 @@
       <recent name="C:\Users\xiaoy\PycharmProjects\shepherd\shepherd" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.SpiderAgent">
+  <component name="RunManager" selected="Python.Build">
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="INTERPRETER_PATH" value="" />
@@ -131,7 +134,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/build.py" />
-      <option name="PARAMETERS" value="spider-agent shepherd" />
+      <option name="PARAMETERS" value="spider-agent shepherd shepherd-conda shepherd-db shepherd-solr" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -150,7 +153,7 @@
         <env name="SPIDER_PAGE_DUMP" value="False" />
         <env name="SPIDER_LOGGING_CONF" value="c:\git\shepherd\clematis_wrapper\clematis\logging.conf" />
         <env name="SHEPHERD_HOST" value="127.0.0.1" />
-        <env name="SOLR_SERVER" value="127.0.0.1:8983" />
+        <env name="SOLR_SERVER" value="192.168.112.129:8983" />
         <env name="SPIDER_PAGE_DUMP_PORT" value="9090" />
         <env name="SPIDER_PAGE_DUMP_TABLE" value="spider_page" />
         <env name="SCRAPY_SETTINGS_MODULE" value="clematis.settings" />
@@ -268,7 +271,7 @@
         <env name="SHEPHERD_SPIDER_TEMPLATE" value="c:\git\shepherd\clematis_wrapper\clematis" />
         <env name="SHEPHERD_JOB_PREPARE_PATH" value="c:\tmp\job_prepare" />
         <env name="SHEPHERD_PORT" value="8888" />
-        <env name="SHEPHERD_DB_HOST" value="localhost" />
+        <env name="SHEPHERD_DB_HOST" value="192.168.112.129" />
         <env name="SHEPHERD_LOGGING_CONF" value="c:\git\shepherd\shepherd\logging.conf" />
         <env name="SHEPHERD_DB_PASS" value="root" />
         <env name="SHEPHERD_DB_USER" value="root" />
@@ -656,10 +659,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Get spider configuration database port from env parameter 'SHEPHERD_DB_PORT'." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="315" y="202" width="1127" height="704" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588239503320">
+    <state x="315" y="202" width="1127" height="704" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1590129732035">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state x="315" y="202" width="1127" height="704" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1500.960@0.0.1500.960" timestamp="1588239503320" />
+    <state x="315" y="202" width="1127" height="704" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1500.960@0.0.1500.960" timestamp="1590129732035" />
     <state x="247" y="234" key="#xdebugger.XInspectDialog" timestamp="1586265788792">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
@@ -668,46 +671,46 @@
       <screen x="0" y="0" width="1500" height="960" />
     </state>
     <state x="871" y="247" key="#xdebugger.evaluate/0.0.1500.960@0.0.1500.960" timestamp="1588219365450" />
-    <state x="379" y="247" width="865" height="582" key="EnvironmentVariablesDialog" timestamp="1588239500939">
+    <state x="379" y="247" width="865" height="582" key="EnvironmentVariablesDialog" timestamp="1590116363195">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state x="379" y="247" width="865" height="582" key="EnvironmentVariablesDialog/0.0.1500.960@0.0.1500.960" timestamp="1588239500939" />
+    <state x="379" y="247" width="865" height="582" key="EnvironmentVariablesDialog/0.0.1500.960@0.0.1500.960" timestamp="1590116363195" />
     <state x="494" y="279" key="FileChooserDialogImpl" timestamp="1586265019400">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
     <state x="494" y="279" key="FileChooserDialogImpl/0.0.1500.960@0.0.1500.960" timestamp="1586265019400" />
-    <state width="1480" height="385" key="GridCell.Tab.0.bottom" timestamp="1588239725889">
+    <state width="1480" height="374" key="GridCell.Tab.0.bottom" timestamp="1590130881476">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1480" height="385" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1588239725889" />
-    <state width="1480" height="385" key="GridCell.Tab.0.center" timestamp="1588239725889">
+    <state width="1480" height="374" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1590130881476" />
+    <state width="1480" height="374" key="GridCell.Tab.0.center" timestamp="1590130881476">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1480" height="385" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1588239725889" />
-    <state width="1480" height="385" key="GridCell.Tab.0.left" timestamp="1588239725888">
+    <state width="1480" height="374" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1590130881476" />
+    <state width="1480" height="374" key="GridCell.Tab.0.left" timestamp="1590130881475">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1480" height="385" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1588239725888" />
-    <state width="1480" height="385" key="GridCell.Tab.0.right" timestamp="1588239725889">
+    <state width="1480" height="374" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1590130881475" />
+    <state width="1480" height="374" key="GridCell.Tab.0.right" timestamp="1590130881476">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1480" height="385" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1588239725889" />
-    <state width="1480" height="276" key="GridCell.Tab.1.bottom" timestamp="1588239725876">
+    <state width="1480" height="374" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1590130881476" />
+    <state width="1480" height="352" key="GridCell.Tab.1.bottom" timestamp="1590130881470">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1480" height="276" key="GridCell.Tab.1.bottom/0.0.1500.960@0.0.1500.960" timestamp="1588239725876" />
-    <state width="1480" height="276" key="GridCell.Tab.1.center" timestamp="1588239725876">
+    <state width="1480" height="352" key="GridCell.Tab.1.bottom/0.0.1500.960@0.0.1500.960" timestamp="1590130881470" />
+    <state width="1480" height="352" key="GridCell.Tab.1.center" timestamp="1590130881470">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1480" height="276" key="GridCell.Tab.1.center/0.0.1500.960@0.0.1500.960" timestamp="1588239725876" />
-    <state width="1480" height="276" key="GridCell.Tab.1.left" timestamp="1588239725876">
+    <state width="1480" height="352" key="GridCell.Tab.1.center/0.0.1500.960@0.0.1500.960" timestamp="1590130881470" />
+    <state width="1480" height="352" key="GridCell.Tab.1.left" timestamp="1590130881470">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1480" height="276" key="GridCell.Tab.1.left/0.0.1500.960@0.0.1500.960" timestamp="1588239725876" />
-    <state width="1480" height="276" key="GridCell.Tab.1.right" timestamp="1588239725876">
+    <state width="1480" height="352" key="GridCell.Tab.1.left/0.0.1500.960@0.0.1500.960" timestamp="1590130881470" />
+    <state width="1480" height="352" key="GridCell.Tab.1.right" timestamp="1590130881470">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state width="1480" height="276" key="GridCell.Tab.1.right/0.0.1500.960@0.0.1500.960" timestamp="1588239725876" />
+    <state width="1480" height="352" key="GridCell.Tab.1.right/0.0.1500.960@0.0.1500.960" timestamp="1590130881470" />
     <state x="189" y="123" key="SettingsEditor" timestamp="1588236989365">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
@@ -716,10 +719,10 @@
       <screen x="0" y="0" width="1500" height="960" />
     </state>
     <state width="756" height="486" key="XDebugger.FullValuePopup/0.0.1500.960@0.0.1500.960" timestamp="1586265768199" />
-    <state x="451" y="306" key="com.intellij.ide.util.TipDialog" timestamp="1587817809020">
+    <state x="451" y="306" key="com.intellij.ide.util.TipDialog" timestamp="1590116062750">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
-    <state x="451" y="306" key="com.intellij.ide.util.TipDialog/0.0.1500.960@0.0.1500.960" timestamp="1587817809020" />
+    <state x="451" y="306" key="com.intellij.ide.util.TipDialog/0.0.1500.960@0.0.1500.960" timestamp="1590116062750" />
     <state x="443" y="211" width="951" height="616" key="find.popup" timestamp="1585059408995">
       <screen x="0" y="0" width="1500" height="960" />
     </state>
@@ -744,22 +747,17 @@
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/clematis_wrapper/clematis/spiders/spider2.py</url>
-          <line>626</line>
+          <line>627</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/clematis_wrapper/clematis/spiders/spider2.py</url>
-          <line>635</line>
+          <line>636</line>
           <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/clematis_wrapper/clematis/spiders/spider2.py</url>
-          <line>656</line>
-          <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/shepherd/crawl_job.py</url>
-          <line>109</line>
+          <line>116</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -788,13 +786,38 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/spider-agent.py</url>
-          <line>60</line>
+          <line>62</line>
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/spider-agent.py</url>
-          <line>12</line>
+          <line>14</line>
           <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/clematis_wrapper/clematis/spiders/spider2.py</url>
+          <line>258</line>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/clematis_wrapper/clematis/spiders/spider2.py</url>
+          <line>398</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/clematis_wrapper/clematis/spiders/spider2.py</url>
+          <line>432</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/clematis_wrapper/clematis/spiders/spider2.py</url>
+          <line>437</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/shepherd/shepherd.py</url>
+          <line>57</line>
+          <option name="timeStamp" value="44" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
