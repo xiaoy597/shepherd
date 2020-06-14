@@ -1,0 +1,4 @@
+FROM shepherd-base:1.0
+RUN mkdir -m 755 /home/conda && ln -s /root/anaconda3 /home/conda/anaconda3
+RUN apt-get -y install mysql-client-core-8.0
+

@@ -7,6 +7,8 @@ import logging
 import logging.config
 import subprocess
 import time
+import sys
+import signal
 
 import mysql.connector
 
@@ -30,6 +32,10 @@ from crawl_job import CrawlJob
 from clematis_wrapper.clematis.mysql_utils import MySQLUtils
 
 from logging_conf import LOGGING_CONF
+
+def onSignal(sigNumber, frame):
+    print(f"Exiting on signal {sigNumber}...")
+    sys.exit(0)
 
 
 class SpiderConfigRequestHandler(tornado.web.RequestHandler):
@@ -603,6 +609,10 @@ if __name__ == "__main__":
     # logging.config.fileConfig(os.environ['SHEPHERD_LOGGING_CONF'], disable_existing_loggers=False)
 
     logging.config.dictConfig(LOGGING_CONF)
+
+    signal.signal(signal.SIGTERM, onSignal)
+    signal.signal(signal.SIGQUIT, onSignal)
+    signal.signal(signal.SIGINT, onSignal)
 
     shepherd = Shepherd()
 

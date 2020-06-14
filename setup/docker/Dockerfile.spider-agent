@@ -1,0 +1,9 @@
+FROM shepherd-base:latest
+ENV SHEPHERD_BASE=/home/spider-agent
+COPY ./spider-agent_0.1.0/scrapyd.conf.default /root/.scrapyd.conf
+WORKDIR $SHEPHERD_BASE/spider-agent_0.1.0
+EXPOSE 6800
+# CMD echo "Shepherd container is running ..." && while true; do sleep 10; done
+SHELL ["/bin/bash", "-c"]
+CMD ["./start-spider-agent.sh"]
+

@@ -1,0 +1,33 @@
+export SPIDER_PACKAGE=shepherd_0.1.0
+export SHEPHERD_HOME=$SHEPHERD_BASE/$SPIDER_PACKAGE
+export PATH="$SHEPHERD_HOME/bin:$PATH"
+export PYTHONPATH="$SHEPHERD_HOME"
+export SHEPHERD_LOGGING_CONF=$SHEPHERD_HOME/shepherd/logging.conf
+export SHEPHERD_SPIDER_TEMPLATE=$SHEPHERD_HOME/clematis_wrapper/clematis
+export SHEPHERD_JOB_PREPARE_PATH=$SHEPHERD_HOME/tmp
+export SHEPHERD_DB_HOST=127.0.0.1  # 根据本地环境修改
+export SHEPHERD_DB_PORT=3306       # 根据本地环境修改
+export SHEPHERD_DB_NAME=spiderdb
+export SHEPHERD_DB_USER=root     # 根据本地环境修改
+export SHEPHERD_DB_PASS=root     # 根据本地环境修改
+export SHEPHERD_PORT=8888
+
+## >>> conda initialize >>>
+## !! Contents within this block are managed by 'conda init' !!
+#__conda_setup="$('/home/conda/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+#if [ $? -eq 0 ]; then
+#    eval "$__conda_setup"
+#else
+#    if [ -f "/home/conda/anaconda3/etc/profile.d/conda.sh" ]; then
+#        . "/home/conda/anaconda3/etc/profile.d/conda.sh"
+#    else
+#        export PATH="/home/conda/anaconda3/bin:$PATH"
+#    fi
+#fi
+#unset __conda_setup
+## <<< conda initialize <<<
+#
+conda activate shepherd
+
+export SPIDER_SCRAPYD_PATH=$CONDA_PREFIX/bin
+

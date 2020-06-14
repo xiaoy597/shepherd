@@ -1,0 +1,7 @@
+FROM solr:7.7.3
+USER root
+RUN rm /etc/localtime && ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+USER solr
+RUN cp /opt/solr/contrib/analysis-extras/lucene-libs/lucene-analyzers-smartcn-7.7.3.jar /opt/solr/server/solr-webapp/webapp/WEB-INF/lib/lucene-analyzers-smartcn-7.7.3.jar
+COPY shepherd-solr_0.1.0/crawler_configs /opt/solr/server/solr/configsets/crawler_configs
+

@@ -58,7 +58,10 @@ pack_def = {
         ('clematis_wrapper', 'clematis_wrapper'),
         ('shepherd', 'shepherd'),
         ('tool', 'bin'),
-        ('setup/shepherd-env', 'shepherd-env')
+        ('setup/shepherd-env', 'shepherd-env'),
+        ('setup/docker/shepherd-env.docker', 'shepherd-env.docker'),
+        ('start-shepherd.sh', 'start-shepherd.sh'),
+        ('', 'tmp')
     ],
     'spider-agent': [
         ('spider-agent.py', 'spider-agent.py'),
@@ -68,6 +71,8 @@ pack_def = {
         ('scrapyd.conf.default', 'scrapyd.conf.default'),
         ('tool', 'bin'),
         ('setup/spider-agent-env', 'spider-agent-env'),
+        ('setup/docker/spider-agent-env.docker', 'spider-agent-env.docker'),
+        ('start-spider-agent.sh', 'start-spider-agent.sh'),
         ('', 'scrapyd')
     ],
     'shepherd-conda': [
@@ -75,6 +80,12 @@ pack_def = {
         ('setup/pip-requirements.txt', 'pip-requirements.txt'),
         ('setup/condarc', 'condarc'),
         ('setup/pip.conf', 'pip.conf')
+    ],
+    'shepherd-test': [
+        ('setup/docker/docker-compose.yml', 'docker-compose.yml'),
+        ('setup/docker/init-db.sql', 'init-db.sql'),
+        ('setup/docker/spiderdb.sql', 'spiderdb.sql'),
+        ('setup/docker/spider_data.sql', 'spider_data.sql')
     ],
     'shepherd-db': [
         ('setup/demo/spiderdb.sql', 'spiderdb.sql'),

@@ -1,13 +1,16 @@
-= Shepherd运行环境设置（CentOS 7.3）
+= Shepherd运行环境设置
 肖燏 <yu.xiao@seaboxdata.com>
 v1.0
 :toc:
 
-== 操作系统环境准备
+== CentOS 7环境下的安装设置
+
+=== 操作系统环境准备
 . 关闭SELINUX
 . 关闭防火墙
+. 安装JDK8
 
-== 安装Anaconda
+=== 安装Anaconda
 . 下载Anaconda3-2020.02-Linux-x86_64.sh
 . 创建conda用户
 . 在conda用户下，执行Anaconda3-2020.02-Linux-x86_64.sh，在看到下面提示的时候，输入'yes'初始化conda环境。
@@ -18,26 +21,33 @@ by running conda init? [yes|no]
 [no] >>>
 ----
 
-== 安装Shepherd的Python运行环境
+=== 安装Shepherd的Python运行环境
 . 登录conda用户，在conda用户home路径下解压shepherd-conda_0.1.0.zip
 . 执行下列命令：
++
 ----
 conda create -n shepherd
 conda activate shepherd
 cp shepherd-conda_0.1.0/condarc $HOME/.condarc
 mkdir $HOME/.pip
 cp shepherd-conda_0.1.0/pip.conf $HOME/.pip/pip.conf
-pip install --upgrade pip
 conda install --yes --file $HOME/shepherd-conda_0.1.0/conda-requirements.txt
+pip install --upgrade pip
 pip install -r $HOME/shepherd-conda_0.1.0/pip-requirements.txt
 ----
++
+. 使用root权限执行：
++
+----
+chmod -R a+rx /home/conda
+----
 
-== 数据库配置
+=== 数据库配置
 Shepherd使用MySQL存放配置数据和抓取的结果数据。
 
 可以安装或者选择一个现有的MySQL数据库（5.6+），创建shepherd的配置数据库和抓取结果数据库，并导入初始数据。
 
-=== 创建shepherd配置数据库
+==== 创建shepherd配置数据库
 . 在MySQL数据库中创建spider用户，用户口令也是spider
 . 在MySQL数据库中创建spiderdb数据库，默认字符集为utf8
 . 解压缩shepherd-db_0.1.0.zip，获得spiderdb.sql和spider_data.sql
@@ -48,7 +58,7 @@ source spiderdb.sql;
 grant all on spiderdb.* to 'spider'@'%' identified by 'spider';
 flush privileges;
 ----
-=== 创建shepherd抓取结果数据库
+==== 创建shepherd抓取结果数据库
 . 在MySQL数据库中创建spider_data数据库，默认字符集为utf8
 . 用MySQL的root用户登录，并导入spider_data数据库
 ----
@@ -58,11 +68,12 @@ grant all on spider_data.* to 'spider'@'%' identified by 'spider';
 flush privileges;
 ----
 
-== 搜索引擎配置
+=== 搜索引擎配置
 Shepherd使用Solr保存抓取的页面原始数据，可以使用现有的Solr服务或者单独安装一个新的Solr Server。
 以下是安装独立的solr服务的操作步骤。
 
 . 创建solr用户
+. 在solr用户的.bashrc中增加Java的执行路径
 . 下载solr-7.7.3.tgz
 . 用solr用户登录，解压solr-7.7.3.tgz
 . 在solr用户home路径下解压shepherd-solr_0.1.0.zip
@@ -77,7 +88,7 @@ cp -r shepherd-solr_0.1.0/crawler_configs solr-7.7.3/server/solr/configsets
 solr-7.7.3/bin/solr start
 ----
 
-== 配置shepherd执行环境
+=== 配置shepherd执行环境
 . 创建操作系统用户shepherd
 . 将shepherd_0.1.0.zip拷贝到shepherd用户home路径下
 . 用shepherd用户登录，执行unzip shepherd_0.1.0.zip
@@ -94,7 +105,7 @@ export SHEPHERD_DB_PORT=3306       # 上述MySQL服务器的端口
 source shepherd_0.1.0/shepherd-env
 ----
 
-== 配置spider-agent执行环境
+=== 配置spider-agent执行环境
 . 创建操作系统用户spider-agent
 . 将spider-agent_0.1.0.zip拷贝到spider-agent用户home路径下
 . 用spider-agent用户登录，执行unzip spider-agent_0.1.0.zip
@@ -111,7 +122,7 @@ source spider-agent_0.1.0/spider-agent-env
 ----
 
 
-== 测试
+=== 测试
 
 . 重新登录spider-agent用户，执行：
 +
@@ -142,3 +153,51 @@ python shepherd_0.1.0/shepherd/shepherd.py
 2020-05-22T14:57:34+0800 [-] Process finished:  project='job_1_2' spider='spider2' job='7de4a2ba9bf911ea923e000c295349dc' pid=55759 log='logs/job_1_2/spider2/7de4a2ba9bf911ea923e000c295349dc.log' items=None
 ----
 然后进入/home/spider-agent/spider-agent_0.1.0/scrapyd目录，打开日志中提示的作业日志文件（log='...'），检查具体错误原因。
+
+== Docker环境下的安装设置
+
+=== 操作系统环境准备
+. 关闭SELINUX
+. 关闭防火墙
+. 安装Docker和Docker-compose
+. 如果主机上已运行MySQL和Solr服务，需要将其关闭。
+
+=== 导入Shepherd镜像及运行环境初始化文件
+. 下载shepherd-images.tar.gz并解压到任意路径下。
+. 执行命令：
++
+----
+docker load -i shepherd-images.tar
+----
+. 下载shepherd-test.tar.gz并解压到任意路径下。
+
+=== 启动Shepherd服务
+. 进入shepherd-test目录，执行
++
+----
+docker-compose up
+----
++
+等待所有服务启动。
+. 查看服务列表，执行：
++
+----
+docker-compose ps
+----
++
+如果看到下列输出，说明服务启动成功
++
+----
+            Name                          Command               State   Ports
+-----------------------------------------------------------------------------
+shepherd-test_mysql_1          docker-entrypoint.sh mysqld      Up
+shepherd-test_shepherd_1       ./start-shepherd.sh              Up
+shepherd-test_solr_1           docker-entrypoint.sh solr- ...   Up
+shepherd-test_spider-agent_1   ./start-spider-agent.sh          Up
+----
++
+服务端口：
+
+* 127.0.0.1:3306 - MySQL数据库。
+* 127.0.0.1:8888 - Shepherd后台服务。
+* 127.0.0.1:8983 - Solr服务。

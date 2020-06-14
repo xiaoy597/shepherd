@@ -1,0 +1,3 @@
+FROM shepherd-mysql-base:latest
+COPY init-db.sql /docker-entrypoint-initdb.d/
+COPY spiderdb.sql spider_data.sql /sample-data/

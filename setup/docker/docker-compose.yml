@@ -1,0 +1,21 @@
+version: '3'
+services:
+    mysql:
+        image: "shepherd-mysql"
+        network_mode: "host"
+    solr:
+        image: "shepherd-solr"
+        network_mode: "host"
+    spider-agent:
+        image: "spider-agent"
+        network_mode: "host"
+        volumes:
+            - ./spider-agent_0.1.0:/home/spider-agent/spider-agent_0.1.0
+    shepherd:
+        image: "shepherd"
+        network_mode: "host"
+        volumes:
+            - ./shepherd_0.1.0:/home/shepherd/shepherd_0.1.0
+#networks:
+#    default:
+#        driver: host

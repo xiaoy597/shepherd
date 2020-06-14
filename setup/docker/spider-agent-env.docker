@@ -1,0 +1,30 @@
+export SPIDER_PACKAGE=spider-agent_0.1.0
+export SPIDER_AGENT_HOME=$SHEPHERD_BASE/$SPIDER_PACKAGE
+
+export PATH="$SPIDER_AGENT_HOME/bin:$PATH"
+export PYTHONPATH="$SPIDER_AGENT_HOME"
+
+export SPIDER_AGENT_WORK_DIR=$SPIDER_AGENT_HOME/scrapyd
+export SPIDER_LOGGING_CONF=$SPIDER_AGENT_HOME/logging.conf
+export SHEPHERD_PORT=8888
+export SHEPHERD_HOST=127.0.0.1
+export SPIDER_PAGE_DUMP=False
+export SOLR_SERVER=127.0.0.1:8983    # 需要修改为本地Solr服务的地址
+
+## >>> conda initialize >>>
+## !! Contents within this block are managed by 'conda init' !!
+#__conda_setup="$('/home/conda/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+#if [ $? -eq 0 ]; then
+#    eval "$__conda_setup"
+#else
+#    if [ -f "/home/conda/anaconda3/etc/profile.d/conda.sh" ]; then
+#        . "/home/conda/anaconda3/etc/profile.d/conda.sh"
+#    else
+#        export PATH="/home/conda/anaconda3/bin:$PATH"
+#    fi
+#fi
+#unset __conda_setup
+## <<< conda initialize <<<
+
+conda activate shepherd
+
