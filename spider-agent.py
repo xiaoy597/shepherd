@@ -68,8 +68,8 @@ if __name__ == '__main__':
     logging.config.dictConfig(LOGGING_CONF)
     logger = logging.getLogger('spider-agent')
 
-    # if os.name != 'nt':
-    #     run_xvfb()
+    if os.name != 'nt':
+        run_xvfb()
 
     run_scrapyd()
 

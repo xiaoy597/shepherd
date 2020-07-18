@@ -112,7 +112,7 @@ IMAGES_STORE = r'/tmp/images'
 # IMAGES_STORE = r'c:\tmp\images'
 
 USER_ID = 1
-JOB_ID = 2
+JOB_ID = 1
 
 # PAGE_DUMP_PARAMS = {
 #     'host': '10.1.3.70',

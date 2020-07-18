@@ -11,6 +11,8 @@ export SHEPHERD_HOST=127.0.0.1
 export SPIDER_PAGE_DUMP=False
 export SOLR_SERVER=127.0.0.1:8983    # 需要修改为本地Solr服务的地址
 
+export DISPLAY=:1
+
 ## >>> conda initialize >>>
 ## !! Contents within this block are managed by 'conda init' !!
 #__conda_setup="$('/home/conda/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"

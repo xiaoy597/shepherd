@@ -610,9 +610,10 @@ if __name__ == "__main__":
 
     logging.config.dictConfig(LOGGING_CONF)
 
-    signal.signal(signal.SIGTERM, onSignal)
-    signal.signal(signal.SIGQUIT, onSignal)
-    signal.signal(signal.SIGINT, onSignal)
+    if os.name != 'nt':
+        signal.signal(signal.SIGTERM, onSignal)
+        signal.signal(signal.SIGQUIT, onSignal)
+        signal.signal(signal.SIGINT, onSignal)
 
     shepherd = Shepherd()
 
